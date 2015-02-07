@@ -22,7 +22,7 @@ digest: Donec rutrum congue leo eget malesuada. Pellentesque in ipsum id orci po
 `这是什么鬼`
 `泰晤士河`
 
-*positioned element*
+分割线----------------------------------------------
 
 {% highlight html %}
 <div>
@@ -45,6 +45,8 @@ digest: Donec rutrum congue leo eget malesuada. Pellentesque in ipsum id orci po
 {% endhighlight %}
 
 > Vivamus suscipit tortor eget felis porttitor volutpat. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Nulla quis lorem ut libero malesuada feugiat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.
+
+*什么鬼*
 
 Pellentesque in ipsum id orci porta dapibus. Curabitur aliquet quam id dui posuere blandit. Vivamus suscipit tortor eget felis porttitor volutpat. Pellentesque in ipsum id orci porta dapibus.
 
