@@ -21,11 +21,12 @@ digest: Donec rutrum congue leo eget malesuada. Pellentesque in ipsum id orci po
 
 `这是什么鬼`
 `泰晤士河`
-> *positioned element*
+
+*positioned element*
 
 {% highlight html %}
-<div id="parent">
-    <div id="child">
+<div>
+    <div>
     </div>
 </div>
 {% endhighlight %}
