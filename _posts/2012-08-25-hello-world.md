@@ -1,6 +1,12 @@
 ---
+title: 测试文章哈哈哈
+time: 2015.2.07 22:26:15
 layout: post
-title: 你好，世界
+tags:
+- 随笔
+- 测试
+excerpt: 
+呵呵
 ---
 {{ page.title }}
 我的第一篇文章
