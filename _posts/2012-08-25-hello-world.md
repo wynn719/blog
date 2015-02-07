@@ -1,11 +1,15 @@
 ---
+title: 我是主标题
+subtitle: 我是副标题
 layout: post
-title: 测试文章哈哈哈
 time: 2015.2.07 22:26:15
 tag:
 - 测试
-- javascript
-- 技术
+- 随笔
+
+categories:
+- 生活
+
 ---
 
 Donec rutrum congue leo eget malesuada. Pellentesque in ipsum id orci porta dapibus. Cras ultricies ligula sed magna dictum porta. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.
