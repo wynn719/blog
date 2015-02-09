@@ -39,7 +39,7 @@
     </aside>
 
     <header>
-      <h1>Bowei Zheng!</h1>
+      <h1>Blog of Bowei Zheng</h1>
       <p></p>
       <nav class="nav">
         <ul>
@@ -59,23 +59,26 @@
             <h1></h1>
             <h2></h2> 
           </hgroup>
+
         </article>
       </div>
 
       <h2>生活</h2>
       <div class="recent-life_posts">
-        <article>
-          <hgroup>
-            <h3></h3>
-            <h4></h4>
-          </hgroup>
-          <div class="posts_content">
-            
-          </div>
-          <footer>
-            
-          </footer>
-        </article>
+        <ul>
+          {% for post in site.posts %}
+            <article>
+              <hgroup>
+                <h3>{{ post.title }}</h3>
+                <h4>{{ post.subtitle }}</h4>
+              </hgroup>
+              <p>{{ post.excerpt }}</p>
+              <footer>
+                
+              </footer>
+            </article>
+          {% endfor %}
+        </ul>
       </div>
     </div>
 
