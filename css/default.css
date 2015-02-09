@@ -113,9 +113,11 @@ header nav li a:hover{
 
 /* content->recent-tech_post */
 .recent-tech_post{
-	
+
 }
 
 /* content->recent-life_post */
-
+.recent-life_post{
+	margin-top: 1px solid rgb(248,226,190);
+}
 
