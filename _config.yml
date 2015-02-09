@@ -1,4 +1,4 @@
-baseurl: /blog
+url: /blog
 #markdown: rdiscount
 permalink: pretty
 pygment: true
