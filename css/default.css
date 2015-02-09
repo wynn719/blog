@@ -118,6 +118,8 @@ header nav li a:hover{
 
 /* content->recent-life_post */
 .recent-life_post{
-	margin-top: 1px solid rgb(248,226,190);
 }
 
+article{
+	border-top: 1px solid rgb(248,226,190);
+}

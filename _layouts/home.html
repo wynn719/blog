@@ -65,20 +65,18 @@
 
       <h2>生活</h2>
       <div class="recent-life_posts">
-        <ul>
-          {% for post in site.posts %}
-            <article>
-              <hgroup>
-                <h3>{{ post.title }}</h3>
-                <h4>{{ post.subtitle }}</h4>
-              </hgroup>
-              <p>{{ post.excerpt }}</p>
-              <footer>
-                
-              </footer>
-            </article>
-          {% endfor %}
-        </ul>
+        {% for post in site.posts %}
+          <article>
+            <hgroup>
+              <h3>{{ post.title }}</h3>
+              <h4>{{ post.subtitle }}</h4>
+            </hgroup>
+            <p>{{ post.excerpt }}</p>
+            <footer>
+              
+            </footer>
+          </article>
+        {% endfor %}
       </div>
     </div>
 
