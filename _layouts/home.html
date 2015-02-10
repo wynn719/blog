@@ -72,8 +72,8 @@
               <h4>{{ post.subtitle }}</h4>
             </hgroup>
             <div class="tags">
-              {% for tag in page.tags %}
-                {{ tag.tags }}
+              {% for tag in post.tags %}
+                {{ tag }}
               {% endfor %}
             </div>
             <p>{{ post.excerpt }}</p>
