@@ -72,7 +72,7 @@
                 <h4>{{ post.subtitle }}</h4>
               </hgroup>
               <div class="datetime">
-                {{ post.date }}
+                {{ post.date | date_to_string}}
               </div>
             </header>
             <div class="tags">
