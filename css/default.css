@@ -123,3 +123,6 @@ header nav li a:hover{
 article{
 	border-top: 1px solid rgb(248,226,190);
 }
+.article_header{
+	padding: 0;
+}
