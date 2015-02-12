@@ -184,7 +184,7 @@ article .title{
 }
 
 /* disqus_thread */
-.disqus_thread{
+#disqus_thread{
 	padding: 0 50px;
 }
 
