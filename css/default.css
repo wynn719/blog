@@ -126,3 +126,26 @@ article{
 .article_header{
 	padding: 0;
 }
+
+/* footer */
+.footer-social_link{
+
+}
+.foot-social_ele{
+	background: url(../imgs/social-link.png) no-repeat 100%;
+	width: 30px;
+	height: 30px;
+	margin-right: 7px;
+	background-color: #666;
+	float: left;
+	border-radius: 20px;
+		-moz-border-radius:5px; /* Old Firefox */
+	transition-duration: 0.8s;
+		-webkit-transition-duration: 0.8s;
+		-moz-transition-duration: 0.8s;
+		-ms-transition-duration: 0.8s;
+		-o-transition-duration: 0.8s;
+}
+.foot-social_ele:hover{
+	
+}
