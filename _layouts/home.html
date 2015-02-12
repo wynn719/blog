@@ -12,7 +12,7 @@
   <meta name="viewport" content="width=100%, initial-scale=1">
   <title>Blog of Bowei Zheng</title>
   <link rel="shortcut icon" href="">
-  <link rel="stylesheet" href="../css/default.css">
+  <link rel="stylesheet" href="{{ site.url }}/css/default.css">
 
   <link rel="alternate" type="application/rss+xml" title="Zheng Bowei » Feed" href="#" />
 </head>
@@ -20,16 +20,16 @@
   <div class="wrapper">
     <aside class="about_author">
       <ul class="social_contact">
-        <li class="social-ele social_weibo"><a href="http://weibo.com/u/1680111594" target="_blank" title="">微博</a></li>
-        <li class="social-ele social_douban"><a href="http://www.douban.com/people/81245114/" target="_blank" title="">豆瓣</a></li>
-        <li class="social-ele social_github"><a href="https://github.com/zhengbowei" target="_blank" title="">github</a></li>
-        <li class="social-ele social_facebook"><a title="其实我没有facebook">facebook</a></li>
-        <li class="social-ele social_googleplus"><a title="我也没有google+">google+</a></li>
-        <li class="social-ele social_twitter"><a title="没错，这是个摆设">twitter</a></li>
+        <li class="social-ele social_weibo"><a href="http://weibo.com/u/1680111594" target="_blank" title=""></a></li>
+        <li class="social-ele social_douban"><a href="http://www.douban.com/people/81245114/" target="_blank" title=""></a></li>
+        <li class="social-ele social_github"><a href="https://github.com/zhengbowei" target="_blank" title=""></a></li>
+        <li class="social-ele social_facebook"><a title="其实我没有facebook"></a></li>
+        <li class="social-ele social_googleplus"><a title="我也没有google+"></a></li>
+        <li class="social-ele social_twitter"><a title="没错，这是个摆设"></a></li>
       </ul>
     </aside>
 
-    <header id="header">
+    <header>
       <h1>Blog of Bowei Zheng</h1>
       <nav class="nav">
         <ul>
@@ -55,97 +55,26 @@
 
       <h2>生活</h2>
       <div class="recent-life_posts">
-        <article>
-          <header>
-            <h3 class="title"><a href="">Donec rutrum congue leo eget malesuada.</a></h3> 
-            <div class="tags">
-              <a class="tag-ele" href="">随笔</a>
-              <a class="tag-ele" href="">生活</a>
-              <a class="tag-ele" href="">javascript</a>
-              <a class="tag-ele" href="">css</a>
-            </div>
-          </header>
-          <div class="datetime">
-            25 Aug 2012
-          </div>
-          <p class="excerpt">Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p>
-
-          <footer>
-            <a class="comment" href="">评论</a>
-          </footer>
-        </article>
-
-        <article>
-          <header>
-            <h3 class="title">Donec rutrum congue leo eget malesuada.</h3>
+        {% for post in site.posts %}
+          <article>
+            <header>
+              <h3 class="title"><a href="">{{ post.title }}</a></h3> 
+              <div class="tags">
+                {% for tag in post.tags %}
+                  <a class="tag-ele" href="">{{ tag }}</a>
+                {% endfor %}
+              </div>
+            </header>
             <div class="datetime">
-              25 Aug 2012
+              {{ post.date | date_to_string}}
             </div>
-          </header>
+            <p class="excerpt">{{ post.excerpt }}</p>
 
-          <div class="tags">
-            <a class="tag-ele" href="">随笔</a>
-            <a class="tag-ele" href="">生活</a>
-            <a class="tag-ele" href="">javascript</a>
-            <a class="tag-ele" href="">css</a>
-          </div>
-          
-          <p class="excerpt">Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p>
-
-          <footer>
-            <a class="comment" href="">评论</a>
-          </footer>
-        </article>
-
-        <article>
-          <header>
-            <hgroup>
-              <h3 class="title">Donec rutrum congue leo eget malesuada.</h3>
-              <h4 class="subtitle">Donec rutrum congue leo eget malesuada.</h4>
-            </hgroup>
-            <div class="datetime">
-              25 Aug 2012
-            </div>
-          </header>
-
-          <div class="tags">
-            <a class="tag-ele" href="">随笔</a>
-            <a class="tag-ele" href="">生活</a>
-            <a class="tag-ele" href="">javascript</a>
-            <a class="tag-ele" href="">css</a>
-          </div>
-          
-          <p class="excerpt">Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p>
-
-          <footer>
-            <a class="comment" href="">评论</a>
-          </footer>
-        </article>
-
-        <article>
-          <header>
-            <hgroup>
-              <h3 class="title">Donec rutrum congue leo eget malesuada.</h3>
-              <h4 class="subtitle">Donec rutrum congue leo eget malesuada.</h4>
-            </hgroup>
-            <div class="datetime">
-              25 Aug 2012
-            </div>
-          </header>
-
-          <div class="tags">
-            <a class="tag-ele" href="">随笔</a>
-            <a class="tag-ele" href="">生活</a>
-            <a class="tag-ele" href="">javascript</a>
-            <a class="tag-ele" href="">css</a>
-          </div>
-          
-          <p class="excerpt">Vivamus suscipit tortor eget felis porttitor volutpat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.</p>
-
-          <footer>
-            <a class="comment" href="">评论</a>
-          </footer>
-        </article>
+            <footer>
+              <a class="comment" href="">评论</a>
+            </footer>
+          </article>
+        {% endfor %}
       </div>
     </div>
 
