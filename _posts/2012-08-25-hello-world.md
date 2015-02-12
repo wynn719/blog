@@ -7,9 +7,6 @@ tag:
 - 测试
 - 随笔
 
-categories:
-- 生活
-
 excerpt: Donec rutrum congue leo eget malesuada. Pellentesque in ipsum id orci porta dapibus. Cras ultricies ligula sed magna dictum porta. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.
 ---
 
