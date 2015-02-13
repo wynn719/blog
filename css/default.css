@@ -33,7 +33,9 @@ a:link, a:visited{
 a:hover, a:active {
 	/*text-decoration: underline;*/
 }
-
+code{
+	font-family: Consolas,"Courier New",Courier;
+}
 /* wrapper */
 .wrapper{
 	width: 1000px;
