@@ -149,6 +149,13 @@ article{
 	position: relative;
 	border-top: 1px solid rgb(248,226,190);
 }
+article blockquote{
+	margin: 0;
+	border: 1px dashed #F8E2BE;
+	border-left: 5px solid #F8E2BE;
+	padding: 0 0.8em;
+	line-height: 1.4;
+}
 article .title{
 	font-weight: 300;
 }
@@ -191,9 +198,6 @@ article .title{
 }
 
 /* disqus_thread */
-#disqus_thread{
-	padding: 0 50px;
-}
 
 /* footer */
 #footer{
