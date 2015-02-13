@@ -174,11 +174,6 @@ article .title{
 }
 .tags a:hover{
 	background-color: rgb(255, 110, 0);
-	transition-duration: 0.8s;
-		-webkit-transition-duration: 0.8s;
-		-moz-transition-duration: 0.8s;
-		-ms-transition-duration: 0.8s;
-		-o-transition-duration: 0.8s;
 }
 .datetime{
 	margin-top: -1px;
@@ -204,8 +199,14 @@ article .title{
 	padding: 0.2em 0.8em;
 	font-size: 1em;
 }
+.button:hover{
+	background-color: rgb(255, 110, 0);
+}
 .button-small{
 	font-size: 0.875em;
+}
+.button-large{
+	font-size: 1.2em;
 }
 
 /* disqus_thread */
