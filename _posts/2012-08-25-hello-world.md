@@ -33,7 +33,7 @@ excerpt: Donec rutrum congue leo eget malesuada. Pellentesque in ipsum id orci p
 
 分割线----------------------------------------------
 
-{% highlight css %}
+{% highlight css linenos%}
 #parent {
     background-color: yellow;
     width: 300px;
@@ -42,6 +42,27 @@ excerpt: Donec rutrum congue leo eget malesuada. Pellentesque in ipsum id orci p
     
     position: relative;
 }
+{% endhighlight %}
+
+{% highlight javascript linenos%}
+#parent {
+    background-color: yellow;
+    width: 300px;
+    height: 200px;
+    margin: 50px;
+    
+    position: relative;
+}
+{% endhighlight %}
+
+{% highlight ruby linenos%}
+def show
+  @widget = Widget(params[:id])
+  respond_to do |format|
+    format.html # show.html.erb
+    format.json { render json: @widget }
+  end
+end
 {% endhighlight %}
 
 > Vivamus suscipit tortor eget felis porttitor volutpat. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Nulla quis lorem ut libero malesuada feugiat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.
