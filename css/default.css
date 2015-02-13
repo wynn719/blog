@@ -192,9 +192,18 @@ article .title{
 	top: 0;
 }
 
-.see_more{
+.button{
+	color: white;
+	background-color: rgb(255,192,92);
+	border-radius: 20px;
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+	padding: 0.2em 0.8em;
+	font-size: 1em;
+}
+.button-small{
 	font-size: 0.875em;
-	color: rgb(231,227,219);
 }
 
 /* disqus_thread */
