@@ -33,7 +33,7 @@ excerpt: Donec rutrum congue leo eget malesuada. Pellentesque in ipsum id orci p
 
 分割线----------------------------------------------
 
-{% highlight css linenos%}
+{% highlight css linenos %}
 #parent {
     background-color: yellow;
     width: 300px;
@@ -44,14 +44,15 @@ excerpt: Donec rutrum congue leo eget malesuada. Pellentesque in ipsum id orci p
 }
 {% endhighlight %}
 
-{% highlight javascript linenos%}
-#parent {
-    background-color: yellow;
-    width: 300px;
-    height: 200px;
-    margin: 50px;
-    
-    position: relative;
+{% highlight javascript linenos %}
+window.onload = function(){
+	var odiv = document.getElementsByTagName("div")[0];
+	odiv.onmouseover = function(){
+		this.className = "hover";
+	}
+	odiv.onmouseout = function(){
+		this.className = "";
+	}
 }
 {% endhighlight %}
 
