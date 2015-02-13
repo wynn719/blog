@@ -126,7 +126,7 @@ a:hover, a:active {
 }
 
 /* content */
-.content{
+#content{
 	padding: 0 50px;
 }
 .blog_division{
