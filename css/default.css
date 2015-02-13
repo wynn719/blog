@@ -38,6 +38,25 @@ a:hover, a:active {
 code{
 	font-family: Consolas;
 }
+.button{
+	color: white;
+	background-color: rgb(255,192,92);
+	border-radius: 20px;
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+	padding: 0.2em 0.8em;
+	font-size: 1em;
+}
+.button:hover{
+	background-color: rgb(255, 110, 0);
+}
+.button-small{
+	font-size: 0.875em;
+}
+.button-large{
+	font-size: 1.2em;
+}
 /* wrapper */
 .wrapper{
 	width: 1000px;
@@ -188,27 +207,9 @@ article .title{
 	left: -55px;
 	top: 0;
 }
-
-.button{
-	color: white;
-	background-color: rgb(255,192,92);
-	border-radius: 20px;
-	display: inline-block;
-	*display: inline;
-	*zoom: 1;
-	padding: 0.2em 0.8em;
-	font-size: 1em;
+article em{
+	font-weight: bold;
 }
-.button:hover{
-	background-color: rgb(255, 110, 0);
-}
-.button-small{
-	font-size: 0.875em;
-}
-.button-large{
-	font-size: 1.2em;
-}
-
 /* disqus_thread */
 
 /* footer */
