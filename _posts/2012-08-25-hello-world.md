@@ -33,7 +33,7 @@ excerpt: Donec rutrum congue leo eget malesuada. Pellentesque in ipsum id orci p
 
 分割线----------------------------------------------
 
-{% highlight css linenos %}
+{% highlight css %}
 #parent {
     background-color: yellow;
     width: 300px;
@@ -44,7 +44,7 @@ excerpt: Donec rutrum congue leo eget malesuada. Pellentesque in ipsum id orci p
 }
 {% endhighlight %}
 
-{% highlight javascript linenos %}
+{% highlight javascript %}
 window.onload = function(){
 	var odiv = document.getElementsByTagName("div")[0];
 	odiv.onmouseover = function(){
@@ -56,7 +56,7 @@ window.onload = function(){
 }
 {% endhighlight %}
 
-{% highlight ruby linenos%}
+{% highlight ruby%}
 def show
   @widget = Widget(params[:id])
   respond_to do |format|
