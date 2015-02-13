@@ -37,6 +37,10 @@ a:hover, a:active {
 }
 code{
 	font-family: Consolas;
+	background: #F8F8F8;
+	/* border-radius: 10px; */
+	padding: 0.1em 0.2em;
+	border: 1px dashed #F8E2BE;
 }
 .button{
 	color: white;

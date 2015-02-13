@@ -6,6 +6,7 @@
 	border-top: 5px dashed #FFFFFF;
 }
 .highlight pre{ margin: 0;padding: 0; }
+.highlight code{ border:none; padding: 0; }
 .hll { background-color: #ffffcc }
 .c { color: #8f5902; font-style: italic } /* Comment */
 .err { color: #a40000; border: 1px solid #ef2929 } /* Error */
