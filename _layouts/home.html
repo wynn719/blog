@@ -55,7 +55,7 @@
 
       <h2>生活</h2>
       <div class="recent-life_posts">
-        {% for post in site.posts %}
+        {% for post in site.categories.life %}
           <article>
             <header>
               <h3 class="title"><a href="{{ site.url }}/{{ post.url }}">{{ post.title }}</a></h3> 
