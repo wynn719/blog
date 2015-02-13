@@ -34,7 +34,7 @@ a:hover, a:active {
 	/*text-decoration: underline;*/
 }
 code{
-	font-family: "微软雅黑";
+	font-family: Consolas;
 }
 /* wrapper */
 .wrapper{
