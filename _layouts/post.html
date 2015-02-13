@@ -3,17 +3,14 @@
 	<div id="content">
 	  <article>
 		<header>
-		  <h3 class="title"><a href="{{ site.url }}{{ post.url }}">{{ page.title }}</a></h3> 
+		  <h2 class="title"><a href="{{ site.url }}{{ post.url }}">{{ page.title }}</a></h2> 
 		  <div class="tags">
 		    {% for tag in page.tags %}
 		      <a class="tag-ele" href="">{{ tag }}</a>
 		    {% endfor %}
 		  </div>
 		</header>
-		<div class="datetime">
-		  {{ page.date | date_to_string}}
-		</div>
-		<p class="excerpt">{{ content }}</p>
+		<div class="art_content">{{ content }}</div>
 
 		<footer>
 		  <div id="disqus_thread"></div>
