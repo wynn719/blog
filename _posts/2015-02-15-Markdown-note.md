@@ -11,37 +11,56 @@ categories:
 
 ---
 
-> Markdown只是一种适用于网络的书写语言，而不是编程语言
+# Markdown只是一种适用于网络的书写语言，而不是编程语言
 
 ## 在HTML区块标签间的Markdown格式语法将不会被处理，而在Markdown格式语法里的HTML区段标签是有效的
 
 {% highlight html %}
 <div>
-	<p>段落p</p>
-	<p>段落p</p>
+  <p>段落p</p>
+  <p>段落p</p>
 </div>
 {% endhighlight %}
 
 在网页中的显示效果：
 
-> <div>
-> 	<p>段落p</p>
-> 	<p>段落p</p>
-> </div>
+<div>
+  <p>段落p</p>
+  <p>段落p</p>
+</div>
 
-## 特殊字符转换问题：如HTML中的开闭标签和实体符号
+# 区块元素
 
-{% highlight html %}
-<!-- 尖括号 -->
-<
-<!-- 与 -->
-&
+## 段落与换行
+
+## 标题
+{% highlight %}
+# h1
+## h2
+### h3
+...
+###### h6
 {% endhighlight %}
 
-在网页中的显示效果：
+## 区块引用 blockquote
+{% highlight %}
+> Proin eget tortor risus.
 
-<
-&
+> Curabitur aliquet quam id dui posuere blandit.
+{% endhighlight %}
+
+连续区块引用：
+{% highlight %}
+> Proin eget tortor risus.
+> Curabitur aliquet quam id dui posuere blandit.
+> Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
+> Donec sollicitudin molestie malesuada.
+> Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.
+{% endhighlight %}
+
+嵌套：
+> > Proin eget tortor risus. Curabitur aliquet quam id dui posuere blandit.
+
 
 
 
