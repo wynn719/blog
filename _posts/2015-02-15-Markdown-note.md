@@ -22,8 +22,9 @@ categories:
 </div>
 {% endhighlight %}
 
-> ###在网页中的显示效果：
-<div>
+### 在网页中的显示效果：
+
+> <div>
 	<em>em标签</em>
 	<strong>strong标签</strong>
 </div>
