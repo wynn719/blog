@@ -20,7 +20,6 @@ categories:
 # 区块元素
 
 ## 段落
-
 普通段落：
 {% highlight html %}
 这是一个普通的段落
@@ -93,25 +92,14 @@ categories:
 
 多段落列表：
 {% highlight html %}
-*   Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
-Proin eget tortor risus. Proin eget tortor risus. Cras ultricies 
-ligula sed magna dictum porta.
+*   Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.Proin eget tortor risus. Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta.
 <!-- 加入空格可以使段落被p标签分开 -->
-    Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
-    Proin eget tortor risus. Proin eget tortor risus.
-    Crasultricies ligula sed magna dictum porta.
+    Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.Proin eget tortor risus. Proin eget tortor risus.Crasultricies ligula sed magna dictum porta.
 
     Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.Proin eget tortor risus. Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta.
 {% endhighlight %}
 
-*   Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
-Proin eget tortor risus. Proin eget tortor risus. Cras ultricies 
-ligula sed magna dictum porta.
-
-    Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
-    Proin eget tortor risus. Proin eget tortor risus.
-    Crasultricies ligula sed magna dictum porta.
-
-    Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
-    Proin eget tortor risus. Proin eget tortor risus. Cras
-    ultricies ligula sed magna dictum porta.
+*   Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.Proin eget tortor risus. Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta.
+    Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.Proin eget tortor risus. Proin eget tortor risus.Crasultricies ligula sed magna dictum porta.
+    Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.Proin eget tortor risus. Proin eget tortor risus. Cras
+ultricies ligula sed magna dictum porta.
