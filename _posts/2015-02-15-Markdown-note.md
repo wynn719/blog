@@ -21,15 +21,14 @@ categories:
 
 ## 段落与换行
 
-插入br换行符：
+普通段落：
 {% highlight html %}
-  
+这是一个普通的段落
+啦啦啦，将会被转换为p标签
+连续的
 
+不连续的\(^o^)/~
 {% endhighlight %}
-  
-  
-  
-      
 
 ## 标题
 {% highlight html %}
