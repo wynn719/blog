@@ -43,14 +43,14 @@ categories:
 {% endhighlight %}
 
 ## 区块引用 blockquote
-{% highlight %}
+{% highlight default %}
 > Proin eget tortor risus.
 
 > Curabitur aliquet quam id dui posuere blandit.
 {% endhighlight %}
 
 连续区块引用：
-{% highlight %}
+{% highlight default %}
 > Proin eget tortor risus.
 > Curabitur aliquet quam id dui posuere blandit.
 > Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
@@ -70,21 +70,21 @@ categories:
 
 ## 列表
 无序列表：
-{% highlight %}
+{% highlight default %}
 * list1
 * list2
 * list3
 {% endhighlight %}
 
 有序列表：
-{% highlight %}
-1. list 1
+{% highlight default %}
+1. list 1 
 2. list 2
 3. list 3
 {% endhighlight %}
 
 将列表用p标签分隔开
-{% highlight %}
+{% highlight default %}
 * list 1
 
 * list 2
