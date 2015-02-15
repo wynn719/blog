@@ -59,14 +59,18 @@ categories:
 {% endhighlight %}
 
 嵌套：
+{% highlight html %}
 > > Proin eget tortor risus. Curabitur aliquet quam id dui posuere blandit.
+{% endhighlight %}
 
-在区块中引用其他Markdown语法
+在区块中引用其他Markdown语法:
+{% highlight html %}
 > #### h4
 > 
 > * list 1
 > * list 2
 > * list 3
+{% endhighlight %}
 
 ## 列表
 无序列表：
