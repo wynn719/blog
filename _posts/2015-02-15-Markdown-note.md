@@ -17,17 +17,31 @@ categories:
 
 {% highlight html %}
 <div>
-	<em>em标签</em>
-	<strong>strong标签</strong>
+	<p>段落p</p>
+	<p>段落p</p>
 </div>
 {% endhighlight %}
 
-### 在网页中的显示效果：
+在网页中的显示效果：
 
 > <div>
-> 	<em>em标签</em>
-> 	<strong>strong标签</strong>
+> 	<p>段落p</p>
+> 	<p>段落p</p>
 > </div>
+
+## 特殊字符转换问题：如HTML中的开闭标签和实体符号
+
+{% highlight html %}
+<!-- 尖括号 -->
+<
+<!-- 与 -->
+&
+{% endhighlight %}
+
+在网页中的显示效果：
+
+> <
+> &
 
 
 
