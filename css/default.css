@@ -8,6 +8,7 @@
 
 /* reset */
 body{
+	background-image: url(../imgs/wood.jps) top center repeat;
 	font-size: 1em;
 	background-color: rgb(248,226,190);
 	padding: 0;
