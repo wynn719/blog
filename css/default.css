@@ -16,8 +16,6 @@ body{
 	font-family: "微软雅黑"
 }
 
-ul,ol,dl{list-style: none;margin: 0;padding: 0;}
-
 img{width: 100%;height: 100%;}
 
 /* global */
@@ -82,6 +80,9 @@ code{
 	position: absolute;
 	right: 12px;
 	height: 40px;
+	padding: 0;
+	margin: 0;
+	list-style: none;
 }
 .social-ele{
 	background: url(../imgs/social-link.png) no-repeat 100%;
@@ -125,6 +126,9 @@ code{
 }
 .nav{
 	overflow: hidden;
+	padding: 0;
+	margin: 0;
+	list-style: none;
 }
 .nav li{
 	float: left;
