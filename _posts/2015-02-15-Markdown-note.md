@@ -16,25 +16,17 @@ categories:
 ## 在HTML区块标签间的Markdown格式语法将不会被处理，而在Markdown格式语法里的HTML区段标签是有效的
 
 {% highlight html %}
-//这是一个普通段落。
-
 <div>
 	<em>em标签</em>
 	<strong>strong标签</strong>
 </div>
-
-//这是另一个普通段落。
 {% endhighlight %}
 
-显示如下效果如下
-
-> 这是一个普通段落。
-
+> ###在网页中的显示效果：
 <div>
 	<em>em标签</em>
 	<strong>strong标签</strong>
 </div>
 
-这是另一个普通段落。
 
 
