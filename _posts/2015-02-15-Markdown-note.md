@@ -21,6 +21,16 @@ categories:
 
 ## 段落与换行
 
+插入br换行符：
+{% highlight html %}
+  
+
+{% endhighlight %}
+  
+  
+  
+      
+
 ## 标题
 {% highlight html %}
 # h1
@@ -75,7 +85,7 @@ categories:
 3. list 3
 {% endhighlight %}
 
-将列表用p标签分隔开
+将列表用p标签分隔开：
 {% highlight html %}
 * list 1
 
