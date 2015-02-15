@@ -102,3 +102,20 @@ categories:
     ultricies ligula sed magna dictum porta.
 {% endhighlight %}
 
+最多三个空格的缩进
+
+*   Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
+    Proin eget tortor risus. Proin eget tortor risus. Cras 
+    ultricies ligula sed magna dictum porta.
+
+*   Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
+    Proin eget tortor risus. Proin eget tortor risus. Cras 
+    ultricies ligula sed magna dictum porta.
+
+无缩进
+
+*   Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+Aliquam hendrerit mi posuere lectus. Vestibulum enim wisi,
+viverra nec, fringilla in, laoreet vitae, risus.
+*   Donec sit amet nisl. Aliquam semper ipsum sit amet velit.
+Suspendisse id sem consectetuer libero luctus adipiscing.
