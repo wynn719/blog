@@ -102,9 +102,5 @@ ligula sed magna dictum porta.
     Crasultricies ligula sed magna dictum porta.
 
     Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.Proin eget tortor risus. Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta.
-*   Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.Proin eget tortor risus. Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta.
-    Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.Proin eget tortor risus. Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta.
-    
-    Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.Proin eget tortor risus. Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta.
 {% endhighlight %}
 
