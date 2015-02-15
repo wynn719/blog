@@ -91,6 +91,9 @@ categories:
 {% endhighlight %}
 
 多段落列表：
+
+(单个列中多段落以段前4个空格符或者间隔符来区分，段落间空行使p标签包裹文本)
+
 {% highlight html %}
 1.   Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.Proin eget tortor risus. Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta.
 
@@ -99,8 +102,3 @@ categories:
 3.   Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.Proin eget tortor risus. Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta.
 {% endhighlight %}
 
-1.   Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Donec rutrum congue leo eget malesuada.
-     Vivamus suscipit tortor eget felis porttitor volutpat. Vivamus suscipit tortor eget felis porttitor volutpat.
-
-2.   Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.Proin eget tortor risus. Proin eget tortor risus. Cras
-ultricies ligula sed magna dictum porta.
