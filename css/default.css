@@ -184,6 +184,7 @@ article blockquote{
 article .title{
 	font-weight: 300;
 }
+.tags { margin: 1em 0;}
 .tags a{
 	font-size: 0.875em;
 	color: white;
