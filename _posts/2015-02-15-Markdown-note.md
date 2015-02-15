@@ -15,7 +15,7 @@ categories:
 
 ## 在HTML区块标签间的Markdown格式语法将不会被处理，而在Markdown格式语法里的HTML区段标签是有效的
 
-{% highlight %}
+{% highlight html %}
 //这是一个普通段落。
 
 <div>
@@ -26,7 +26,7 @@ categories:
 //这是另一个普通段落。
 {% endhighlight %}
 
-显示如下：
+显示如下效果如下
 
 > 这是一个普通段落。
 
