@@ -61,6 +61,31 @@ categories:
 嵌套：
 > > Proin eget tortor risus. Curabitur aliquet quam id dui posuere blandit.
 
+在区块中引用其他Markdown语法
+> #### h4
+> 
+> * list 1
+> * list 2
+> * list 3
 
+## 列表
+无序列表：
+{% highlight %}
+* list1
+* list2
+* list3
+{% endhighlight %}
 
+有序列表：
+{% highlight %}
+1. list 1
+2. list 2
+3. list 3
+{% endhighlight %}
 
+将列表用p标签分隔开
+{% highlight %}
+* list 1
+
+* list 2
+{% endhighlight %}
