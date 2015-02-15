@@ -34,7 +34,7 @@ categories:
 ## 段落与换行
 
 ## 标题
-{% highlight %}
+{% highlight markdown %}
 # h1
 ## h2
 ### h3
