@@ -34,7 +34,7 @@ categories:
 ## 段落与换行
 
 ## 标题
-{% highlight default %}
+{% highlight html %}
 # h1
 ## h2
 ### h3
@@ -50,7 +50,7 @@ categories:
 {% endhighlight %}
 
 连续区块引用：
-{% highlight default %}
+{% highlight html %}
 > Proin eget tortor risus.
 > Curabitur aliquet quam id dui posuere blandit.
 > Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
@@ -70,21 +70,21 @@ categories:
 
 ## 列表
 无序列表：
-{% highlight default %}
+{% highlight html %}
 * list1
 * list2
 * list3
 {% endhighlight %}
 
 有序列表：
-{% highlight default %}
+{% highlight html %}
 1. list 1 
 2. list 2
 3. list 3
 {% endhighlight %}
 
 将列表用p标签分隔开
-{% highlight default %}
+{% highlight html %}
 * list 1
 
 * list 2
