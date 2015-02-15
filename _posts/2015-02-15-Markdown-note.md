@@ -19,7 +19,7 @@ categories:
 
 # 区块元素
 
-## 段落与换行
+## 段落
 
 普通段落：
 {% highlight html %}
@@ -90,3 +90,22 @@ categories:
 
 * list 2
 {% endhighlight %}
+
+列表缩进：
+{% highlight html %}
+*   Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
+    Proin eget tortor risus. Proin eget tortor risus. Cras 
+    ultricies ligula sed magna dictum porta.
+
+*   Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
+    Proin eget tortor risus. Proin eget tortor risus. Cras 
+    ultricies ligula sed magna dictum porta.
+{% endhighlight %}
+
+*   Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
+    Proin eget tortor risus. Proin eget tortor risus. Cras 
+    ultricies ligula sed magna dictum porta.
+
+*   Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
+    Proin eget tortor risus. Proin eget tortor risus. Cras 
+    ultricies ligula sed magna dictum porta.
