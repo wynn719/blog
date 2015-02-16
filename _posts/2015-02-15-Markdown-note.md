@@ -102,3 +102,126 @@ categories:
 3.   Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.Proin eget tortor risus. Proin eget tortor risus. Cras ultricies ligula sed magna dictum porta.
 {% endhighlight %}
 
+在列表中加入引用blockquote：
+
+（需要缩进）
+
+{% highlight html %}
+*   Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
+
+    > This is a blockquote
+    > inside a list item.
+{% endhighlight %}
+
+用反斜线来防止列表的生成：
+{% highlight html %}
+1\.this blockquote looks pretty good.
+{% endhighlight %}
+
+## 分隔线
+（三个以上的星号、减号、底线）
+{% highlight html %}
+* * *
+
+***
+
+- - -
+
+---------------------------------------
+{% endhighlight %}
+
+# 区段元素
+## 链接
+行内链接：
+{% highlight html %}
+
+{% endhighlight %}
+
+it links to [google](http://www.google.com/ "the title of this link") , click it!
+
+[yahoo](http:www.yahoo.com) has no title attr.
+
+参考链接：
+
+This is [an example] [id] reference-style link.
+
+然后在任意的地方把链接定义出来，不区分大小写，有点像书本的脚标
+
+[id]: <http://example.com/>  "Optional Title Here"
+
+e.g.
+{% highlight html %}
+I get 10 times more traffic from [Google] [1] than from
+[Yahoo] [2] or [MSN] [3].
+
+  [1]: http://google.com/        "Google"
+  [2]: http://search.yahoo.com/  "Yahoo Search"
+  [3]: http://search.msn.com/    "MSN Search"
+{% endhighlight %}
+
+I get 10 times more traffic from [Google] [1] than from
+[Yahoo] [2] or [MSN] [3].
+
+  [1]: http://google.com/        "Google"
+  [2]: http://search.yahoo.com/  "Yahoo Search"
+  [3]: http://search.msn.com/    "MSN Search"
+
+## 强调
+一个星号包裹是em，两个是strong，同样反斜线输出正常的星号
+{% highlight html %}
+*single asterisks*
+
+_single underscores_
+
+**double asterisks**
+
+__double underscores__
+{% endhighlight %}
+
+## 代码
+用反引号包裹形成code代码
+{% highlight html %}
+`printf()`
+{% endhighlight %}
+
+## 图片
+行内图片：
+{% highlight html %}
+![Alt text](/path/to/img.jpg)
+
+![Alt text](/path/to/img.jpg "Optional title")
+{% endhighlight %}
+
+参考图片：
+{% highlight html %}
+![Alt text][id]
+
+[id]: url/to/image  "Optional title attribute"
+{% endhighlight %}
+
+# 其他
+##自动连接
+{% highlight html %}
+<address@example.com>
+{% endhighlight %}
+
+##反斜杠
+Markdown 支持以下这些符号前面加上反斜杠来帮助插入普通的符号：
+
+{% highlight html %}
+\   反斜线
+`   反引号
+*   星号
+_   底线
+{}  花括号
+[]  方括号
+()  括弧
+#   井字号
++   加号
+-   减号
+.   英文句点
+!   惊叹号
+{% endhighlight %}
+
+> 以上仅方便个人使用，一些自己觉得不需要的就没有加入了。
+> 强大的Markdown肯定有一些更好的语法，请自行google哈！
