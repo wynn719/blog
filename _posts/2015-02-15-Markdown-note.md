@@ -142,7 +142,9 @@ it links to [google](http://www.google.com/ "the title of this link") , click it
 参考链接：
 {% highlight html %}
 This is [an example] [id] reference-style link.
+
 <!-- 然后在任意的地方把链接定义出来，不区分大小写，有点像书本的脚标 -->
+
 [id]: <http://example.com/>  "Optional Title Here"
 {% endhighlight %}
 
