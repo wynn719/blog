@@ -61,18 +61,17 @@ code{
 	font-size: 1.2em;
 }
 ::selection {
-    background:#d3d3d3; 
-    color:#555;
+    background: #FFC05C;
+	color: white;
 }
 
 ::-moz-selection {
-    background:#d3d3d3; 
-    color:#555;
+    background: #FFC05C;
+	color: white;
 }
-
 ::-webkit-selection {
-    background:#d3d3d3; 
-    color:#555;
+    background: #FFC05C;
+	color: white;
 }
 /* wrapper */
 .wrapper{
