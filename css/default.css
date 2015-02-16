@@ -179,6 +179,20 @@ article{
 	position: relative;
 	/*border-top: 1px solid rgb(248,226,190);*/
 }
+article::selection {
+    background:#d3d3d3; 
+    color:#555;
+}
+
+article::-moz-selection {
+    background:#d3d3d3; 
+    color:#555;
+}
+
+article::-webkit-selection {
+    background:#d3d3d3; 
+    color:#555;
+}
 article blockquote{
 	margin: 0;
 	border: 1px dashed #F8E2BE;
