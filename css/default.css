@@ -240,7 +240,7 @@ article em{
 	font-weight: bold;
 }
 /* disqus_thread */
-#disqus_thread *{
+#disqus_thread>*{
 	font-family: "微软雅黑","Microsoft Yahei","宋体",Serif;
 }
 /* footer */
