@@ -17,8 +17,6 @@ categories:
 
 在HTML区块标签间的Markdown格式语法将不会被处理，而在Markdown格式语法里的HTML区段标签是有效的
 
-- - -
-
 # 区块元素
 
 ## 段落
@@ -132,8 +130,6 @@ categories:
 ---------------------------------------
 {% endhighlight %}
 
-- - -
-
 # 区段元素
 ## 链接
 行内链接：
@@ -194,8 +190,6 @@ __double underscores__
 
 [id]: url/to/image  "Optional title attribute"
 {% endhighlight %}
-
-- - -
 
 # 其他
 ## 自动连接
