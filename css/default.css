@@ -6,6 +6,13 @@
 @colordef peru 秘鲁色 rgb(171,120,86) 
 */
 
+/* flow */
+@media screen and ( max-width:  1024px ){
+	#wrapper{
+		width: 900px;
+	}
+}
+
 /* reset */
 body{
 	background: url(../imgs/wood.jpg) top center repeat;
@@ -79,14 +86,6 @@ code{
     background: #FFC05C;
 	color: white;
 }
-
-/* flow */
-@media screen and ( max-width:  1024px ){
-	#wrapper{
-		width: 900px;
-	}
-}
-
 
 /* wrapper */
 #wrapper{
