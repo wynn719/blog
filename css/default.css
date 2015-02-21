@@ -236,9 +236,9 @@ article .title{
 	left: -55px;
 	top: 0;
 }
-article em{
+article em, article strong{
 	font-weight: bold;
-	margin: 0 0.5em;
+	margin: 0 0.2em;
 }
 article p, article li{
 	line-height: 2em;
