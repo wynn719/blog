@@ -81,27 +81,27 @@ code{
 }
 
 /* wrapper */
-@media screen and ( max-width: 1300px ){
+@media screen and ( max-width: 1366px ){
 	#wrapper{
-		width: 1000px;
+		width: 72.2%;
 	}
 }
 
 @media screen and ( max-width: 1024px ){
 	#wrapper{
-		width: 900px;
+		width: 78.1%;
 	}
 }
 
 @media screen and ( max-width: 720px ) {
 	#wrapper{
-		width: 600px;
+		width: 83.3%;
 	}
 }
 
 @media screen and ( max-width: 480px ) {
 	#wrapper{
-		width: 480px;
+		width: 100%;
 	}
 }
 #wrapper{
