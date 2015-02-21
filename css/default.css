@@ -79,6 +79,15 @@ code{
     background: #FFC05C;
 	color: white;
 }
+
+/* flow */
+@media screen and ( max-width:  1024px ){
+	.wrapper{
+		width: 900px;
+	}
+}
+
+
 /* wrapper */
 .wrapper{
 	width: 1000px;
