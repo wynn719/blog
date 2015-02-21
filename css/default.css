@@ -80,36 +80,39 @@ code{
 	color: white;
 }
 
-/* wrapper */
-@media screen and ( max-width: 1366px ){
-	#wrapper{
-		width: 72.2%;
-	}
-}
-
+/*flot*/
 @media screen and ( max-width: 1024px ){
 	#wrapper{
 		width: 78.1%;
 	}
 }
-
 @media screen and ( max-width: 720px ) {
 	#wrapper{
 		width: 83.3%;
 	}
 }
-
 @media screen and ( max-width: 480px ) {
 	#wrapper{
 		width: 100%;
 	}
 }
+img{
+	max-width: 100%;
+}
+
+/* wrapper */
 #wrapper{
+	max-width: 1000px;
 	height: auto;
 	margin: 50px auto;
 	background-color: white;
 	box-shadow: 0 3px 5px rgba(0,0,0,0.26);
 		-moz-box-shadow: 0 3px 5px rgba(0,0,0,0.26);
+	transition-duration: 0.8s;
+		-webkit-transition-duration: 0.8s;
+		-moz-transition-duration: 0.8s;
+		-ms-transition-duration: 0.8s;
+		-o-transition-duration: 0.8s;
 }
 
 /* about_author */
