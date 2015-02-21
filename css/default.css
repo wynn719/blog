@@ -238,6 +238,13 @@ article .title{
 }
 article em{
 	font-weight: bold;
+	margin: 0 0.5em;
+}
+article p, article li{
+	line-height: 2em;
+}
+.art_content p{
+	text-indent: 2em;
 }
 /* disqus_thread */
 #disqus_thread>*{
