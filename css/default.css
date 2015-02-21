@@ -82,14 +82,14 @@ code{
 
 /* flow */
 @media screen and ( max-width:  1024px ){
-	.wrapper{
+	#wrapper{
 		width: 900px;
 	}
 }
 
 
 /* wrapper */
-.wrapper{
+#wrapper{
 	width: 1000px;
 	height: auto;
 	margin: 50px auto;
