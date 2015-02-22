@@ -78,7 +78,7 @@ code{
 }
 
 /*flot*/
-@media screen and ( max-width: 1024px ){
+@media screen and ( max-width: 1366px ){
 	#wrapper{
 		width: 78.1%;
 		margin: 50px auto;
