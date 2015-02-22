@@ -81,6 +81,7 @@ code{
 @media screen and ( max-width: 1024px ){
 	#wrapper{
 		width: 78.1%;
+		margin: 50px auto;
 	}
 	h1{ font-size: 2.75em; }
 	h2{ font-size: 2.125em; }
@@ -92,6 +93,7 @@ code{
 @media screen and ( max-width: 720px ) {
 	#wrapper{
 		width: 83.3%;
+		margin: 40px auto;
 	}
 	h1{ font-size: 2.125em; }
 	h2{ font-size: 1.75em; }
@@ -121,7 +123,6 @@ img{
 #wrapper{
 	max-width: 1000px;
 	height: auto;
-	margin: 50px auto;
 	background-color: white;
 	box-shadow: 0 3px 5px rgba(0,0,0,0.26);
 		-moz-box-shadow: 0 3px 5px rgba(0,0,0,0.26);
