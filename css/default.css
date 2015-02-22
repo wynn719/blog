@@ -46,6 +46,7 @@ code{
 	/* border-radius: 10px; */
 	padding: 0.1em 0.2em;
 	border: 1px dashed #F8E2BE;
+	word-wrap: break-word;
 }
 .button{
 	color: white;
