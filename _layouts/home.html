@@ -5,7 +5,7 @@
         <h2>Tech</h2>
         <div class="recent-tech_posts">
           {% for post in paginator.posts %}
-            {% if post.categories == "tech" %}
+              <p>{{ post.categories }}</p>
               <article>
                 <header>
                   <h3 class="title"><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></h3> 
@@ -23,7 +23,6 @@
                   <a class="button button-small" href="{{ site.url }}{{ post.url }}">查看全文……</a>
                 </footer>
               </article>
-            {% endif %}
           {% endfor %}
           <!-- 分页链接 -->
           <div id="post-pagination" class="pagination">
