@@ -82,7 +82,7 @@ code{
 	#wrapper{
 		width: 78.1%;
 	}
-	h1{ font-size: 2.75em;}
+	h1{ font-size: 2.75em; }
 	h2{ font-size: 2.125em; }
 	h3{ font-size: 1.75em; }
 	h4{ font-size: 1.25em; }
@@ -103,6 +103,7 @@ code{
 @media screen and ( max-width: 480px ) {
 	#wrapper{
 		width: 100%;
+		margin: 0;
 	}
 	h1{ font-size: 1.75em; }
 	h2{font-size: 1.25em; }
@@ -111,6 +112,7 @@ code{
 	h5{ font-size: 0.875em; }
 	h6{ font-size: 0.875em; }
 }
+
 img{
 	max-width: 100%;
 }
