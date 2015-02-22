@@ -1,53 +1,57 @@
 {% include header.html %}
 
     <div id="content">
-      <h2>Tech</h2>
-      <div class="recent-tech_posts">
-        {% for post in site.categories.tech %}
-          <article>
-            <header>
-              <h3 class="title"><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></h3> 
-              <div class="tags">
-                {% for tag in post.tags %}
-                  <a class="tag-ele" href="">{{ tag }}</a>
-                {% endfor %}
+      <section>
+        <h2>Tech</h2>
+        <div class="recent-tech_posts">
+          {% for post in site.categories.tech %}
+            <article>
+              <header>
+                <h3 class="title"><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></h3> 
+                <div class="tags">
+                  {% for tag in post.tags %}
+                    <a class="tag-ele" href="">{{ tag }}</a>
+                  {% endfor %}
+                </div>
+              </header>
+              <div class="datetime">
+                {{ post.date | date_to_string}}
               </div>
-            </header>
-            <div class="datetime">
-              {{ post.date | date_to_string}}
-            </div>
-            <p class="excerpt">{{ post.excerpt }}</p>
+              <p class="excerpt">{{ post.excerpt }}</p>
 
-            <footer>
-              <a class="button button-small" href="{{ site.url }}{{ post.url }}">查看全文……</a>
-            </footer>
-          </article>
-        {% endfor %}
-      </div>
+              <footer>
+                <a class="button button-small" href="{{ site.url }}{{ post.url }}">查看全文……</a>
+              </footer>
+            </article>
+          {% endfor %}
+        </div>
+      </section>
 
-      <h2>Life</h2>
-      <div class="recent-life_posts">
-        {% for post in site.categories.life %}
-          <article>
-            <header>
-              <h3 class="title"><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></h3> 
-              <div class="tags">
-                {% for tag in post.tags %}
-                  <a class="tag-ele" href="">{{ tag }}</a>
-                {% endfor %}
+      <section>
+        <h2>Life</h2>
+        <div class="recent-life_posts">
+          {% for post in site.categories.life %}
+            <article>
+              <header>
+                <h3 class="title"><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></h3> 
+                <div class="tags">
+                  {% for tag in post.tags %}
+                    <a class="tag-ele" href="">{{ tag }}</a>
+                  {% endfor %}
+                </div>
+              </header>
+              <div class="datetime">
+                {{ post.date | date_to_string}}
               </div>
-            </header>
-            <div class="datetime">
-              {{ post.date | date_to_string}}
-            </div>
-            <p class="excerpt">{{ post.excerpt }}</p>
+              <p class="excerpt">{{ post.excerpt }}</p>
 
-            <footer>
-              <a class="button button-small" href="{{ site.url }}{{ post.url }}">查看全文……</a>
-            </footer>
-          </article>
-        {% endfor %}
-      </div>
+              <footer>
+                <a class="button button-small" href="{{ site.url }}{{ post.url }}">查看全文……</a>
+              </footer>
+            </article>
+          {% endfor %}
+        </div>
+      </section>
 
       <div id="disqus_thread"></div>
       <script type="text/javascript">
