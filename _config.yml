@@ -1,4 +1,10 @@
+name: "Blog of Bowei Zheng"
+description: "Blog of my Web and Life"
+
 url: /blog
+
 #markdown: rdiscount
 permalink: pretty
 pygment: true
+paginate: 5
+paginate_path: "blog/index.html"
