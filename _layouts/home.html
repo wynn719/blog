@@ -5,6 +5,7 @@
         <h2>Tech</h2>
         <div class="recent-tech_posts">
           {% for post in paginator.posts %}
+            {{ post.categories }}
             {% if post.categories == 'tech' %}
               <article>
                 <header>
