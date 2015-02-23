@@ -6,7 +6,7 @@ tag:
 - blog version1.0
 - 随笔
 
-category:
+categories:
 - life
 
 ---
