@@ -9,6 +9,8 @@ tag:
 categories:
 - tech
 
+excerpt:
+最近在学习了jekyll建站后，顺便学了下Markdown书写语言，多学肯定有益啦，总结一下，不定期更新……
 ---
 
 > Markdown只是一种适用于网络的书写语言，而不是编程语言
