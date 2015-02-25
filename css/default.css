@@ -210,7 +210,7 @@ img{
 	margin-top: 50px;
 	margin-bottom: 20px;
 }
-.section-header:hover .section-more-link{
+.section-header:hover .see-more-link{
 	display: inline;
 }
 h2.section-title{
