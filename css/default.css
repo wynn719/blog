@@ -264,7 +264,9 @@ article p, article li{
 	line-height: 2em;
 }
 /* disqus_thread */
-body.serif
+body.serif{
+	font-family: "微软雅黑","Microsoft Yahei","宋体",Serif;
+}
 /* footer */
 #footer{
 	padding: 20px 0;
