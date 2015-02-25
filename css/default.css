@@ -83,11 +83,11 @@ code{
 		width: 78.1%;
 		margin: 50px auto;
 	}
-	h1{ font-size: 2.75em; }
-	h2{ font-size: 2.125em; }
-	h3{ font-size: 1.75em; }
-	h4{ font-size: 1.25em; }
-	h5{ font-size: 1em; }
+	h1{ font-size: 2.125em; }
+	h2{ font-size: 1.75em; }
+	h3{font-size: 1.25em; }
+	h4{ font-size: 1em; }
+	h5{ font-size: 0.875em; }
 	h6{ font-size: 0.875em; }
 }
 @media screen and ( max-width: 720px ) {
@@ -95,10 +95,10 @@ code{
 		width: 83.3%;
 		margin: 40px auto;
 	}
-	h1{ font-size: 2.125em; }
-	h2{ font-size: 1.75em; }
-	h3{font-size: 1.25em; }
-	h4{ font-size: 1em; }
+	h1{ font-size: 1.75em; }
+	h2{font-size: 1.25em; }
+	h3{ font-size: 1em; }
+	h4{ font-size: 0.875em; }
 	h5{ font-size: 0.875em; }
 	h6{ font-size: 0.875em; }
 }
@@ -107,12 +107,6 @@ code{
 		width: 100%;
 		margin: 0;
 	}
-	h1{ font-size: 1.75em; }
-	h2{font-size: 1.25em; }
-	h3{ font-size: 1em; }
-	h4{ font-size: 0.875em; }
-	h5{ font-size: 0.875em; }
-	h6{ font-size: 0.875em; }
 }
 
 img{
@@ -210,17 +204,9 @@ img{
 #content{
 	padding: 0 50px;
 }
-.blog_division{
-	color:rgb(228,118,34); 
-}
-
-/* content->recent-tech_post */
-.recent-tech_post{
-
-}
-
-/* content->recent-life_post */
-.recent-life_post{
+.section-title{
+	font-size: 2.75em;
+	text-shadow: 0px 1px #ffffff,3px 3px 0px #dad7d7;
 }
 /* articles */
 article{

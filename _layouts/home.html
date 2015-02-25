@@ -2,7 +2,7 @@
 
     <div id="content" role="main">
       <section>
-        <h2>Recent Tech</h2>
+        <h2 class="section-title">Recent Tech</h2>
         <div class="recent-tech_posts">
           {% for post in site.categories.tech limit:5%}
             <article class="tech">
@@ -27,7 +27,7 @@
       </section>
 
       <section>
-        <h2>Recent Life</h2>
+        <h2 class="section-title">Recent Life</h2>
         <div class="recent-life_posts">
           {% for post in site.categories.life limit:5 %}
             <article class="life">
