@@ -263,6 +263,8 @@ article em, article strong{
 article p, article li{
 	line-height: 2em;
 }
+/* disqus_thread */
+body.serif
 /* footer */
 #footer{
 	padding: 20px 0;
