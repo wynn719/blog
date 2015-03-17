@@ -18,21 +18,21 @@ excerpt: 学习妙味课堂js中级课程的一些笔记
 
 {% highlight javascript %}
 function getElementsByClassName(parent, tagName, className){
-	var	aEls = parent.getElementsByTagName(tagName),
-		arr = [];// 存储选中的对象
+    var aEls = parent.getElementsByTagName(tagName),
+        arr = [];// 存储选中的对象
 
-	for(var i = 0; i < aEls.length; i++){
-		var aClassName = aEls[i].className.split(' ');
+    for(var i = 0; i < aEls.length; i++){
+        var aClassName = aEls[i].className.split(' ');
 
-		for(var j = 0; j < aClassName.length; j++){
-			if(aClassName[j] === className){
-				arr.push( aEls[i] );
-				break;// 跳过该元素的处理
-			}
-		}
-	}
-	
-	return arr;
+        for(var j = 0; j < aClassName.length; j++){
+            if(aClassName[j] === className){
+                arr.push( aEls[i] );
+                break;// 跳过该元素的处理
+            }
+        }
+    }
+    
+    return arr;
 }
 {% endhighlight %}
 
@@ -40,37 +40,37 @@ function getElementsByClassName(parent, tagName, className){
 
 {% highlight javascript %}
 function addClass (obj, className) {
-	if (obj.className === '') {
-		obj.className = className;
-	}else{
-		var arrClassName = obj.className.split(' '),
-			_index = indexOfArr(arrClassName, className);
+    if (obj.className === '') {
+        obj.className = className;
+    }else{
+        var arrClassName = obj.className.split(' '),
+            _index = indexOfArr(arrClassName, className);
 
-		if (_index === -1) {
-			obj.className += ' ' + className; 
-		}
-	}
+        if (_index === -1) {
+            obj.className += ' ' + className; 
+        }
+    }
 }
 
 function removeClass (obj, className) {
-	if (obj.className !== '') {
-		var arrClassName = obj.className.split(' '),
-			_index = indexOfArr(arrClassName, className);
+    if (obj.className !== '') {
+        var arrClassName = obj.className.split(' '),
+            _index = indexOfArr(arrClassName, className);
 
-		if (_index !== -1) {
-			arrClassName.splice(_index, 1);// 删除当前元素
-			obj.className = arrClassName.join(' ');
-		}
-	}
+        if (_index !== -1) {
+            arrClassName.splice(_index, 1);// 删除当前元素
+            obj.className = arrClassName.join(' ');
+        }
+    }
 }
 
 // 取得类名在数组中的索引
 function indexOfArr (arr, v) {
-	for (var i = 0; i < arr.length; i++) {
-		if (arr[i] === v) {
-			return i;
-		}
-	}
-	return -1;
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i] === v) {
+            return i;
+        }
+    }
+    return -1;
 }
 {% endhighlight %}
