@@ -1,7 +1,7 @@
 ---
 title: JS中级课程-笔记
 layout: post
-time: 2015.2.07 22:26:15
+time: 2015.3.17 22:26:15
 tag:
 - JavaScript
 - 笔记
@@ -295,7 +295,8 @@ oForm.reset = function(){
 
 ### BOM (Browser Object Model 浏览器对象模型)
 
-window.open()与window.close()
+* window.open()
+* window.close()
 
 {% highlight html %}
 <input type="button" value="打开新窗口" />
@@ -403,8 +404,8 @@ element.scrollHeight // element.scrollWidth
 // 在页面中取文档的高，请先在CSS中将body的margin去掉，然后用document.body.offsetHeight来取文档元素的高，不同浏览器body默认有不同的margin或者padding值
 {% endhighlight %}
 
-onscroll 当滚动条滚动时触发
-onresize 当窗口改变时触发
+* onscroll 当滚动条滚动时触发
+* onresize 当窗口改变时触发
 
 {% highlight javascript %}
 // 这两个函数的触发次数都是按时间间隔来算的，而不是根据拉动的次数来计算
