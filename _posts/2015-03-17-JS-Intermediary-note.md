@@ -419,3 +419,404 @@ window.onresize = function(){
 {% endhighlight %}
 
 ## 第03课：Event-事件详解1
+
+### 焦点事件-1
+
+焦点：使浏览器能够区分用户输入的对象。
+
+元素获得焦点的方式：
+
+* 鼠标点击
+* tab
+* js
+
+注：并不是所有的元素都能够接收焦点。能够响应用户操作的元素才有焦点，如input，a，form元素。
+
+* 获取焦点事件onfocus \ 失去焦点事件 onblur (如：输入框提示文字)
+* obj.focus(); 给指定的元素设置焦点
+* obj.blur(); 取消指定元素的焦点
+* obj.select(); 选中指定元素的焦点
+
+提升input输入的用户体验：
+
+{% highlight html %}
+<input type="text" id="text1" value="请输入内容" />
+<input type="button" value="全选" id="btn"/>
+{% endhighlight %}
+
+{% highlight javascript %}
+var oText = document.getElementById('text1');
+var oBtn = document.getElementById('btn');
+
+//onfocus：当元素获取到焦点的时候触发
+oText.onfocus = function(){
+    if(value='请输入内容'){
+        this.value = '';
+    }
+}
+
+//onblur：当元素失去焦点的时候触发
+oText.onblur = function(){
+    if(this.value == ''){
+        this.value = '请输入内容';
+    }
+}
+
+oText.focus();
+
+oBtn.onclick = function(){
+    oText.select();
+}
+{% endhighlight %}
+
+### event-事件对象和clientX,clientY
+
+event 事件对象，当一个事件触发的时候，event对象会记录这个事件的有关的详细信息
+
+事件对象必须在一个事件调用的函数里面使用才有内容
+
+事件函数：事件调用的函数，一个函数是不是事件函数，不在定义的决定，而是取决于这个调用的时候
+
+{% highlight javascript %}
+alert(event); // 直接调用时，标准下： undefined ie：null
+
+document.onclick = function(){
+    alert(event); // 显示event对象
+}
+{% endhighlight %}
+
+{% highlight javascript %}
+function fn1(){
+    alert(event);
+}
+
+fn1(); //不是事件调用的函数，因此这时候event没有内容，显示undefined
+document.onclick = fn1; // fn1是事件调用的函数，所以event有内容 这种写法在firefox无效
+{% endhighlight %}
+
+兼容性问题
+
+* ie/chrome : event是一个内置全局对象
+* 标准下 : 事件对象是通过事件函数的第一个参数传入
+
+如果一个函数是被事件调用的那么，这个函数定义的第一个参数就是事件对象
+
+{% highlight javascript %}
+function fn1(ev){
+    alert(ev);
+}
+document.onclick = fn1; //在火狐、标准ie下、chrome下都可以弹出事件对象（非标准ie会弹出undefined）
+{% endhighlight %}
+
+解决兼容性的问题
+
+{% highlight javascript %}
+function fn1(ev) {
+    var ev = ev || event;// 标准函数中调用第一个，非标准调用第二个
+    alert(ev);
+    
+    /*for(var attr in ev){
+        console.log(attr + ' = ' + ev[attr]);
+    }*/
+}
+document.onclick = fn1;
+{% endhighlight %}
+
+clientX \ clientY 当一个事件发生的时候，鼠标到页面可视区的距离
+
+{% highlight html %}
+<style>
+#div1 {width: 100px; height:100px; background: red; position: absolute;}
+</style>
+<body style="height: 2000px;">
+    <div id="div1"></div>
+</body>
+{% endhighlight %}
+
+{% highlight javascript %}
+//onmousemove；当鼠标在一个元素上移动的时候触发
+//触发频率不是以像素记，而是间隔时间。在一个指定时间内（很短），如果鼠标的位置和上一次的位置发生了变化，那么就会触发一次
+var oDiv = document.getElementById('div1');
+document.onmousemove = function(){
+    var ev = ev || event;
+    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    oDiv.style.left = ev.clientX + 'px';
+    oDiv.style.top = scrollTop + ev.clientY + 'px';
+}
+{% endhighlight %}
+
+### 事件流-事件冒泡机制-
+
+事件冒泡：当一个元素接收到事件的时候，会把它接收到的事件传播给它的父级，一直到顶层window，这也被称为js中的事件冒泡机制。
+
+{% highlight javascript %}
+// 给oDiv1加事件，给元素加事件处理函数，即使不给oDiv1加上事件，
+// 点击oDiv1时依旧会触发事件，只不过事件没有被处理，onmouseover等也是同理
+//oDiv1.onclick = fn1;  
+{% endhighlight %}
+
+冒泡示例
+
+{% highlight html %}
+<body>
+    <div id="div1">
+        <div id="div2">
+            <div id="div3"></div>
+        </div>
+    </div>
+</body>
+<script>
+var oDiv1 = document.getElementById('div1');
+var oDiv2 = document.getElementById('div2');
+var oDiv3 = document.getElementById('div3');
+
+function fn1() {
+    alert( this.id );
+}
+
+// 当点击div3时，div1也会弹出信息，即事件冒泡从div3往上一直冒泡到window对象，
+// 而div3做了click的处理，所以弹出了信息。
+oDiv1.onclick = fn1;
+oDiv3.onclick = fn1;
+</script>
+{% endhighlight %}
+
+阻止冒泡
+
+在当前要阻止冒泡的事件函数中调用：事件对象.cancelBubble = true;
+
+{% highlight html %}
+<body>
+    <input type="button" value="按钮" id="btn" />
+    <div id="div1" style="width: 100px; height: 200px; border: 1px solid red; display: none"></div>
+</body>
+<script>
+var oBtn = document.getElementById('btn');
+var oDiv = document.getElementById('div1');
+
+oBtn.onclick = function(ev){
+    var ev = ev || event;
+    ev.cancelBubble = true; //阻止当前对象的当前事件的冒泡
+    oDiv.style.display = 'block';
+}
+
+// 点击btn不会触发document的click事件了
+document.onclick = function(){
+    /* 测试事件冒泡
+    setTimeout(function(){
+        oDiv.style.display = 'none';
+    }, 1000);
+    */
+    oDiv.style.display = 'none';
+}
+</script>
+{% endhighlight %}
+
+事件冒泡的实际应用
+
+{% highlight html %}
+<!-- 侧边栏分享到……应用 -->
+<body>
+    <div id="div1">
+        <div id="div2"></div>
+    </div>
+</body>
+<style>
+#div1 {width: 100px; height: 200px; background: red; position: absoute; left: -100px; top: 100px;}
+#div2 {width: 30px; height: 60px; position: absolute; right: -30px; top: 70px; background: black; color: white; text-align: center;}
+</style>
+<script>
+var oDiv = document.getElementByid('div1');
+// 点击div2时冒泡机制使div1触发下列事件
+oDiv.onmouseover = function(){
+    this.style.left = '0px';
+}
+oDiv.onmouseout = function(){
+    this.style.left = '-100px';
+}
+</script>
+{% endhighlight %}
+
+### 事件冒泡第二种形式
+
+注意：上面提到的是事件冒泡的第一种形式，不能同时处理两个事件
+
+{% highlight javascript %}
+function fn1(){alert(1);}
+function fn2(){alert(2);}
+document.onclick = fn1;
+document.onclick = fn2; //会覆盖前面绑定的fn1
+{% endhighlight %}
+
+给对象绑定事件处理函数的第二种形式
+
+ie：obj.attachEvent(事件名称, 事件函数);
+
+* document.attachEvent('onclick', fn1);
+* 没有捕获
+* 事件名称有on
+* 事件函数执行的顺序：标准ie -> 正序；非标准ie -> 倒序
+* this指向window
+
+标准：obj.addEventListener(事件名称, 事件函数, 是否捕获);
+
+* document.addEventListener('click', fn1, false);
+* 有捕获
+* 事件名称没有on
+* 事件函数执行顺序：正序
+* this指向触发该事件的对象
+
+call() 函数下的一个方法，call方法的第一个参数可以改变函数执行过程中的内部this的指向；call方法从第二个参数开始就是原来函数的参数列表；如果call方法传入的第一个参数是null，那么就是不改变函数内部的this指向的。
+
+{% highlight javascript %}
+function fn1(){
+    alert(this);
+}
+
+//fn1(); //window
+fn1.call(); //调用函数 也就是说：fn1() 可视为等同于 fn1.call() 弹出window
+fn1.call(1) //弹出1，因为在fn1里面的this变成了1。
+{% endhighlight %}
+
+{% highlight javascript %}
+function fn1(a + b){
+    alert(this);
+    alert(a + b);
+}
+fn1.call(1, 20, 30); //先弹出1，然后弹出50
+fn1.call(null, 10, 20); //先弹出window对象，然后弹出30
+{% endhighlight %}
+
+函数绑定封装函数(解决兼容性问题)
+
+{% highlight javascript %}
+function bind(obj, evname, fn){
+    if(obj.addEventListener){
+        obj.addEventListener(evname, fn, false);
+    } else {
+        obj.attachEvent('on' + evname, function(){
+            fn.call(obj);
+        })
+    }
+}
+{% endhighlight %}
+
+{% highlight html %}
+<body>
+    <div id="div1">
+        <div id="div2">
+            <div id="div3"></div>
+        </div>
+    </div>
+</body>
+<script>
+var oDiv1 = document.getElementById('div1');
+var oDiv2 = document.getElementById('div2');
+var oDiv3 = document.getElementById('div3');
+
+function fn1(){
+    alert(this);
+}
+
+//通过将addEventListener的第三个参数设置为true，来设置事件捕获
+oDiv1.addEventListener('click', fn1, true); //上面这一句告诉oDiv1：如果有一个进去的事件触发了你，你就去执行fn1这个函数
+oDiv2.addEventListener('click', fn1, true);
+oDiv3.addEventListener('click', fn1, true);    
+</script>
+{% endhighlight %}
+
+### 拖拽的原理
+
+基本由这三个事件主导，主要是计算拖拽的相对距离
+
+* onmousedown 选择元素
+* onmousemove 移动元素
+* onmouseup 释放元素
+
+{% highlight html %}
+<body>
+    <div id="div"></div>
+</body>
+<style>
+#div{position: absolute;width: 100px;height: 100px;background-color: orange;}
+</style>
+<script>
+var oDiv = document.getElementById('div1');
+
+oDiv.onmousedown = function(){
+    var ev = ev || event;
+
+    // 计算出相对距离
+    var disX = ev.clientX - this.offsetLeft;
+    var disY = ev.clientY - this.offsetTop;// 如果有scroll也要加入就算
+
+    /*
+     * oDiv.onmousemove = function (ev) {
+     * 事件在oDiv上时，如果div进入另一个div中，
+     * mouseup会被另一个div覆盖，无法触发
+     */
+    document.onmousemove = function (ev) {
+        var ev = ev || event;
+            
+        oDiv.style.left = ev.clientX - disX + 'px';
+        oDiv.style.top = ev.clientY - disY + 'px';
+    }
+
+    // 同理
+    document.onmouseup = function () {
+        document.ommousemove = document.onmouseup = null;
+    }
+} 
+// 依旧有bug，看下面分解= =
+</script>
+{% endhighlight %}
+
+### 拖拽的问题和解决方法
+
+注意：如果拖拽的时候有文字被选中，会产生问题
+
+原因：当鼠标按下的时候，如果页面中有文字被选中，会触发浏览器的默认拖拽文字的效果。
+
+解决方法：
+
+* 标准：阻止浏览器的默认行为
+* ie：全局捕获 
+
+{% highlight javascript %}
+oDiv.onmousedown = function(ev) {
+    var ev = ev || event;
+    
+    var disX = ev.clientX - this.offsetLeft;
+    var disY = ev.clientY - this.offsetTop;
+    
+    if ( oDiv.setCapture ) {
+        oDiv.setCapture(); // div监测所有事件，需要释放
+    }
+    
+    document.onmousemove = function(ev) {
+        var ev = ev || event;
+        
+        oDiv.style.left = ev.clientX - disX + 'px';
+        oDiv.style.top = ev.clientY - disY + 'px';
+    }
+    
+    document.onmouseup = function() {
+        document.onmousemove = document.onmouseup = null;
+        //释放全局捕获 releaseCapture();
+        if ( oDiv.releaseCapture ) {
+            oDiv.releaseCapture();
+        }
+    }
+    
+    return false; // 标准下：阻止浏览器默认拖拽选中文字的行为
+    
+}
+{% endhighlight %} 
+
+ie：设置全局捕获 setCapture()
+
+{% highlight javascript %}
+
+{% endhighlight %} 
+
+
