@@ -478,7 +478,7 @@ event 事件对象，当一个事件触发的时候，event对象会记录这个
 事件函数：事件调用的函数，一个函数是不是事件函数，不在定义的决定，而是取决于这个调用的时候
 
 {% highlight javascript %}
-alert(event); // 直接调用时，标准下： undefined ie：null
+alert(event); // 直接调用时，标准下： undefined ie中：null
 
 document.onclick = function(){
     alert(event); // 显示event对象
@@ -725,6 +725,158 @@ oDiv3.addEventListener('click', fn1, true);
 </script>
 {% endhighlight %}
 
+事件捕捉：从父级向子级穿透，与事件冒泡正好相反，即事件冒泡和事件捕捉不能同时发生
+
+{% highlight javascript %}
+oDiv1.addEventListener('click', function(){
+    alert(1);
+}, false)
+oDiv1.addEventListener('click', function(){
+    alert(3);
+}, true)
+oDiv1.addEventListener('click', function(){
+    alert(2);
+}, false)
+//弹出顺序是：3 -> 2 -> 1
+{% endhighlight %} 
+
+### 事件绑定的取消
+
+取消第一种事件绑定函数（普通绑定）
+
+{% highlight javascript %}
+function fn1(){alert(1);}
+function fn2(){alert(2);}
+
+document.onclick = fn1;
+document.onclick = null; //通过赋值的形式取消了原来的事件绑定函数fn1
+{% endhighlight %} 
+
+取消第二种形式的事件绑定函数
+
+* IE：obj.detachEvent(事件名称, 事件函数);
+* 标准：obj.removeEventListener(事件名称, 事件函数, 是否捕获 );
+
+### 键盘事件
+
+注意：不是所有的元素都能够接受键盘事件，能够响应用户输入的元素才可以。能够接收焦点的元素就能够接收键盘事件
+
+**onkeydown** 当键盘按键按下的时候触发
+
+event.keyCode 当发生键盘事件时，keyCode会存储键盘按下的值（同样的功能键返回的值一样）
+
+ctrlKey, shiftKey, altKey 布尔值，存储相应按键的状态
+
+当onkeydown长按时，会连续触发，触发原理为第一次为单次触发，之后会重复触发
+
+{% highlight javascript %}
+document.onkeydown = function(ev){
+    var ev = ev || event;
+    alert(ev.keyCode);
+}
+
+document.onclick = function(ev){
+    var ev = ev || event;
+    alert(ev.ctrlKey); //当按下ctrl点击的时候，弹出true；没有按ctrl点击的时候，返回false
+}
+{% endhighlight %} 
+
+**onkeyup** 当键盘按键抬起的时候触发，同理如上
+
+仿qq留言本
+
+{% highlight html %}
+<body>
+    <input type="text" id="text1" />
+    <ul id="ul1"></ul>  
+</body>
+<script>
+var oText = document.getElementById('text1');
+var oUl = document.getElementById('ul1');
+
+/*
+oText.onkeydown = function(){
+    alert(this.value); //这里会发现，onkeydown的事件触发是在给oText赋值之前，所以这里应该改为onkeyup才行
+}
+*/
+
+oText.onkeyup = function(ev){
+    
+    var ev = ev || event;
+
+    if(this.value != ''){
+
+        if(ev.keyCode == 13 && ev.ctrlKey){ //如果同时按住ctrl + 回车 
+
+            var oLi = document.createElement('li');
+            oLi.innerHTML = this.value;
+
+            if(oUl.children[0]){
+                oUl.insertBefore(oLi, oUl.children[0]);
+            } else {
+                oUl.appendChild(oLi);
+            }
+
+        }
+            
+    }
+}    
+</script>
+{% endhighlight %} 
+
+### 事件默认行为  （浏览器本身的默认行为等）
+
+oncontextmenu 右键菜单事件，当右键菜单（环境菜单、上下文菜单）显示出来的时候触发
+
+
+
+{% highlight html %}
+<body style="height: 2000px"></body>
+<script>
+// 通过对当前有默认行为的元素以return false来禁用行为
+document.onkeydown = function(){
+    return false; //这样就阻止了点击空格，滚动条向下滚动的默认事件
+}
+document.oncontextmenu = function(){
+    //alert(1);
+    return false; //阻止了点击右键，弹出右键菜单的默认行为
+}
+</script>
+{% endhighlight %} 
+
+自定义右键菜单原理
+
+{% highlight html %}
+<body>
+    <div id="div1"></div>
+</body>
+<style>
+#div1 {width: 100px; height: 200px; border: 1px solid red; position: absolute; display: none;}
+</style>
+<script>
+var oDiv = document.ElementById('div1');
+
+document.oncontextmenu = function(ev){
+    var ev = ev || event;
+    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    var scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
+    
+    oDiv.style.display = 'block';
+    
+    oDiv.style.left = scrollLeft + ev.clientX + 'px';
+    oDiv.style.top = scrollTop + ev.clientY + 'px';
+
+    return false;
+}
+
+document.onclick = function(){
+    oDiv.style.display = 'none';
+}
+</script>
+{% endhighlight %} 
+
+## 事件深入应用
+
 ### 拖拽的原理
 
 基本由这三个事件主导，主要是计算拖拽的相对距离
@@ -775,20 +927,25 @@ oDiv.onmousedown = function(){
 
 注意：如果拖拽的时候有文字被选中，会产生问题
 
-原因：当鼠标按下的时候，如果页面中有文字被选中，会触发浏览器的默认拖拽文字的效果。
+原因：
+
+* 当鼠标按下的时候，如果页面中有文字被选中，会触发浏览器的默认拖拽文字的效果。
+* 选中图片时也同理
 
 解决方法：
 
 * 标准：阻止浏览器的默认行为
-* ie：全局捕获 
+* ie：全局捕获 setCapture()
 
 {% highlight javascript %}
+// 拖拽基础，具体情况有所不同
 oDiv.onmousedown = function(ev) {
     var ev = ev || event;
     
     var disX = ev.clientX - this.offsetLeft;
     var disY = ev.clientY - this.offsetTop;
     
+    // ie：设置全局捕获 setCapture()
     if ( oDiv.setCapture ) {
         oDiv.setCapture(); // div监测所有事件，需要释放
     }
@@ -813,10 +970,344 @@ oDiv.onmousedown = function(ev) {
 }
 {% endhighlight %} 
 
-ie：设置全局捕获 setCapture()
+### 拖拽的封装-限制范围、磁性吸附
+
+封装函数
 
 {% highlight javascript %}
-
+function drag(obj){
+    obj.onmousedown = function(ev){
+        var ev = ev || event;
+        var disX = ev.clientX - this.offsetLeft;
+        var disY = ev.clientY - this.offsetTop;
+        
+        if(obj.setCapture){
+            obj.setCapture();
+        }
+        
+        document.onmousemove = function(ev){
+            var ev = ev || event;
+            
+            obj.style.left = ev.clientX - disX + 'px';
+            obj.style.top = ev.clientY - disY + 'px';
+            
+        }
+        
+        document.onmouseup = function(){
+            document.onmousemove = document.onmouseup = null;
+            
+            if(obj.releaseCapture){
+                obj.releaseCapture();
+            }
+        }
+        
+        return false;
+    }   
+}
 {% endhighlight %} 
+
+限制范围的拖拽
+
+{% highlight javascript %}
+function drag(obj){
+    obj.onmousedown = function(ev){
+        var ev = ev || event;
+        var disX = ev.clientX - this.offsetLeft;
+        var disY = ev.clientY - this.offsetTop;
+        
+        if(obj.setCapture){
+            obj.setCapture();
+        }
+        
+        document.onmousemove = function(ev){
+            var ev = ev || event;
+            var L = ev.clientX - disX;
+            var T = ev.clientY - disY;
+            
+            // 限制拖拽范围在页面内
+            if(L < 0){
+                L = 0;
+            } else if( L > document.documentElement.clientWidth - obj.offsetWidth){
+                L = document.documentElement.clientWidth - obj.offsetWidth;
+            }
+            if(T < 0){
+                T = 0;
+            } else if(T > document.documentElement.clientHeight - obj.offsetHeight){
+                T = document.documentElement.clientHeight - obj.offsetHeight;
+            }
+            
+            obj.style.left = L + 'px';
+            obj.style.top = T  + 'px';
+            
+        }
+        
+        document.onmouseup = function(){
+            document.onmousemove = document.onmouseup = null;
+            
+            if(obj.releaseCapture){
+                obj.releaseCapture();
+            }
+        }
+        
+        return false;
+    }   
+}
+{% endhighlight %} 
+
+磁性吸附
+
+{% highlight javascript %}
+function drag(obj){
+    obj.onmousedown = function(ev){
+        var ev = ev || event;
+        var disX = ev.clientX - this.offsetLeft;
+        var disY = ev.clientY - this.offsetTop;
+        
+        if(obj.setCapture){
+            obj.setCapture();
+        }
+        
+        document.onmousemove = function(ev){
+            var ev = ev || event;
+            var L = ev.clientX - disX;
+            var T = ev.clientY - disY;
+            
+            // 限制拖拽范围在页面内
+            if(L < 100){ //只要把原来的0改为一个范围，例如：100，就实现了磁性吸附的效果
+                L = 0;
+            } else if( L > document.documentElement.clientWidth - obj.offsetWidth){
+                L = document.documentElement.clientWidth - obj.offsetWidth;
+            }
+            if(T < 100){
+                T = 0;
+            } else if(T > document.documentElement.clientHeight - obj.offsetHeight){
+                T = document.documentElement.clientHeight - obj.offsetHeight;
+            }
+            
+            obj.style.left = L + 'px';
+            obj.style.top = T  + 'px';
+            
+        }
+        
+        document.onmouseup = function(){
+            document.onmousemove = document.onmouseup = null;
+            
+            if(obj.releaseCapture){
+                obj.releaseCapture();
+            }
+        }
+        
+        return false;
+    }   
+}
+{% endhighlight %} 
+
+### 碰撞检测
+
+{% highlight html %}
+<body>
+    <div id="div1"></div>
+    <img id="img1" url="1.jpg" />   
+</body>
+<style>
+#div1 { width: 100px; height: 100px; background: red; position: absolute; z-index: 2 }
+#img1 { position: absolute; left: 500px; top: 200px; }    
+</style>
+<script>
+function drag(obj){
+    obj.onmousedown = function(ev){
+        var ev = ev || event;
+        var disX = ev.clientX - this.offsetLeft;
+        var disY = ev.clientY - this.offsetTop;
+        
+        if(obj.setCapture){
+            obj.setCapture();
+        }
+        
+        document.onmousemove = function(ev){
+            var ev = ev || event;
+            var L = ev.clientX - disX;
+            var T = ev.clientY - disY;
+            
+            //被拖动的元素的四条边
+            var L1 = L;
+            var R1 = L + obj.offsetWidth;
+            var T1 = T;
+            var B1 = T + obj.offsetHeight;
+            
+            //被碰撞的元素的四条边(这个例子里面是img元素)
+            var L2 = oImg.offsetLeft;
+            var R2 = L2 + oImg.offsetWidth;
+            var T2 = oImg.offsetTop;
+            var B2 = T2 + oImg.offsetHeight;
+            
+            if(R1 < L2 || L1 > R2 || B1 < T2 || T1 > B2){
+                oImg.src = '1.jpg';
+            } else {
+                oImg.src = '2.jpg';
+            }
+            
+            obj.style.left = L + 'px';
+            obj.style.top = T  + 'px';
+            
+        }
+        
+        document.onmouseup = function(){
+            document.onmousemove = document.onmouseup = null;
+            
+            if(obj.releaseCapture){
+                obj.releaseCapture();
+            }
+        }
+        
+        return false;
+    }   
+} 
+</script>
+{% endhighlight %} 
+
+### 拖拽改变层大小
+
+{% highlight html %}
+<body>
+    <div id="div1"></div>
+</body>
+<style>
+#div1 { width: 100px; height: 100px; background: red; position: absolute; left: 500px; top: 200px; }
+</style>
+<script>
+var oDiv = document.getElementById('div1');
+
+oDiv.onmousedown = function(ev){
+    var ev = ev || event;
+    var disW = this.offsetWidth;
+    var disX = ev.clientX;
+    var disL = this.offsetLeft;
+    var b = '';
+    
+    if(disX > disL + disW - 10){
+        b = 'right';
+    }
+    if(disX < disL + 10){
+        b = 'left';
+    }
+    
+    document.onmousemove = function(ev){
+        var ev = ev || event;
+        switch(b){
+            case 'left':
+                oDiv.style.width = disW - (ev.clientX - disX) + 'px';
+                oDiv.style.left = disL + (ev.clientX - disX) + 'px';
+                break;
+            case 'right':
+                oDiv.style.width = disW + (ev.clientX - disX) + 'px';
+                break
+        }
+    }
+    document.onmouseup = function(){
+        document.onmousemove = document.onmouseup = null;
+    }
+    return false;
+}
+</script>
+{% endhighlight %} 
+
+### 滚动条的模拟和扩展运用
+
+{% highlight html %}
+<body>
+    <div id="div1">
+        <div id="div2></div>
+    </div>
+    <div id="div3></div>
+</body>
+<style>
+#div1 { width: 30px; height: 500px; background: black; position: absolute; left: 10px; top: 10px; }
+#div2 { width: 30px; height: 30px; background: red; position: absolute; left: 0; top: 0 }
+#div3 { width: 500px; height: 500px; background: green; position: absolute; left: 50px; top: 10; }
+</style>
+<script>
+var oDiv1 = document.getElementById('div1');
+var oDiv2 = document.getElementById('div2');
+var oDiv3 = document.getElementById('div3');
+var iMaxTop = oDiv1.offsetHeight - oDiv2.offsetHeight;
+
+oDiv2.onmousedown = function(ev){
+    var ev = ev || event;
+    var disY = ev.clientY - this.offsetTop;
+    
+    document.onmousemove = function(ev){
+        var ev = ev || event;
+        var T = ev.clientY - disY;
+        
+        if(T < 0){
+            T = 0;
+        } else if(T > iMaxTop){
+            T = iMaxTop;
+        }
+        oDiv2.style.top = T + 'px';
+        
+        var iScale = T / iMaxTop;
+        oDiv3.style.height = 500 * iScale + 'px';
+    }
+    document.onmouseup = function(){
+        document.onmousemove = document.onmouseup = null;
+    }
+    
+    return false;
+}    
+</script>
+{% endhighlight %}
+
+控制内容的滚动
+
+{% highlight html %}
+<body>
+    <div id="div1">
+        <div id="div2"></div>
+    </div>
+    <div id="div3">
+        <div id="div4">这里是一段内容。</div>
+    </div>
+</body>
+<style>
+#div1 { width: 30px; height: 500px; background: black; position: absolute; left: 10px; top: 10px; }
+#div2 { width: 30px; height: 30px; background: red; position: absolute; left: 0; top: 0 }
+#div3 { width: 498px; height: 498px; border: 1px solid green; position: absolute; left: 50px; top: 10; }
+#div4 { position: absolute; top: 0; left: 0; }
+</style>
+<script>
+var oDiv1 = document.getElementById('div1');
+var oDiv2 = document.getElementById('div2');
+var oDiv3 = document.getElementById('div3');
+var oDiv4 = document.getElementById('div4');
+var iMaxTop = oDiv1.offsetHeight - oDiv2.offsetHeight;
+
+oDiv2.onmousedown = function(ev){
+    var ev = ev || event;
+    var disY = ev.clientY - this.offsetTop;
+    
+    document.onmousemove = function(ev){
+        var ev = ev || event;
+        var T = ev.clientY - disY;
+        
+        if(T < 0){
+            T = 0;
+        } else if(T > iMaxTop){
+            T = iMaxTop;
+        }
+        oDiv2.style.top = T + 'px';
+        
+        var iScale = T / iMaxTop;
+        oDiv4.style.top = (oDiv3.clientHeight - oDiv4.offsetHeight) * iScale + 'px';
+    }
+    document.onmouseup = function(){
+        document.onmousemove = document.onmouseup = null;
+    }
+    
+    return false;
+}
+</script>
+{% endhighlight %}
 
 
