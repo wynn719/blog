@@ -14,6 +14,370 @@ excerpt: 学习妙味课堂js中级课程的一些笔记
 
 ## 第01课：DOM基础概念、操作
 
+### DOM的概念及子节点类型
+
+DOM: Document Object Model文档对象模型
+
+* 文档：html页面
+* 文档对象：html页面当中的元素
+* 文档对象模型：一套定义、准则为了能够让程序（js）去操作页面中的元素而定义出来的一套标准
+
+DOM会把文档看作是一棵树，页面中的每个元素就是树上的一个一个节点；同时DOM定义了很多方法、属性等来操作这棵树中的每一个元素（节点）——每个节点称为DOM节点。】
+
+DOM节点
+
+childNodes \ children
+* 获取第一级子元素
+* 有兼容性问题（空白节点），nodeType属性
+
+firstChild \ firstElementChild
+* 获取子元素里的第一个
+
+lastChild \ lastElementChild
+* 获取子元素里的最后一个
+
+childNodes
+
+element.childNodes 只读属性 子节点列表集合
+* childNodes 只包含一级子节点，不包含后辈孙级以下的节点
+
+兼容性问题
+
+{% highlight html %}
+<ul id="ul1">
+    <li>1111</li>
+    <li>1111</li>
+    <li>1111</li>
+    <li>1111</li>
+</ul>
+{% endhighlight %}
+
+{% highlight javascript %}
+oUl = document.getElementById('ul1');
+alert(oUl.childNodes.length); //在标准浏览器下弹出9；在IE6、7弹出4。因为标准浏览器下，文本元素（在这里是换行符）也包含在childNodes里面了。
+
+for (var i=0; i<oUl.childNodes.length; i++){
+    oUl.childNodes[i].style.background = 'red'; //在标准浏览器下会报错，因为文本元素（这里是换行符）没有是没有style属性的。
+}
+
+// 解决方式
+
+for (var i=0; i<oUl.childNodes.length; i++){
+    // 在文档中的每个元素都有它的节点类型
+    if (oUl.childNodes[i].nodeType == 1) {
+        oUl.childNodes[i].style.background = 'red';
+    }
+}
+{% endhighlight %}
+
+element.children 只读 属性 子节点列表集合
+
+* 标准下： 只包含元素类型的节点，并且包含非法嵌套的子节点
+* 非标准下：只包含元素类型的节点，IE7及以下不包含非法嵌套的子节点
+
+{% highlight javascript %}
+// 替换childNode的兼容性问题
+for (var i=0; i<oUl.children.length; i++){
+    oUl.children[i].style.background = 'red';
+}
+{% endhighlight %}
+
+element.nodeType 只读 属性 当前元素的节点类型，共有12种
+
+常用的节点类型包括：元素节点、文本节点、属性节点：
+
+* 元素节点 ELEMENT_NODE：1
+* 属性节点 ATTRIBUTE_NODE ：2
+* 文本节点 TEXT_NODE：3
+
+{% highlight html %}
+<ul id="ul1" style="color: green">
+    <li>1111</li>
+    <li>1111</li>
+    <li>1111</li>
+    <li>1111</li>
+</ul>
+{% endhighlight %}
+
+{% highlight javascript %}
+oUl = document.getElementById('ul1');
+alert(oUl.nodeType); // 弹出1
+alert(oUl.childNodes[0].nodeType); //弹出3
+alert(oUl.attributes[0].nodeType); //弹出2
+alert(oUl.attributes[0].name); //弹出'id'
+alert(oUl.attributes.length); //弹出2
+alert(oUl.attributes[0].value); //弹出'ul1'
+{% endhighlight %}
+
+element.attributes 只读 属性 属性列表集合
+
+### 子节点和兄弟节点的操作
+
+element.firstChild 只读 属性 第一个子节点
+
+* 标准下：firstChild会包含文本类型的节点
+* 非标准下： 只包含元素节点
+
+element.firstElementChild 只读属性
+
+* 标准下获取第一个元素类型节点的子节点
+* 非标准浏览器不支持
+
+{% highlight javascript %}
+// 进行判断
+if (oUl.firstElementChild){
+    oUl.firstElementChild.style.background = 'red';
+} else {
+    oUl.firstChild.style.background = 'red';
+}
+
+//更为简洁的写法：
+var oFirst = oUl.firstElementChild || oUl.firstChild;
+oFirst.style.background = 'red';
+{% endhighlight %}
+
+兼容问题
+
+{% highlight html %}
+<ul id="ul1">
+</ul>
+{% endhighlight %}
+
+{% highlight javascript %}
+var oUl = document.getElementById('ul1');
+var oFirst = oUl.firstElementChild || oUl.firstChild; 
+if(oFirst){
+    oFirst.style.background = 'red';
+} else {
+    alert('没有子节点可以设置');
+}
+{% endhighlight %}
+
+以上这段代码会报错。因为在oUl下面没有子元素节点，因此oUl.firstElementChild会返回为null，null不会传给变量oFirst，所以oFirst等于oUl.firstChild，而在标准浏览器下，oUl.firstChild是存在的，是一个文本节点，因此在下面的判断中，oFirst存在，因此走if语句的第一句，但是oFirst是文本节点，没有style可以设置，因此会报错。因此最好的做法是如下：
+
+{% highlight javascript %}
+oUl.children[0].style.background = 'red';
+{% endhighlight %}
+
+最后一个子节点
+
+* element.lastChild 
+* element.lastElementChild
+
+下一个兄弟节点
+
+* element.nextSibling 
+* element.previousSibling
+
+### parentNode、offsetParent父节点
+
+element.parentNode 只读 属性 只有一个 当前节点的父级节点
+
+{% highlight html %}
+<ul id="ul1">
+    <li>1111 <a href="javascript:;">隐藏</a></li>
+    <li>2222 <a href="javascript:;">隐藏</a></li>
+    <li>3333 <a href="javascript:;">隐藏</a></li>
+    <li>4444 <a href="javascript:;">隐藏</a></li>
+</ul>
+{% endhighlight %}
+
+{% highlight javascript %}
+var oA = document.getElementsByTag('a');
+for (var i=0; i<oA.length; i++){
+    oA[i].onclick = function(){
+        this.parentNode.style.display = 'none';
+    }
+}
+{% endhighlight %}
+
+element.offsetParent
+
+{% highlight html %}
+<head>
+    <style>
+        div {padding: 40px 50px;}
+        #div1 {background: red;}
+        #div2 {background: green;}
+        #div3 {background: orange;}
+    </style>
+</head>
+<body id="body1">
+    <div id="div1">
+        <div id="div2">
+            <div id="div3"></div>
+        </div>
+    </div>
+</body>
+{% endhighlight %}
+
+{% highlight javascript %}
+var oDiv3 = document.getElementById('div3');
+alert(oDiv3.parentNode.id); //弹出div2
+alert(oDiv3.offsetParent.id); //弹出body1
+{% endhighlight %}
+
+上面的代码，如果给div1的style里面加上position: relative;那么div3的offsetParent就变成了div1
+
+元素.offsetParent：只读 属性 离当前元素最近的一个有定位的父节点
+
+* 如果没有定位父级，默认是body
+* IE7及以下， 如果当前元素没有定位，默认为body；如果当前元素有定位则是html
+* IE7及以下，如果当前元素的某个父级触发了layout，那么offsetParent就会被指向到这个触发了layout特性的父节点
+
+如果给div2的style中添加了zoom: (参见CSS 盒模型问题)1，并且其他所有div都没有设置position样式，在IE下，alert(document.getElementById(‘div2’).currentStyle.hasLayout);会弹出true。这时候div3的offsetParent就会变成div2
+
+### 元素的各种位置尺寸宽高
+
+element.offsetLeft\offsetTop：只读 属性 当前元素到定位父级的距离（偏移值）
+
+可以理解为到当前元素的offsetParent的距离
+
+IE7及以下：
+
+* 如果自己没有定位，那么offsetLeft\offsetTop是到body的距离；
+* 如果当前元素有定位的情况下，那么offsetLeft\offsetTop是到它定位父级的距离
+* 如果当前元素没有定位父级的情况下，那么offsetLeft\offsetTop是到html的距离（但是IE8以上，是到body的距离）
+
+如果没有定位父级：
+
+* IE7及以下： offsetLeft \ offsetTop => html
+* 其他：offsetLeft \ offsetTop => body
+
+如果有定位父级：
+
+IE7及以下：
+
+* 如果自己没有定位，那么offsetLeft \ offsetTop 是到body的距离
+* 如果自己有定位，那么就是到定位父级的距离
+
+其他：到定位父级的距离
+
+* element.style.width：样式宽：就是给元素的行内样式中设置的width的值，带单位
+* clientWidth：可视区宽：样式宽 + padding，不带单位
+* offsetWidth：占位宽：样式宽 + padding + border = 可视区宽 + border
+
+### 封装getPos()
+
+{% highlight html %}
+<head>
+    <style>
+        div {padding: 40px 50px;}
+        #div1 {background: red; position: relative;}
+        #div2 {background: green; position: relative;}
+        #div3 {background: orange; position: relative;}
+    </style>
+</head>
+<body id="body1">
+    <div id="div1">
+        <div id="div2">
+            <div id="div3"></div>
+        </div>
+    </div>
+</body>
+{% endhighlight %}
+
+{% highlight javascript %}
+//通过以下方法可以获得一个元素到达页面的绝对距离，通过各级元素与其offsetParent之间的距离累加的方式得到。
+
+var iTop = 0;
+var obj = oDiv3;
+
+while(obj){
+    iTop += obj.offsetTop;
+    obj = obj.offsetParent;
+}
+{% endhighlight %}
+
+body的offsetTop是0；body的offsetParent是null。
+
+下面是获取一个元素到达页面的绝对距离的方式，getPos函数。注意，一般工作中，把body的margin值清掉，这样可以避免IE6、7与其他标准浏览器在getPos上的差异。
+
+// 封装getPos
+{% highlight javascript %}
+function getPos(obj){
+    var pos = {left: 0, top: 0};
+    while(obj){
+        pos.left += obj.offsetLeft;
+        pos.top += obj.offsetTop;
+        obj = obj.offsetParent;
+    }
+    return pos;// 返回json数据
+}
+{% endhighlight %}
+
+### 操作元素属性的多种方式
+
+点的形式和中括号形式
+
+* 通过.点的形式：oText.value
+* 通过中括号[]的形式：oText[‘value’] （当属性名用变量来表示的时候，用中括号）
+
+getAttribute、setAttribute、removeAttribute
+
+* 元素.getAttribute(属性名称); 方法 获取指定元素的指定属性的值
+* 元素.setAttribute(属性名称, 属性值); 方法 给指定元素指定的属性设置值
+* 元素.removeAttribute(属性名称); 方法 移除指定的元素的指定的属性
+
+set/get与用点.的区别：
+
+* 用.和[]的形式无法操作元素的自定义属性；getAttribute可以操作元素的自定义属性
+* 用.和[]的形式来获取src的时候，获取的是一长串绝对路径，但是在IE8以上以及标准浏览器中，用getAttribute(‘src’)可以获取到相对路径（但是在IE7及以下，获取的src还是绝对路径
+* 如果给oImg设置了style = “width: 100px;”的属性，那么通过oImg.style.getAttribute(‘width’);在IE浏览器下是可以取到值的，但是在标准浏览器下是取不到值的。
+
+### 元素的创建操作
+
+document.createElement() 前面必须是document
+
+parent.appendChild() 在指定父级子节点最后一个后面追加子元素
+
+insertBefore(新的元素,指定的被插入的元素) 
+
+* 在父级的指定子元素前面插入一个新元素
+* 在IE下，如果第二个参数的节点不存在，会报错
+* 在其它标准浏览器下，如果第二个参数的节点不存在，则会以appendChild的方式进行添加
+
+解决兼容性问题
+
+{% highlight html %}
+<input type="text" id="text1" /><input type="button" value="留言" id="btn" />
+<ul id="ul1"></ul>
+{% endhighlight %}
+
+{% highlight javascript %}
+var oText = document.getElementById('text1');
+var oBtn = document.getElementById('btn');
+var oUl = document.getElementById('ul1');
+
+oBtn.onclick = function() {
+    
+    var oLi = document.createElement('li');
+    oLi.innerHTML = oText.value;
+    
+    // 处理子元素不存在的兼容性问题
+    if ( oUl.children[0] ) {
+        oUl.insertBefore( oLi, oUl.children[0] );
+    } else {
+        oUl.appendChild( oLi );
+    }
+    
+    var oA = document.createElement('a');
+    oA.innerHTML = '删除';
+    oA.href = 'javascript:;';
+    oLi.appendChild( oA );
+    
+    oA.onclick = function() {
+        oUl.removeChild( this.parentNode );
+    }
+}
+{% endhighlight %}
+
+removeChild(要删除的节点) 删除节点
+
+注意：appendChild，insertBefore，replaceChild可以操作静态节点，也可以操作动态生成的节点。
+
+replaceChild(新节点,被替换节点) 替换子节点
+
 ## 第02课：DOM、BOM相关方法及属性
 
 ### getElementsByClassName
