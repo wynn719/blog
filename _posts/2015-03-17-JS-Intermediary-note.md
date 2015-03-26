@@ -1310,4 +1310,164 @@ oDiv2.onmousedown = function(ev){
 </script>
 {% endhighlight %}
 
+## 鼠标滚轮和cookie
+
+### 鼠标滚轮
+
+* IE/chrome: onmousewheel
+* 取得滚动值：event.wheelDelta 数字类型 （上：120，下：-120）
+* 标准浏览器下的event.detail永远都是0；非标准IE的event.detail是undefined
+
+* firefox：DOMMouseScroll 必须用addEventListener来实现绑定
+* 取得滚动值：event.detail（上：-3，下：3）
+
+* return false阻止的是obj.on事件名称=fn所触发的默认行为，阻止不了addEventListener绑定的行为
+* 用addEventListener绑定的事件需要通过event下面的preventDefault();来阻止默认行为
+* IE下用attachEvent来绑定的话，还是可以用return false来阻止默认事件
+
+兼容性做法：
+
+{% highlight html %}
+<body>
+    <div id="div1"></div>
+</body>
+<style>
+body { height: 2000px; }
+#div1 { width: 100px; height: 100px; background: red; }    
+</style>
+<script>
+var oDiv = document.getElementById('div1');
+
+oDiv.onmousewheel = fn;
+
+if(oDiv.addEventListener){
+    oDiv.addEventListener('DOMMouseScroll', fn, false);
+}
+
+function fn(ev){
+    var ev = ev || event;
+    
+    var b = true; // 控制鼠标滚轮状态值
+    if(ev.wheelDelta){
+        b = ev.wheelDelta > 0 ? true : false;
+    } else {
+        b = ev.wheelDelta > 0 ? false : true;
+    }
+    
+    if(b){
+        this.style.height = this.offsetHeight - 10 + 'px';
+    } else {
+        this.style.height = this.offsetHeight + 10 + 'px';
+    }
+    
+    if(ev.preventDefault){
+        ev.preventDefault();
+    }
+    
+    return false;
+}    
+</script>
+{% endhighlight %}
+
+### cookie
+
+* 不同的浏览器存放的cookie位置不一样，也是不能通用的
+* cookie的存储是以域名的形式进行区分的
+* cookie的数据是可以设置名字的
+* 一个域名下存放的cookie的个数是有限制的。不同的浏览器存放的个数不一样
+* 每一个cookie存放的内容大小也是有限制的，不同的浏览器存放的内容大小不一样
+
+通过document.cookie来获取当前网站下的cookie的时候，得到的是字符串形式的值，它包含了当前网站下所有的cookie。它会把所有的cookie通过一个分号+空格的形式串联起来。
+
+设置一个过期的时间(这个时间必须是字符串格式)延长cookie的销毁时间。cookie默认是临时存储的，当浏览器关闭进程的时候，自动销毁。
+
+{% highlight javascript %}
+//document.cookie = '名字=值;expires=' + 字符串格式的时间;
+var oDate = new Date();
+oDate.setDate( oDate.getDate() + 5 ); //5天以后
+//oDate.toGMTString(); //将日期对象转换为字符串格式
+
+//内容最好编码存放，encodeURI
+//alert(encodeURI('你好'));
+//alert(decodeURI('%E4%BD%A0%E5%A5%BD'));
+
+document.cookie = 'username =' + encodeURI('leo\n你好') + ' leo;expires=' + oDate.toGMTString();
+document.cookie = 'age = 32';
+alert(decodeURI(document.cookie));
+
+function getCookie(key){
+    var arr1 = document.cookie.split('; ');
+    for(var i=; i<arr1.length; i++){
+        var arr2 = arr1[i].split('=');
+        if(arr2[0] == key){
+            return decodeURI(arr2[1]);
+        }
+    }
+}
+
+alert(getCookie('age'));
+
+function setCookie(key, value, t){
+    var oDate = new Date();
+    oDate.setDate( oDate.getDate() + t );
+    document.cookie = key + '=' + value + ';expires=' + oDate.toGMTString();
+}
+
+setCookie('sex', '男', 10);
+
+function removeCookie(key){
+    setCookie(key, '', -1);
+}
+
+removeCookie('username');
+{% endhighlight %}
+
+cookie实例应用 记住登录名
+{% highlight html %}
+<input type="text" id="username" />
+<input type="button" value="登陆" id="login" />
+<input type="button" value="删除" id="del" />
+{% endhighlight %}
+
+
+{% highlight javascript %}
+var oUsername = document.getElementById('username');
+var oLogin = document.getElementById('login');
+var oDel = document.getElementById('del');
+
+if(getCookie('username')）{
+    oUsername.value = getCookie('username');
+}
+
+oLogin.onclick = function(){
+    alert('登陆网站成功');
+    setCookie('username', oUsername.value, 5);
+}
+
+oDel.onclick = function(){
+    removeCookie('username');
+    oUsername.value = '';
+}
+
+function getCookie(key){
+    var arr1 = document.cookie.split('; ');
+    for(var i=; i<arr1.length; i++){
+        var arr2 = arr1[i].split('=');
+        if(arr2[0] == key){
+            return decodeURI(arr2[1]);
+        }
+    }
+}
+
+function setCookie(key, value, t){
+    var oDate = new Date();
+    oDate.setDate( oDate.getDate() + t );
+    document.cookie = key + '=' + value + ';expires=' + oDate.toGMTString();
+}
+
+function removeCookie(key){
+    setCookie(key, '', -1);
+}
+{% endhighlight %}
+
 
