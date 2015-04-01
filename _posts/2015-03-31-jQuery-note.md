@@ -452,3 +452,526 @@ $(function(){
 </body>
 </html>
 {% endhighlight %}
+
+## jQuery高级
+
+### 基础拓展
+
+#### get() 把jQuery转成原生JS
+
+{% highlight html %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>get()</title>
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+    <style>
+    </style>
+</head>
+<body>
+    <div id="div1">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <script>
+    $(function() {
+        // jq中也有length属性
+        for (var i = 0; i < $('li').length; i++) {
+            // document.getElementById('#div1').innerHTML;
+            // alert($('#div1').get(0).innerHTML); 通过get(下标)来转换成原声js，不带下标时为全选
+
+            $('li').get(i).style.background = 'red';
+
+            // $('li')[i].style.background = 'red';// 同样可行
+        };
+    });
+    </script>
+</body>
+</html>
+{% endhighlight %}
+
+#### outerWidth()拓展
+
+* 原生中，offsetWidth获取不到隐藏元素的值
+* jQuery中outerWidth()可以获取到
+
+#### text() 只获取文本，不会获取标签
+
+* html() 包括文本和标签
+* text() 只获取所有元素的文本内容
+* text('<h2></h2>') h2被转成文本
+
+#### remove() : detach()
+
+{% highlight javascript %}
+$(function(){
+    $('div').click(function(){
+        alert(123);
+    });
+
+    var oDiv = $('div').remove();
+    $('body').append(oDiv);// 元素还在，但事件全部取消了
+});
+{% endhighlight %}
+
+{% highlight javascript %}
+$(function(){
+    $('div').click(function(){
+        alert(123);
+    });
+
+    var oDiv = $('div').detach();
+    $('body').append(oDiv);// 元素还在，事件也在
+});
+{% endhighlight %}
+
+#### 关于$符号
+
+{% highlight javascript %}
+// 简写，等DOM加载完，性能更好
+$(function(){
+    // ...
+});
+/* 完整写法
+$(document).ready(function(){
+    // ... 
+});*/
+
+// 等window加载完
+window.onload = function(){};
+// 对应的： DOMContentLoaded
+{% endhighlight %}
+
+### DOM操作拓展
+
+* parents() 获取所有祖先元素，参数是筛选功能
+* closest() 获取最近的指定的祖先节点（包括当前元素自身），必须要写筛选的参数，只能找到一个元素
+* siblings() 找所有的兄弟节点，参数也是筛选功能
+* nextAll() 下面所有的兄弟节点，参数也是筛选功能
+* preAll() 上面所有的兄弟节点，参数也是筛选功能
+* parentsUntil() 不写参数等于parents(),写了就顾名思义了……
+* nextUntil() 不写参数等于nextAll(),写了就顾名思义了……
+* preUntil() 同理
+* clone() 复制节点，可以接受一个参数true或者false，可以复制之前的操作行为 
+* wrap() 给每个外层包标签，接收类似于'<div>'的字符串
+* wrapAll() 给整体包装，会破坏层次
+* wrapInner() 内部包装
+* unwrap() 删除包装（删除父级 : 不包括body元素）
+* add() 任意组合元素，相当于把元素往数组放
+* slice(n,m) 截取指定(n到m)节点的范围
+* serialize() 格式化form表单的提交数据
+* serializeArray() 格式化form表单为json形式
+
+#### add()
+
+{% highlight html %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery add()操作</title>
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+    <div>ddddddddd</div>
+    <span>aaaaaaaaa</span>
+    <h2>ssssssss</h2>
+    <script>
+    $(function(){
+        var ele1 = $('div');
+        var ele2 = ele1.add('span').add('h2');
+
+        ele2.css('color','red');
+    });
+    </script>
+</body>
+</html>
+{% endhighlight %}
+
+#### serialize()和serializeArray()
+
+{% highlight html %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery序列化表单</title>
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+    <form action="">
+        <input type="text" name="username">
+        <input type="password" name="password">
+        <input type="submit" id="submit">
+    </form>
+    <script>
+    $(function(){
+        $('#submit').click(function(){
+            // var arr = $('form').serialize();
+            var arr = $('form').serializeArray();
+            alert(arr[0].value);
+
+            return false;
+        });
+    });
+    </script>
+</body>
+</html>
+{% endhighlight %}
+
+### jQuery中的运动
+
+#### animate()
+
+$(selector).animate({params},speed,style,callback);
+
+* 必需的 params 参数接收json类数据，定义形成动画的 CSS 属性。
+*  * 属性值也可以接收'toggle','show','hide'参数
+* 可选的 speed 参数规定效果的时长。它可以取以下值："slow"、"fast" 或毫秒
+* 可选的 style 参数规定动画形式。它可以取以下值："linear"、"swing" 
+* 可选的 callback 参数是动画完成后所执行的函数名称。
+
+{% highlight html %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery中的运动</title>
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+    <style>
+    #div1{width: 100px;height: 100px;background-color: red;}
+    #div2{width: 100px;height: 100px;background-color: orange;}
+    </style>
+</head>
+<body>
+    <div id="div1"></div>
+    <div id="div2"></div>
+    <script>
+    $(function(){
+        $('#div1').click(function(){
+            $('#div1').animate({width : '500px',height : '500px'}, 1000, 'linear', function(){
+                alert(123);
+            });
+
+            /* 相对上一次增加
+            $('#div1').animate({width : '+=100px',height : '+=100px'}, 1000, 'linear', function(){
+                alert(123);
+            });*/
+
+            $('#div2').animate({width : '500px',height : '500px'}, 1000, 'swing', function(){
+                alert(123);
+            });
+        });
+    })
+    </script>
+</body>
+</html>
+{% endhighlight %}
+
+#### stop(),finish()
+
+$(selector).stop(stopAll,goToEnd);
+
+* 可选的 stopAll 参数规定是否应该清除动画队列。默认是 false，即仅停止活动的动画，允许任何排入队列的动画向后执行。
+* 可选的 goToEnd 参数规定是否立即完成当前动画。默认是 false。
+
+{% highlight javascript %}
+$(function(){
+        $('#div1').click(function(){
+            $('#div1').animate({width : '500px',height : '500px'}, 1000, 'linear', function(){
+                alert(123);
+            });
+        });
+
+        $('#div2').click(function(){
+            $('div1').stop();
+        });
+    })
+{% endhighlight %}
+
+$(selector).finish() 立即结束所有动画
+
+#### delay() 延迟运动
+
+delay(1000) 延迟一秒
+
+{% highlight javascript %}
+$(function(){
+    $('#div1').click(function(){
+        $('#div1').animate({width : '500px'}, 1000).delay(1000).animate({height : '500px'}, 1000);
+    });
+});
+{% endhighlight %}
+
+### jQuery事件委托
+
+#### 事件委托
+
+* delegate() 绑定事件委托
+* undelegate() 解除事件委托
+
+{% highlight html %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery事件委托</title>
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <script>
+    $(function(){
+        // 类似于冒泡，不用循环
+        $('ul').delegate('li','click',function(){
+            $(this).css('backgroundColor', 'red');
+            $('ul').undelegate();// 取消事件委托
+        });
+    });
+    </script>
+</body>
+</html>
+{% endhighlight %}
+
+#### 主动触发
+
+{% highlight html %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery主动触发</title>
+</head>
+<body>
+    <div id="div1"></div>
+    <script>
+    $(function(){
+   /*     $('#div1').on('click',function(){
+           alert(123);
+        });
+
+        $('#div1').trigger('click');// 自动触发click事件
+*/
+        // 自定义事件
+        $('#div1').on('show',function(){
+           alert(123);
+        });
+
+        $('#div1').trigger('show');// 自动触发click事件
+    })
+    </script>
+</body>
+</html>
+</body>
+</html>
+{% endhighlight %}
+
+#### 事件细节
+
+{% highlight javascript %}
+$(function(){
+    $('#div1').on('click', {name: 'hello'}, function(ev){
+        // alert(ev.data.name); // 找出json数据
+        // alert(ev.target); // 找出事件源
+        // alert(ev.type); // 找出事件类型
+    });
+});
+{% endhighlight %}
+
+### jQuery工具方法： $下的方法（不是$(()）
+
+$ === jQuery
+
+不仅可以给jQuery用，也可以给原生javascript用，工具方法
+
+* $.type() 得出更精确的类型
+* $.trim() 去掉左右空格
+* $.inArray() 类似于 indexOf
+* $.proxy() 改变this指向
+* $.noConflict() 防止冲突的
+* $.parseJson() 解析字符串为json
+* $.makeArray 转换为数组
+
+{% highlight html %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery工具方法</title>
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+    <script>
+    $(function(){
+        var a = 123;
+        alert($.type(a));// 类似于原生typeof，但是返回类型更加精确
+
+        var b = new Date();
+        alert($.type(b));// date
+
+        var c = '   d   ';
+        alert($.trim(c));// d
+
+        var arr = ['a','b','c','d'];
+        alert($.inArray('a', arr)); // 0
+        alert($.inArray('z', arr)); // -1
+    });
+    </script>
+</body>
+</html>
+{% endhighlight %}
+
+#### $.proxy
+
+{% highlight html %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery改变this指向</title>
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+    <script>
+    $(function(){
+
+        function show (n1, n2) {
+            alert(this);// window
+        }
+
+        show();
+
+        $.proxy(show, document)(); // document
+
+        // 传参方式
+        $.proxy(show, document)(3,4); // 1
+        $.proxy(show, document,3,4)(); // 2
+        $.proxy(show, document,3)(4); // 3
+
+        // 第二种传参可以防止函数运行
+        $(document).click( $.proxy(show, window, 3, 4) );
+    });
+    </script>
+</body>
+</html>
+{% endhighlight %}
+
+#### $.noConflict
+
+{% highlight javascript %}
+var hehe = $.noConflict();
+
+hehe(function(){
+    hehe(document).click(function(){
+        alert(123);
+    });
+});
+{% endhighlight %}
+
+#### $.makeArray
+
+{% highlight javascript %}
+window.onload = function(){
+    var aDiv = document.getElementsByTagName('div'); // 类数组
+    $.makeArray(aDiv).push();
+}
+{% endhighlight %}
+
+### jQuery Ajax使用
+
+参考：<a href="http://www.w3school.com.cn/jquery/ajax_ajax.asp">w3c Ajax</a>
+
+### jQuery 插件
+
+* $.extend 扩展工具方法下的插件形式 $.xxx()
+* $.fn.extend 扩展到jQuery对象下的插件形式 $().xxx()
+
+#### 拓展工具方法
+
+{% highlight html %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery插件</title>
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+    <script>
+    $.extend({
+        leftTrim : function(str){
+            return str.replace(/^\s+/,'');
+        }
+    });
+    </script>
+    <script>
+    var str = '   hello   ';
+    alert('(' + $.leftTrim(str) + ')');
+    </script>
+</body>
+</html>
+{% endhighlight %}
+
+#### 拓展对象插件
+
+{% highlight html %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery插件</title>
+    <style>
+    #div1{width: 100px;height: 100px;background-color: orange;position: absolute;}
+    </style>
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+    <div id="div1"></div>
+    <script>
+    $.fn.extend({
+        drag : function(){
+            // this : $('#div1')
+
+            var disX = 0;
+            var disY = 0;
+
+            var This = this;
+
+            this.mousedown(function(ev){
+                disX = ev.pageX - $(this).offset().left;
+                disY = ev.pageY - $(this).offset().top;
+
+                $(document).mousemove(function(ev){
+                    This.css('left', ev.pageX - disX);
+                    This.css('top', ev.pageY - disY);
+                });
+
+                $(document).mouseup(function(){
+                    $(this).off();
+                });
+
+                return false;
+            });
+        }
+    });
+    </script>
+    <script>
+    $(function(){
+        $('#div1').drag();
+    })
+    </script>
+</body>
+</html>
+{% endhighlight %}
