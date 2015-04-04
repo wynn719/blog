@@ -803,6 +803,7 @@ $ === jQuery
 * $.noConflict() 防止冲突的
 * $.parseJson() 解析字符串为json
 * $.makeArray 转换为数组
+* $.isPlainObject( object ) 测试对象是否是纯粹的对象（通过 "{}" 或者 "new Object" 创建的）
 
 {% highlight html %}
 <!DOCTYPE html>
@@ -893,12 +894,14 @@ window.onload = function(){
 
 参考：<a href="http://www.w3school.com.cn/jquery/ajax_ajax.asp">w3c Ajax</a>
 
-### jQuery 插件
+### jQuery 插件开发
 
 * $.extend 扩展工具方法下的插件形式 $.xxx()
 * $.fn.extend 扩展到jQuery对象下的插件形式 $().xxx()
 
-#### 拓展工具方法
+#### 拓展工具方法  $.extend
+
+简单的拓展工具：
 
 {% highlight html %}
 <!DOCTYPE html>
@@ -924,7 +927,9 @@ window.onload = function(){
 </html>
 {% endhighlight %}
 
-#### 拓展对象插件
+#### 拓展对象插件  $.fn.extend
+
+简单的拓展对象插件：
 
 {% highlight html %}
 <!DOCTYPE html>
@@ -975,3 +980,209 @@ window.onload = function(){
 </body>
 </html>
 {% endhighlight %}
+
+### jQuery插件深入
+
+学习笔记都来源于：<a href="http://javascript.ruanyifeng.com/jquery/plugin.html#toc0" rel="nofollow">阮老师的教程</a>
+
+#### 原理
+
+本质上，jQuery插件是定义在jQuery构造函数的prototype对象上面的一个方法，这样做就能使得所有jQuery对象的实例都能共享这个方法。**因为jQuery构造函数的prototype对象被简写成jQuery.fn对象**，所以插件采用下面的方法定义。
+
+{% highlight javascript %}
+jQuery.fn.myPlugin = function() {
+    // Do your awesome plugin stuff here
+};
+{% endhighlight %} 
+
+为了使用美元符号$，改写成这样：
+
+{% highlight javascript %}
+/*分号是为了防止多个脚本文件合并时，
+其他脚本的结尾语句没有添加分好，
+造成的运行时错误*/
+;(function ($){
+    $.fn.myPlugin = function (){
+        // Do your awesome plugin stuff here
+    };
+})(jQuery);
+{% endhighlight %} 
+
+还可以把顶层对象（window）作为参数输入，这样可以加快代码的执行速度和执行更有效的最小化操作:
+
+{% highlight javascript %}
+;(function ($, window) {
+    $.fn.myPlugin = function() {
+        // Do your awesome plugin stuff here
+    };
+}(jQuery, window));
+{% endhighlight %} 
+
+**注意**：在插件内部，this关键字指的是jQuery对象的实例。而在一般的jQuery回调函数之中，this关键字指的是DOM对象
+
+{% highlight html %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+    <style>
+    .box1,.box2,.box3{background-color: red;margin-top: 10px;}
+    .box1{width: 100px;height: 100px;}
+    .box2{width: 200px;height: 200px;}
+    .box3{width: 300px;height: 300px;}
+    </style>
+    <script>
+    (function($){
+        // 返回一系列DOM对象中高度最高的那个对象的高度。
+        $.fn.maxHeight = function(){
+            var max = 0;
+
+            // this 指向调用该插件的元素，即jQuery对象实例
+            console.log(this.length); // 3
+
+            this.each(function(){
+                // 这里的 this 指向每个 div
+                max = Math.max(max, $(this).height());
+            });
+
+            return max;
+        }
+    })(jQuery);
+
+    $(function(){
+        alert($('div').maxHeight());
+    });
+    </script>
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+</body>
+</html>
+{% endhighlight %} 
+
+大多数情况下，插件**应该返回jQuery对象**，这样可以**保持链式操作**。
+
+{% highlight javascript %}
+(function ($){
+    $.fn.greenify = function (){
+        this.css("color", "green");
+        return this;
+    };
+})(jQuery);
+
+// 进行链式操作
+$("a").greenify().addClass("greenified");
+{% endhighlight %} 
+
+对于包含多个jQuery对象的结果集，可以采用each方法，进行处理：
+
+{% highlight javascript %}
+$.fn.myNewPlugin = function() {
+    return this.each(function() {
+        // 处理每个对象
+    });
+};
+{% endhighlight %} 
+
+插件可以接受一个属性对象参数：
+
+<a href="http://jquery.bootcss.com/jQuery.extend/" rel="nofollow">jQuery.extend()的官方解释</a>
+
+{% highlight javascript %}
+(function ($){
+    // option 为用户定义的参数
+    $.fn.tooltip = function (options){
+        // 使用extend方法，为参数对象设置属性的默认值。
+        var settings = $.extend( {
+            // 设置默认参数
+            'location'         : 'top',
+            'background-color' : 'blue'
+        }, options);
+
+        return this.each(function (){
+            // 填入插件代码
+        });
+    };
+})(jQuery);
+{% endhighlight %} 
+
+#### 侦测环境（不是很明白=  =）
+
+jQuery逐渐从浏览器环境，变为也可以用于服务器环境。所以，定义插件的时候，最好首先侦测一下运行环境。
+
+{% highlight javascript %}
+if (typeof module === "object" && typeof module.exports === "object") {
+  // CommonJS版本
+} else {
+  // 浏览器版本
+}
+{% endhighlight %} 
+
+#### 实例
+
+将a元素的href属性添加到网页的插件：
+
+{% highlight javascript %}
+(function($){
+    $.fn.showLinkLocation = function() {
+        return this.filter('a').append(function(){
+            return ' (' + this.href + ')';
+        });
+    };
+}(jQuery));
+
+// 用法
+$('a').showLinkLocation();
+{% endhighlight %} 
+
+#### 插件的发布
+
+首先，编写一个插件的信息文件yourPluginName.jquery.json。文件名中的yourPluginName表示你的插件名。
+
+{% highlight javascript %}
+{
+  "name": "plugin_name",
+  "title": "plugin_long_title",
+  "description": "...",
+  "keywords": ["jquery", "plugins"],
+  "version": "0.0.1",
+  "author": {
+    "name": "...",
+    "url": "..."
+  },
+  "maintainers": [
+    {
+      "name": "...",
+      "url": "..."
+    }
+  ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/mit-license.php"
+    }
+  ],
+  "bugs": "...", // bugs url
+  "homepage": "...", // homepage url
+  "docs": "...", // docs url
+  "download": "...", // download url
+  "dependencies": {
+    "jquery": ">=1.4"
+  }
+}
+{% endhighlight %} 
+
+然后，将代码文件发布到Github，在设置页面点击“Service Hooks/WebHook URLs”选项，填入网址http://plugins.jquery.com/postreceive-hook，再点击“Update Settings”进行保存。
+
+最后，为代码加上版本，push到github，你的插件就会加入jQuery官方插件库。
+
+{% highlight javascript %}
+git tag 0.1.0
+git push origin --tags
+{% endhighlight %} 
+
+以后，你要发布新版本，就做一个新的tag。
