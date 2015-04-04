@@ -7,7 +7,7 @@
           <a class="see-more-link" href="{{ site.url }}/all-tech-posts.html" title="See more...">-&gt;See more...</a>
         </div>
         <div class="recent-tech_posts">
-          {% for post in site.categories.tech limit:5 %}
+          {% for post in site.categories.tech %}
             <article class="tech">
               <header>
                 <h3 class="title"><a href="{{ site.url }}{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3> 
@@ -35,7 +35,7 @@
           <a class="see-more-link" href="{{ site.url }}/all-life-posts.html" title="See more...">-&gt;See more...</a>
         </div>
         <div class="recent-life_posts">
-          {% for post in site.categories.life limit:5 %}
+          {% for post in site.categories.life %}
             <article class="life">
               <header>
                 <h3 class="title"><a href="{{ site.url }}{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3> 
