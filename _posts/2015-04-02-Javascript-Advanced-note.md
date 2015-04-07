@@ -671,10 +671,560 @@ function startMove (obj, json, fn) {
                 fn.call(obj);
             }
         }
-
     }, 30); 
-
-
 }
 {% endhighlight %}
 
+
+
+## 第二课 面向对象课程
+
+> 虽然Object构造函数和对象字面量的方法都可以用来创建单个对象，但这些方式都有明
+> 显的缺点：**使用一个接口创建很多对象时，会产生大量的代码**
+
+### 工厂模式（存在缺点）
+
+{% highlight javascript %}
+function createPerson(name, sex, job) {
+    // 1.原料
+    var obj = new Object();
+
+    // 2.加工
+    obj.name = name;
+    obj.sex = sex;
+    obj.job = job;
+
+    obj.sayName = function() {
+        alert('我叫' + obj.name);
+    };
+
+    obj.saySex = function() {
+        alert('我的性别' + obj.sex);
+    };
+
+    obj.sayJob = function() {
+        alert('我的工作是' + obj.name);
+    };
+
+    // 3.出厂
+    return obj;
+}
+
+window.onload = function() {
+    var p1 = createPerson('wayne', '男', '学生');
+    var p2 = createPerson('luccy', '女', '学生');
+
+    p1.sayName();
+    p1.saySex();
+    p2.sayName();
+    p2.saySex();
+
+    // 此时两个实例的方法不属于同一个对象，如果定义多个实例，
+    // 则有多个相同的方法占据空间，过于浪费空间
+    alert(p1.sayName() == p2.sayName());// false
+}
+{% endhighlight %} 
+
+缺点：
+
+* 没有new方法
+* 每个对象都有一套自己的函数--浪费资源
+* 没有解决对象的识别性问题
+
+### 构造函数模式（也有缺点）
+
+{% highlight javascript %}
+function Person(name, sex, job) {
+    this.name = name;
+    this.sex = sex;
+    this.job = job;
+
+    this.sayName = function() {
+        alert('我叫' + obj.name);
+    };
+
+    this.saySex = function() {
+        alert('我的性别' + obj.sex);
+    };
+
+    this.sayJob = function() {
+        alert('我的工作是' + obj.name);
+    };
+
+    // 因为创建对象时使用了 new 关键字，所以就不需要返回对象了
+}
+
+window.onload = function() {
+    // 可以作为构造函数使用
+    var p1 = new Person('wayne', '男', '学生');
+    var p2 = new Person('luccy', '女', '学生');
+    // 作为普通函数使用
+    Person('wayne','男','学生');
+    window.sayName(); // 此时指向 window
+    
+    p1.sayName();
+    p1.saySex();
+    p2.sayName();
+    p2.saySex();
+
+    // 依旧没有解决方法不在同一个对象下面的问题
+    alert(p1.sayName == p2.sayName);// false
+}
+{% endhighlight %} 
+
+缺点：
+
+* ECMA 中每个函数也是一个对象，因此每定义一个恶函数也就相当于实例化了一个对象
+* 每声明一个实例就相当创建了同一个方法，但两个方法却是独立存在的，类似于工厂模式的问题
+
+### 原型模式(常用)
+
+原型：prototype 每个函数都有一个原型属性，这个属性是一个指针，指向一个对象，而这个对象的用途是包含可以由特定类型的所有实例共享的属性和方法
+
+{% highlight javascript %}
+function Person(name, sex, job) {
+    this.name = name;
+    this.sex = sex;
+    this.job = job;
+}
+
+// 将方法定义在对象的原型上来共享对象所包含的属性和方法
+Person.prototype.sayName = function() {
+    alert('我叫' + this.name);
+};
+
+Person.prototype.saySex = function() {
+    alert('我的性别' + this.sex);
+};
+
+Person.prototype.sayJob = function() {
+    alert('我的工作是' + this.name);
+};
+
+window.onload = function() {
+    var p1 = new Person('wayne', '男', '学生');
+    var p2 = new Person('luccy', '女', '学生');
+
+    p1.sayName();
+    p1.saySex();
+    p2.sayName();
+    p2.saySex();
+
+    // 方法为同一个对象下的资源
+    alert(p1.sayName == p2.sayName); // true
+}
+{% endhighlight %} 
+
+### 实例：面向对象的选项卡
+
+面向过程的选项卡：
+
+{% highlight html %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>选项卡</title>
+    <style>
+    #div1 div{display: none;width: 200px;height: 200px;border: 1px solid black;}
+    .active{background-color: red;}
+    </style>
+    <script>
+    window.onload = function(){
+        var oDiv = document.getElementById('div1'),
+            aBtn = document.getElementsByTagName('input'),
+            aDiv = oDiv.getElementsByTagName('div'),
+            i = 0;
+
+        for (var i = 0; i < aBtn.length; i++) {
+            aBtn[i].index = i;
+
+            aBtn[i].onclick = function(){
+                for (var i = 0; i < aBtn.length; i++) {
+                    aBtn[i].className = '';
+                    aDiv[i].style.display = 'none';
+                };
+                this.className = 'active';
+                aDiv[this.index].style.display = 'block';
+            };
+        };
+    };
+    </script>
+</head>
+<body>
+    <div id="div1">
+        <input type="button" value="1">
+        <input type="button" value='2'>
+        <input type="button" value='3'>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</body>
+</html>
+{% endhighlight %} 
+
+面向对象的选项卡：**注意 this 的指向问题**
+
+{% highlight javascript %}
+/*改写：
+    1.前提：所有东西都在onload里
+    2.改写：不能有函数嵌套，但可以有全局变量
+    3.onload改写成构造函数 
+        onload  - 构造函数
+        全局变量  -  属性
+        函数 - 方法
+    4.处理this指向问题（闭包的方式）
+        定时器  再嵌套一层function(){},把this存起来使用
+        事件
+*/
+
+window.onload = function(){ 
+    var oTab = new TabSwitch('div1');
+}
+
+// 改写成对象
+function TabSwitch(id) {
+    var oDiv = document.getElementById(id);
+    this.aDiv = oDiv.getElementsByTagName('div');
+        i = 0;
+    this.aBtn = document.getElementsByTagName('input');
+
+    // 定时器和事件的 this 指向问题都可以用类似的方法解决
+    var _this = this;// 这个this为oTab实例
+
+    for (var i = 0; i < this.aBtn.length; i++) {
+        this.aBtn[i].index = i;
+
+        this.aBtn[i].onclick = function(){
+            _this.tab(this);// this为aBtn[i];
+        };
+    };
+};
+
+// 改写成对象原型上的方法
+TabSwitch.prototype.tab = function(oBtn) {
+    // alert(this);
+    for (var i = 0; i < this.aBtn.length; i++) {
+        this.aBtn[i].className = '';
+        this.aDiv[i].style.display = 'none';
+    };
+    oBtn.className = 'active';
+    this.aDiv[oBtn.index].style.display = 'block';
+};
+{% endhighlight %} 
+
+### json中的面向对象
+
+{% highlight javascript %}
+// json 本身也是一个对象，因此也可以自由定义方法
+var wayne = {};
+
+wayne.common = {
+    name : 'wayne',
+    sex : 'man',
+    job : 'student',
+
+    showName : function(){
+        alert('我的名字叫做' + this.name);
+    }
+}
+
+wayne.common.showName();
+
+// 类似于java中包的概念
+var miaov = {};
+
+miaov.common = {
+    getClass : function(){
+
+    },
+
+    getId : function(){
+
+    }
+}
+
+miaov.fx = {
+    startMove : function(){
+
+    }
+}
+
+// 在公司中把相同的东西包在同一个包中
+{% endhighlight %}  
+
+### 实例：面向对象的拖拽动画的实现
+
+面向过程的拖拽：
+
+{% highlight html %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>面向过程的拖拽</title>
+    <style>
+    #div{width: 100px;height: 100px;background-color: red;position: absolute;}
+    </style>
+</head>
+<body>
+    <div id="div"></div>
+    <script>
+    window.onload = function(){
+        var oDiv = document.getElementById('div');
+
+        oDiv.onmousedown = function(ev){
+            var ev = ev || event;
+
+            var disX = ev.clientX - oDiv.offsetLeft;
+            var disY = ev.clientY - oDiv.offsetTop;
+
+            document.onmousemove = function(ev){
+                var ev = ev || event;
+
+                oDiv.style.left = ev.clientX - disX + 'px';
+                oDiv.style.top = ev.clientY - disY + iScroll + 'px';
+            }
+
+            document.onmouseup = function(ev){
+                var ev = ev || event;
+
+                document.onmousemove = null;
+                document.onmoseup = null;
+            }
+        }
+    }
+    </script>
+</body>
+</html>
+{% endhighlight %} 
+
+面向对象的拖拽：
+
+{% highlight javascript %}
+function Drag(id) {
+    var _this = this;
+    console.log(this);// this指向 Drag 
+
+    this.oDiv = document.getElementById(id);
+    this.disX = 0;
+    this.disY = 0;
+
+    // this.oDiv.onmousedown = this.fnDown;
+    
+    this.oDiv.onmousedown = function(){
+        console.log(this); // this指向 oDiv
+
+        _this.fnDown();
+    };
+}
+
+Drag.prototype.fnDown = function(ev) {
+    var _this = this;
+
+    var ev = ev || event;
+    console.log(this); // 指向 Drag
+    this.disX = ev.clientX - this.oDiv.offsetLeft;
+    this.disY = ev.clientY - this.oDiv.offsetTop;
+
+    document.onmousemove = function(){
+        _this.fnMove();
+    };
+
+    document.onmouseup = function(){
+        _this.fnUp();
+    };
+}
+
+Drag.prototype.fnMove = function(ev) {
+    var ev = ev || event;
+
+    this.oDiv.style.left = ev.clientX - this.disX + 'px';
+    this.oDiv.style.top = ev.clientY - this.disY + 'px';
+}
+
+Drag.prototype.fnUp = function(ev) {
+    document.onmousemove = null;
+    document.onmoseup = null;
+}
+
+window.onload = function(){
+    var oDiv = new Drag('div');
+}
+{% endhighlight %}
+
+### 继承
+
+{% highlight javascript %}
+// Person类
+function Person (name, sex) {
+    this.name = name;
+    this.sex = sex;
+}
+
+Person.prototype.showSex = function(){
+    alert(this.sex);
+}
+
+Person.prototype.showName = function(){
+    alert(this.name);
+}
+
+// Worker类
+function Worker(name, sex, job){
+    // 调用父级的构造函数
+    // 通过 call 来改变 this 指向
+    // 构造函数伪装
+    Person.call(this, name, sex);
+
+    this.job = job;
+}
+
+//原型链 --- 继承父级的原型
+// Worker.prototype = Person.prototype; // 会影响父类
+
+// 解决引用带来的问题
+for(var i in Person.prototype){
+    Worker.prototype[i] = Person.prototype[i];
+}
+
+Worker.prototype.showJob = function(){
+    alert(this.job);
+}
+
+var oW1 = new Worker('blue', '男', '程序员');
+
+oW1.showName();
+oW1.showJob();
+
+var oP1 = new Person('leo','男'); 
+alert(oP1.showJob);// undefined
+{% endhighlight %} 
+
+### 实例：拖拽对象的继承应用
+
+父类：Drag.js
+
+{% highlight javascript %}
+function Drag(id) {
+    var _this = this;
+    console.log(this); // this指向 Drag 
+
+    this.oDiv = document.getElementById(id);
+    this.disX = 0;
+    this.disY = 0;
+
+    // this.oDiv.onmousedown = this.fnDown;
+
+    this.oDiv.onmousedown = function() {
+        console.log(this); // this指向 oDiv
+
+        _this.fnDown();
+    };
+}
+
+Drag.prototype.fnDown = function(ev) {
+    var _this = this;
+
+    var ev = ev || event;
+    console.log(this); // 指向 Drag
+    this.disX = ev.clientX - this.oDiv.offsetLeft;
+    this.disY = ev.clientY - this.oDiv.offsetTop;
+
+    document.onmousemove = function() {
+        _this.fnMove();
+    };
+
+    document.onmouseup = function() {
+        _this.fnUp();
+    };
+}
+
+Drag.prototype.fnMove = function(ev) {
+    var ev = ev || event;
+
+    this.oDiv.style.left = ev.clientX - this.disX + 'px';
+    this.oDiv.style.top = ev.clientY - this.disY + 'px';
+}
+
+Drag.prototype.fnUp = function(ev) {
+    document.onmousemove = null;
+    document.onmoseup = null;
+}
+{% endhighlight %} 
+
+子类：LimitDrag.js
+
+{% highlight javascript %}
+function LimitDrag(id) {
+    Drag.call(this, id);
+}
+
+for (var i in Drag.prototype) {
+    LimitDrag.prototype[i] = Drag.prototype[i];
+}
+
+LimitDrag.prototype.fnMove = function(ev) {
+    var ev = ev || event;
+    var l = ev.clientX - this.disX;
+    var t = ev.clientY - this.disY;
+
+    if (l < 0) {
+        l = 0;
+    } else if (l > document.documentElement.clientWidth - this.oDiv.offsetWidth) {
+        l = document.documentElement.clientWidth - this.oDiv.offsetWidth;
+    }
+
+    if (t < 0) {
+        t = 0;
+    } else if (t > document.documentElement.clientHeight - this.oDiv.offsetHeight) {
+        t = document.documentElement.clientHeight - this.oDiv.offsetHeight;
+    }
+
+    this.oDiv.style.left = l + 'px';
+    this.oDiv.style.top = t + 'px';
+}
+{% endhighlight %} 
+
+应用：
+
+{% highlight html %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>继承拖拽-限制拖拽</title>
+    <style>
+    #div{width: 100px;height: 100px;background-color: orange;position: absolute;}
+    #div1{width: 100px;height: 100px;background-color: yellow;position: absolute;}
+    </style>
+    <script src="Drag.js"></script>
+    <script src="LimitDrag.js"></script>
+</head>
+<body>
+    <div id="div"></div>
+    <div id="div1"></div>
+    <script>
+    window.onload = function(){
+        var oDiv = new 1Drag('div');
+        var oDiv1 = new LimitDrag('div1');
+    }
+    </script>
+</body>
+</html>
+{% endhighlight %} 
+
+### 系统对象
+
+#### 本地对象（非静态对象）
+
+常用对象：Object,Function,Array,String,Boolean,Number,Date,RegExp,Error
+
+#### 内置对象（静态对象）
+
+Global, Math
+
+#### 宿主对象（浏览器提供的对象）
+
+DOM,BOM
