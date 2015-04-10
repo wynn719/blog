@@ -10,7 +10,7 @@ tags:
 - html
 - 兼容性
 
-time: 2015-04-09 21:22:56
+time: 2015-04-06 21:22:56
 excerpt: 众所周知，前端工程师的大坑之一就是低版本的IE浏览器（IE6，IE7，IE8）所带来的，而身为一个敬业（菜鸟）的前端工程师，有必要时刻记住浏览器带来的兼容性问题的解决方案（看着还有2015年5%的IE6市场份额，真想说一句wtf!!!!!）
 
 ---
@@ -404,9 +404,160 @@ input{width:100px;height:30px;border:none;margin:0;padding:0; float:left; /*back
 </head>
 <body>
 <div class="box">
-    /* IE6，7去边框失败…… */
+    <!-- IE6，7去边框失败…… -->
     <input type="text" />
 </div>
 </body>
 </html>
 {% endhighlight %} 
+
+14\. IE 6不支持png格式的图片透明，解决方案：开源插件 <a href="http://www.dillerdesign.com/experiment/DD_belatedPNG/">DD_belatedPNG.js</a> 解决图片透明问题
+
+{% highlight html %}
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+body{ background:#000;}
+.box{width:400px;height:400px;background:url(img/png.png);}
+</style>
+
+<!--[if IE 6]>
+<script src="DD_belatedPNG_0.0.8a.js"></script>
+<script>
+DD_belatedPNG.fix('.box');
+</script>
+<![endif]-->
+
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>
+{% endhighlight %} 
+
+15\. 在IE6下，在important，后边在家一条同样的样式，会破坏掉important的作用，会按照默认的优先级顺序来走
+
+{% highlight html %}
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+.box{width:100px;height:100px;background:red !important; background:pink;}
+</style>
+</head>
+<body>
+    <!-- ie6中box为黑色 -->
+    <div class="box" style="background:#000;"></div>
+</body>
+</html>
+{% endhighlight %} 
+
+16\. CSS hack（危险，尽量不要使用！）
+
+{% highlight html %}
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+.box{ width:100px;height:100px;background:Red;background:blue\9; +background:yellow;_background:green;}
+@media screen and (-webkit-min-device-pixel-ratio:0){.box{background:pink}}
+/*
+css hack：
+    \9    IE10之前的IE浏览器解析
+    +,*    IE7包括IE7之前的IE浏览器解析
+    _    IE6包括IE6之前的IE浏览器   
+    chrome hack 的写法：@media screen and (-webkit-min-device-pixel-ratio:0){.box{background:pink}}
+*/
+</style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>
+{% endhighlight %} 
+
+## 番外篇--布局……
+
+### 圣杯布局（双飞翼布局）
+
+左右两侧固定，中间自由伸缩，中间先加载
+
+{% highlight html %}
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+body{margin:0;}
+.center{height:600px;background:#f60;margin:0 200px;}
+.left{width:200px;background:#fc0;height:600px; position:absolute;left:0;top:0;}
+.right{width:200px;background:#fcc;height:600px;position:absolute;right:0;top:0;}
+</style>
+</head>
+<body>
+    <div class="center"></div>
+    <div class="left"></div>
+    <div class="right"></div>
+</body>
+</html>
+{% endhighlight %}
+
+### 等高布局
+
+容器高度随着左右两边的增高而变化
+
+{% highlight html %}
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+body{margin:0;}
+.wrap{ width:900px;margin:0 auto; border:10px solid #000; overflow:hidden;}
+.wrap:after{content:"";display:block;clear:both;}
+.left{width:200px;background:Red;float:left; padding-bottom:10000px; margin-bottom:-10000px;}
+.center{float: left;padding-bottom: 10000px;margin-bottom: -10000px;background-color: yellow;width: 500px;}
+.right{width:200px;background:blue;float:right;padding-bottom:10000px;margin-bottom:-10000px;}
+</style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="left">
+            &nbsp;页面内容<br/>
+            &nbsp;页面内容<br/>
+        </div>
+        <div class="center">
+            &nbsp;页面内容<br/>
+            &nbsp;页面内容<br/>
+            &nbsp;页面内容<br/>
+            &nbsp;页面内容<br/>
+            &nbsp;页面内容<br/>
+        </div>
+        <div class="right">
+            &nbsp;页面内容<br/>
+            &nbsp;页面内容<br/>
+            &nbsp;页面内容<br/>
+            &nbsp;页面内容<br/>
+        </div>
+    </div>
+</body>
+</html>
+{% endhighlight %} 
+
+> 可能还有别的知识，未完待补充！！
+> 
+> 如果你有一些其他的跟兼容性有关的知识，请分享给我，谢谢！
+
+
+
+
+
