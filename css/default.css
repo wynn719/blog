@@ -40,11 +40,58 @@ table {
 	body{
 		padding: 8px;
 	}
+	#wrapper{
+		width: 1366px;
+	}
 	#sidebar{
 		width: 200px;
+		left: 8px;
+		top: 8px;
+		bottom: 8px;
+		overflow: hidden;
+		z-index: 0;
+		border-bottom: none;
+		box-shadow: 4px 6px 3px -2px #a5a5a5;
+		-moz-box-shadow: 4px 6px 3px -2px #a5a5a5;
+		-webkit-box-shadow: 4px 6px 3px -2px #a5a5a5;
 	}
+	.intro{
+		text-align: center;
+		float: none;
+	}
+	.intro .avatar{
+		width: 100px;
+		height: 100px;
+		padding: 20px 0;
+	}
+	.intro .blog-title{
+		display: block;
+	}
+	.nav, .contact-me{
+	    float: none;
+	    padding: 20px 0;
+	}
+	.nav ul, .contact-me ul{
+	    overflow: hidden;
+	}
+	.nav li, .contact-me li{
+	    float: none;
+	}
+	.nav a, .contact-me a{
+		padding-left: 1em;
+		padding-right: 0;
+		line-height: 2.4em;
+	}
+	.contact-me span{
+		display: inline-block;
+	}
+	.contact-me .ele{
+		width: 0px;
+	}
+
 	#content{
 		margin-left: 212px;
+		padding: 1.5em 1.5em;
 	}
 }
 @media screen and ( max-width: 1366px ){
@@ -55,6 +102,9 @@ table {
 	p{ font-size: 1em; }
 	body{
 		padding: 8px;
+	}
+	#wrapper{
+		width: auto;
 	}
 	#sidebar{
 		width: 200px;
@@ -116,6 +166,9 @@ table {
 	p{ font-size: 0.875em; }
 	body{
 		padding: 0;
+	}
+	#wrapper{
+		width: auto;
 	}
 	/*sidebar change*/
 	#sidebar{
