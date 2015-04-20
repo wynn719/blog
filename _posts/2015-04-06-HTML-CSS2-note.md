@@ -82,3 +82,56 @@ excerpt: 主要记录网站开发中，html和css里一些比较容易忽视的�
 
 22\. 相对定位和绝对定位也可以用于清除浮动
 
+23\. 英文断句的方式：
+
+* `word-break:break-all;`所有形式的句子都断句，不考虑单词连贯性
+* `word-break:break-word`保持英文单词完整性的断句
+
+24\. 文本溢出显示省略号，在相应的显示文本的元素上加上`white-space:nowrap; overflow:hidden; text-overflow:ellipsis;`样式。
+
+25\. 未知宽高的img如何在容器里水平垂直居中？
+
+方案一：使用vertical-align属性（多了没用的标签，个人不太推荐使用）
+
+{% highlight html %}
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+.box{ width:800px;height:600px;border:2px solid #000; text-align:center;}
+span{ display:inline-block; height:100%; vertical-align:middle;}
+img{ vertical-align:middle;}
+</style>
+</head>
+<body>
+    <div class="box">
+        <img src="bigptr.jpg" /><span></span>
+    </div>
+</body>
+</html>
+{% endhighlight %}
+
+方案二：使用表格布局默认居中的特性
+
+{% highlight html %}
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+.box{ width:800px;height:600px;border:2px solid #000;display:table;position:relative; overflow:hidden;}
+span{ display:table-cell; text-align:center; vertical-align:middle;*position:absolute;left:50%;top:50%;}
+img{ *position:relative; vertical-align:top;left:-50%;top:-50%;}
+</style>
+</head>
+<body>
+<div class="box">
+    <span><img src="bigptr.jpg" /></span>
+</div>
+</body>
+</html>
+{% endhighlight %} 
+

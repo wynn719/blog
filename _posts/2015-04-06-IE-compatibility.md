@@ -483,6 +483,56 @@ css hack：
 </html>
 {% endhighlight %} 
 
+17\. ie6不支持fixed，可模拟如下（存在一些小问题，比较少使用）:
+
+第一种方法：
+
+{% highlight html %}
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+html{height:100%;overflow:hidden;}
+body{margin:0; height:100%;overflow:auto;}
+.box{height:2000px;}
+.div{width:100px;height:100px;background:red; position:absolute;left:100px;top:100px;}
+</style>
+</head>
+<body>
+    <!-- 因为.div相对于document定位，当文档大小不变时，.div也不会移动 -->
+    <div class="box">
+        <div class="div"></div>
+    </div>
+</body>
+</html>
+{% endhighlight %} 
+
+第二种方法：
+
+{% highlight html %}
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+.box{height:2000px;}
+.div{width:100px;height:100px;background:red; position:fixed;left:100px;top:100px;_position:absolute;_top:expression(eval(document.documentElement.scrollTop+100));
+}
+</style>
+</head>
+<body>
+    <!-- css hack模式 -->
+    <!-- ie6下滑动时会颤抖…… -->
+    <div class="box">
+        <div class="div"></div>
+    </div>
+</body>
+</html>
+{% endhighlight %} 
+
 ## 番外篇--布局……
 
 ### 圣杯布局（双飞翼布局）

@@ -24,29 +24,29 @@
 </head>
 <body>
   <div id="wrapper">
-    <header id="header" role="banner">
-
-      <div class="about_author">
-        <ul class="social_contact">
-          <li class="social-ele social_weibo"><a href="http://weibo.com/u/1680111594" target="_blank" title="微博" rel="nofollow" rel="nofollow"></a></li>
-          <li class="social-ele social_douban"><a href="http://www.douban.com/people/81245114/" target="_blank" title="豆瓣" rel="nofollow"></a></li>
-          <li class="social-ele social_github"><a href="https://github.com/zhengbowei" target="_blank" title="github" rel="nofollow"></a></li>
-          <li class="social-ele social_facebook"><a title="其实我没有facebook" rel="nofollow"></a></li>
-          <li class="social-ele social_googleplus"><a title="我也没有google+" rel="nofollow"></a></li>
-          <li class="social-ele social_twitter"><a title="没错，这也是个摆设" rel="nofollow"></a></li>
-        </ul>
-      </div><!-- head author links -->
-
-      <h1 class="blog_title"><a href="{{ site.url }}">小柏的博客</a></h1>
-
-      <nav class="nav" role="navigation">
-        <ul>
-          <li><a href="{{ site.url }}" title="主页">Home</a></li>
-          <li><a href="{{ site.url }}/all-tech-posts.html" title="技术博文">Tech</a></li>
-          <li><a href="{{ site.url }}/all-life-posts.html" title="生活点滴">Life</a></li>
-          <!-- <li><a href="{{ site.url }}/projects/" title="项目">Projects</a></li> -->
-          <li><a href="{{ site.url }}/about-me/" title="关于我">About Me</a></li>
-        </ul>
-      </nav>
-
-    </header>
+    <!-- sidebar --> 
+    <div id="sidebar">
+        <div class="intro" role="logo">
+            <img class="avatar" src="imgs/author.ico" alt="博主头像">
+            <h1 class="blog-title"><a href="http://zhengbowei.github.io/blog" title="博客标题">Wayne Zheng</a></h1>
+        </div>
+        <nav class="nav" role="navigation">
+            <ul>
+                <li class="active">
+                    <a href="http://zhengbowei.github.io/blog" title="主页">Home</a>
+                </li>
+                <li><a href="index.html#tech-posts" title="技术博文">Tech</a></li>
+                <li><a href="index.html#life-posts" title="生活点滴">Life</a></li>
+                <li><a href="/blog/projects/" title="项目">Projects</a></li>
+                <li><a href="http://zhengbowei.github.io/blog/about-me/" title="关于我">About Me</a></li>
+            </ul>
+        </nav>
+        <div class="contact-me">
+            <ul>
+                <li><a href="https://github.com/zhengbowei" target="_blank" title="github" rel="nofollow"><span>Github</span><span class="ele ele-github"></span></a></li>
+                <li><a href="http://www.douban.com/people/81245114/" target="_blank" title="豆瓣" rel="nofollow"><span>Douban</span><span class="ele ele-douban"></span></a></li>
+                <li><a href="http://weibo.com/u/1680111594" target="_blank" title="微博" rel="nofollow"><span>Weibo</span><span class="ele ele-weibo"></span></a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- end sidebar -->
