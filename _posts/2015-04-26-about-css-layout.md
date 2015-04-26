@@ -253,7 +253,6 @@ html样式：
 
 ### 资料参考
 
-<a href="http://www.dqqd.me/avatar/fly/grids_test1.html" rel="nofollow">（转）栅格化系统demo</a>
-
-<a href="http://v2.bootcss.com/scaffolding.html#gridSystem" rel="nofollow">bootstrap的栅格系统</a>
+* <a href="http://www.dqqd.me/avatar/fly/grids_test1.html" rel="nofollow">（转）栅格化系统demo</a>
+* <a href="http://v2.bootcss.com/scaffolding.html#gridSystem" rel="nofollow">bootstrap的栅格系统</a>
 
