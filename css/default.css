@@ -378,6 +378,9 @@ article{
 	margin-top: 0;
 	text-shadow: 0px 1px #ffffff,3px 3px 0px #dad7d7;
 }
+.single-post ul, ol{
+	padding-left: 30px;
+}
 .single-post ul li{
 	list-style: square;
 }
