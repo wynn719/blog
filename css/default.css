@@ -371,10 +371,10 @@ article{
 	border-top: 1px dashed #f8e2be;
 }
 artcile ul li{
-	list-style-type: square;
+	list-style: square;
 }
 artcile ol li{
-	list-style-type: decimal;
+	list-style: decimal;
 }
 .single-post{
 	border-top: none;
