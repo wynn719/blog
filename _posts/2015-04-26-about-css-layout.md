@@ -200,7 +200,7 @@ html样式：
 > 
 > 同时，还可以给该布局加上登高布局的特性，就形成一个流式的布局
 
-### 另一种实现方案（(bsolute)(比较简单)
+### 另一种实现方案  （absolute）(比较简单)
 
 {% highlight html %}
 <div class="container">
