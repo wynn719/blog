@@ -87,6 +87,7 @@ excerpt: （对之前旧笔记关于布局的加深理解）主要记录常用�
         &nbsp;页面内容<br/>
         &nbsp;页面内容<br/>
         &nbsp;页面内容<br/>
+        调整屏幕大小试试看<br/>
         因为我最高所以他们跟着我一样高了！
     </div>
     <div class="right" style="width:20%; background:#80ffff; float:right; padding-bottom:10000px; margin-bottom:-10000px;">
@@ -179,11 +180,12 @@ html样式：
 
 <div class="container" style="overflow: hidden;">
     <div class="main" style="float: left; width: 100%; background-color: #c0c0c0; height: 200px;">
-        <div class="main-content" style="margin: 0 230px 0 190px;">#main</div>
+        <div class="main-content" style="margin: 0 230px 0 190px;">#main调整屏幕大小试试看</div>
     </div>
     <div class="left" style="float: left; width: 200px; background-color: #80ffff; height: 200px; margin-left: -100%;">left</div>
     <div class="right" style="float: left; width: 150px; background-color: #80ff80; margin-left: -150px; height: 200px;">right</div>
 </div>
+<br/>
 
 > 双飞翼布局完成啦！
 > 
@@ -229,5 +231,7 @@ html样式：
 > 也可以加入登高布局的特性！ 
 
 ## 流式栅格布局
+
+
 
 
