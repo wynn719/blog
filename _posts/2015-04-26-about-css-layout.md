@@ -75,6 +75,7 @@ excerpt: （对之前旧笔记关于布局的加深理解）主要记录常用�
 {% endhighlight %} 
 
 效果图如下：
+
 <div class="wrap" style="width:100%; margin:0 auto; overflow:hidden;">
     <div class="left" style="width:20%; background:Red; float:left; padding-bottom:10000px; margin-bottom:-10000px;">
         &nbsp;页面内容<br/>
