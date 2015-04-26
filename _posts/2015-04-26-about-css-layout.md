@@ -74,14 +74,14 @@ excerpt: （对之前旧笔记关于布局的加深理解）主要记录常用�
 }
 {% endhighlight %} 
 
-效果图如下：
+效果如下：
 
 <div class="wrap" style="width:100%; margin:0 auto; overflow:hidden;">
-    <div class="left" style="width:20%; background:Red; float:left; padding-bottom:10000px; margin-bottom:-10000px;">
+    <div class="left" style="width:20%; background:#99b4de; float:left; padding-bottom:10000px; margin-bottom:-10000px;">
         &nbsp;页面内容<br/>
         &nbsp;页面内容<br/>
     </div>
-    <div class="center" style="float: left; padding-bottom: 10000px; margin-bottom: -10000px; background-color: yellow; width: 60%;">
+    <div class="center" style="float: left; padding-bottom: 10000px; margin-bottom: -10000px; background-color: #ffff80; width: 60%;">
         &nbsp;页面内容<br/>
         &nbsp;页面内容<br/>
         &nbsp;页面内容<br/>
@@ -89,7 +89,7 @@ excerpt: （对之前旧笔记关于布局的加深理解）主要记录常用�
         &nbsp;页面内容<br/>
         因为我最高所以他们跟着我一样高了！
     </div>
-    <div class="right" style="width:20%; background:blue; float:right; padding-bottom:10000px; margin-bottom:-10000px;">
+    <div class="right" style="width:20%; background:#80ffff; float:right; padding-bottom:10000px; margin-bottom:-10000px;">
         &nbsp;页面内容<br/>
         &nbsp;页面内容<br/>
         &nbsp;页面内容<br/>
@@ -174,6 +174,16 @@ html样式：
     margin: 0 230px 0 190px;
 }
 {% endhighlight %} 
+
+效果如下：
+
+<div class="container" style="overflow: hidden;">
+    <div class="main" style="float: left; width: 100%; background-color: #c0c0c0; height: 200px;">
+        <div class="main-content" style="margin: 0 230px 0 190px;">#main</div>
+    </div>
+    <div class="left" style="float: left; width: 200px; background-color: #80ffff; height: 200px; margin-left: -100%;">left</div>
+    <div class="right" style="float: left; width: 150px; background-color: #80ff80; margin-left: -150px; height: 200px;">right</div>
+</div>
 
 > 双飞翼布局完成啦！
 > 
