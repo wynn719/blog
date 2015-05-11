@@ -369,22 +369,25 @@ article{
 	padding: 2em 0;
 	position: relative;
 	border-top: 1px dashed #f8e2be;
-}
+}/*
 .single-post h1:before {
-  content: '♠';
+  content: '#';
   padding-right: 6px;
-}
+}*/
 .single-post h2:before {
-  content: '♣';
+  content: '#';
   padding-right: 6px;
+  color: #196eed;
 }
 .single-post h3:before {
-  content: '♥';
+  content: '#';
   padding-right: 6px;
+  color: #d64530;
 }
 .single-post h4:before {
-  content: '♦';
+  content: '#';
   padding-right: 6px;
+  color: #fdbb0f;
 }
 .single-post{
 	border-top: none;
