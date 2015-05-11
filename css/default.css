@@ -370,19 +370,19 @@ article{
 	position: relative;
 	border-top: 1px dashed #f8e2be;
 }
-.single h1:before {
+.single-post h1:before {
   content: '♠';
   padding-right: 6px;
 }
-.single h2:before {
+.single-post h2:before {
   content: '♣';
   padding-right: 6px;
 }
-.single h3:before {
+.single-post h3:before {
   content: '♥';
   padding-right: 6px;
 }
-.single h4:before {
+.single-post h4:before {
   content: '♦';
   padding-right: 6px;
 }
