@@ -50,11 +50,9 @@ func();
 它的解析过程是这样的：
 
 * 定义name
-
 * 定义func时：
 * * func的[[scope]]创建，[[scope]]指向window对象
 * * [[scope]]链接到scope chain上
-
 * 执行func时：
 * * 创建活动对象funcObj（预编译时创建，假设是这个名字）
 * * 创建arguments对象，添加lps和rps属性
@@ -89,15 +87,12 @@ laruence
 解析过程是这样的：
 
 * 定义name
-
 * 定义echo时：
 * * echo的[[scope]]创建，[[scope]]指向window对象
 * * [[scope]]链接到scope chain上
-
 * 定义env时：
 * * env的[[scope]]创建，[[scope]]指向window对象
 * * [[scope]]链接到scope chain上，在echo的[[scope]]后面
-
 * 执行env时：
 * * 创建活动对象envObj（预编译时创建，假设是这个名字）
 * * 创建arguments对象
