@@ -107,7 +107,7 @@ laruence
 
 作用域链如该图：
 
-<img src="{{ site.url }}imgs/posts/2015-06-18-javascript-scope-note01.png" alt="作用域链图像">
+<img src="{{ site.url }}/imgs/posts/2015-06-18-javascript-scope-note01.png" alt="作用域链图像">
 
 ---
 
