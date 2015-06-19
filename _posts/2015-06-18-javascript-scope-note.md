@@ -15,6 +15,8 @@ excerpt: 深入学习javascript作用域原理，同时记录在学习中遇到�
 ---
 
 > 学习任务来自：<a href="https://github.com/baidu-ife/ife" rel="no-follow">百度ife前端技术学院</a>
+> 
+> 学习资料参考自：<a href="http://www.laruence.com/2009/05/28/863.html?cp=all#comments">28 May 09 Javascript作用域原理</a>
 
 ## javascript的作用域链
 
@@ -126,3 +128,126 @@ function app(para){
 app('eve');
 {% endhighlight %} 
 
+结果为：
+
+{% highlight javascript %}
+I am laruence
+{% endhighlight %} 
+
+在刚进入app函数体时, app的活动对象有一个arguments属性, 俩个值为undefined的属性: name和func. 和一个值为'eve'的属性para;
+
+此时的scope chain如下:
+
+{% highlight javascript %}
+[[scope chain]] = [
+{
+     para : 'eve',
+     name : undefined,
+     func : undefined,
+     arguments : []
+}, {
+     window call object
+}
+]
+{% endhighlight %}  
+
+当调用进入factory的函数体的时候, 此时的factory的scope chain为:
+
+{% highlight javascript %}
+[[scope chain]] = [
+{
+     name : undefined,
+     intor : undefined
+}, {
+     window call object
+}
+]
+{% endhighlight %}  
+
+注意到, 此时的作用域链中, 并不包含app的活动对象.
+
+在定义intro函数的时候, intro函数的[[scope]]为:
+
+{% highlight javascript %}
+[[scope chain]] = [
+{
+     name : 'laruence',
+     intor : undefined
+}, {
+     window call object
+}
+]
+{% endhighlight %} 
+
+从factory函数返回以后,在app体内调用intro的时候, 发生了标识符解析, 而此时的scope chain是:
+
+{% highlight javascript %}
+[[scope chain]] = [
+{
+     intro call object
+}, {
+     name : 'laruence',
+     intor : undefined
+}, {
+     window call object
+}
+]
+{% endhighlight %}
+
+因为scope chain中,并不包含factory活动对象. 所以, name标识符解析的结果应该是factory活动对象中的name属性, 也就是'laruence'.
+
+---
+
+## Javascript的预编译
+
+例子：
+
+{% highlight javascript %}
+alert(typeof eve); //function
+function eve() {
+  alert('I am Laruence');
+};
+{% endhighlight %} 
+
+由于在js中存在着预编译的过程（JS在执行每一段JS代码之前，都会首先处理var关键字和function关键字）。
+
+所以结果会是`function`
+
+在调用函数执行之前，会首先创建一个活动对象，然后搜寻这个函数中的局部变量定义,和函数定义，将变量名和函数名都做为这个活动对象的同名属性，对于局部变量定义，**变量的值会在真正执行的时候才计算**，此时只是简单的赋为undefined.
+
+而对于函数的定义,是一个要注意的地方:
+
+函数表达式（var声明的function在预编译中跟变量做一样的处理），如下例子，对于函数定义式，会将函数定义提前而函数表达式，会在执行过程中才计算.
+
+{% highlight javascript %}
+alert(typeof eve); //结果:function
+alert(typeof walle); //结果:undefined
+function eve() { //函数定义式
+  alert('I am Laruence');
+};
+var walle = function() { //函数表达式
+};
+alert(typeof walle); //结果:function
+{% endhighlight %} 
+
+而对于**反编译模式**创建的变量，如：
+
+{% highlight javascript %}
+var name = 'laruence';
+age = 26;
+{% endhighlight %} 
+
+变量`age`会被定义在顶级作用域中。
+
+当然，JS是对每一段的JS代码进行预编译的
+
+{% highlight html %}
+<script>
+    alert(typeof eve); //结果:undefined
+</script>
+<script>
+    function eve() {
+        alert('I am Laruence');
+    }
+</script>
+{% endhighlight %} 
