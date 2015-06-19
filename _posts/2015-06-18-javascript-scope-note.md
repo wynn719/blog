@@ -16,7 +16,11 @@ excerpt: 深入学习javascript作用域原理，同时记录在学习中遇到�
 
 > 学习任务来自：<a href="https://github.com/baidu-ife/ife" rel="no-follow">百度ife前端技术学院</a>
 > 
-> 学习资料参考自：<a href="http://www.laruence.com/2009/05/28/863.html?cp=all#comments">28 May 09 Javascript作用域原理</a>
+> 学习资料参考自：
+> 
+> <a href="http://www.laruence.com/2009/05/28/863.html?cp=all#comments" rel="no-follow">28 May 09 Javascript作用域原理</a>
+> 
+> <a href="http://www.cnblogs.com/lhb25/archive/2011/09/06/javascript-scope-chain.html" rel="no-follow">JavaScript 开发进阶：理解 JavaScript 作用域和作用域链</a>
 
 ## javascript的作用域链
 
@@ -251,3 +255,90 @@ age = 26;
     }
 </script>
 {% endhighlight %} 
+
+---
+
+## 作用域在实际运用中要注意的：
+
+在调用DOM节点时，把要使用的全局变量先存储在引用变量中，减少往scope chain最低层window全局变量查找，提高程序的效率（当然，在小型的项目中体现不出来，但是当项目越大时，过多的全局变量的查找无疑会加大程勋运行的开销）。
+
+减少查找的例子如下：
+
+{% highlight javascript %}
+function showTips(){
+    document.getElementById('btn').onclick = function(){
+        document.getElementById('tip').style.display = 'block';
+    }
+}
+{% endhighlight %} 
+
+将两次全局查找，优化成：
+
+{% highlight javascript %}
+function showTips(){
+    var doc = document;
+    doc.getElementById('btn').onclick = function(){
+        doc.getElementById('tip').style.display = 'block';
+    }
+}
+{% endhighlight %} 
+
+在jquery的源码中，开头就把会频繁使用的变量存储起来了：
+
+{% highlight javascript %}
+(function( window, undefined ) {
+  var
+    // A central reference to the root jQuery(document)
+    rootjQuery,
+
+    // The deferred used on DOM ready
+    readyList,
+
+    // Support: IE9
+    // For `typeof xmlNode.method` instead of `xmlNode.method !== undefined`
+    core_strundefined = typeof undefined,
+
+    // Use the correct document accordingly with window argument (sandbox)
+    // 看这里！我们都被存起来了~
+    location = window.location,
+    document = window.document,
+    docElem = document.documentElement,
+    ......
+{% endhighlight %} 
+
+---
+
+## 延长作用域链
+
+有两种情况会发生作用域延长的情况
+
+* with语句
+* try-catch语句的catch块
+
+注：虽然with语句确实可以延长作用域链，但是在很多书中都明确警告了使用with会带来一些难以预料的问题（至于是什么问题就不细究了，反正就是不要使用with...）。
+
+所以，还是不学习with了...
+
+关于try-catch语句的catch块：
+
+当try代码块中发生错误时，执行过程会跳转到catch语句，然后把异常对象推入一个可变对象并置于作用域的头部。在catch代码块内部，函数的所有局部变量将会被放在第二个作用域链对象中。
+
+{% highlight javascript %}
+try{
+    doSomething();
+}catch(ex){
+    alert(ex.message); //作用域链在此处改变
+}
+{% endhighlight %} 
+
+一旦catch语句执行完毕，作用域链机会返回到之前的状态。try-catch语句在代码调试和异常处理中非常有用，因此不建议完全避免。你可以通过优化代码来减少catch语句对性能的影响。**一个很好的模式是将错误委托给一个函数处理，**例如：
+
+{% highlight javascript %}
+try{
+    doSomething();
+}catch(ex){
+    handleError(ex); //委托给处理器方法
+}
+{% endhighlight %} 
+
+优化后的代码，handleError方法是catch子句中唯一执行的代码。该函数接收异常对象作为参数，这样你可以更加灵活和统一的处理错误。**由于只执行一条语句，且没有局部变量的访问，作用域链的临时改变就不会影响代码性能了。**
