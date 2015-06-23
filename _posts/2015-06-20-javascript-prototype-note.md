@@ -12,6 +12,7 @@ tags:
 time: 2015-06-20 21:45:56
 excerpt: 深入学习javascript原型和原型链，同时记录在学习中遇到的问题。
 （妈蛋，我已经快被搞糊涂了，乱成一锅粥，不对，我又懂了……）
+
 ---
 
 > 学习任务来自：<a href="https://github.com/baidu-ife/ife" rel="no-follow">百度ife前端技术学院</a>
