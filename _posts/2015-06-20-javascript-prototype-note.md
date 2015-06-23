@@ -9,9 +9,8 @@ tags:
 - ife
 - task0003
 
-time: 2015-06-20 21:45:56
-excerpt: 深入学习javascript原型和原型链，同时记录在学习中遇到的问题。
-（妈蛋，我已经快被搞糊涂了，乱成一锅粥，不对，我又懂了……）
+time: 2015-06-23 22:15:00
+excerpt: 深入学习javascript的原型和原型链，同时记录在学习中遇到的问题。
 
 ---
 
@@ -24,6 +23,7 @@ excerpt: 深入学习javascript原型和原型链，同时记录在学习中遇�
 > <a href="http://blog.jobbole.com/9648/" rel="no-follow">理解JavaScript原型</a>
 > 
 > <a href="http://www.cnblogs.com/wangfupeng1988/p/3977924.html" rel="no-follow">深入理解javascript原型和闭包</a>
+> 
 
 个人注：主要是区分`Prototype`,`prototype`,`__proto__`,`[[Prototype]]`，理解`constructor`
 
@@ -79,7 +79,7 @@ alert(b.calculate(30));
 * 任何一个对象都可以成为原型
 * 所有的对象在默认的情况下都有一个原型，因为原型本身也是对象，所以每个原型自身又有一个原型(只有一种例外，默认的对象原型在原型链的顶端。
 
-一个对象的真正原型是被对象内部的[[Prototype]]属性(property)所持有。ECMA引入了标准对象原型访问器Object.getPrototype(object)，到目前为止只有Firefox和chrome实现了此访问器。除了IE，其他的浏览器支持非标准的访问器__proto__，如果这两者都不起作用的，我们需要从对象的构造函数中找到的它原型属性。下面的代码展示了获取对象原型的方法：
+一个对象的真正原型是被对象内部的[[Prototype]]属性(property)所持有。ECMA引入了标准对象原型访问器Object.getPrototype(object)，到目前为止只有Firefox和chrome实现了此访问器。除了IE，其他的浏览器支持非标准的访问器`__proto__`，如果这两者都不起作用的，我们需要从对象的构造函数中找到的它原型属性。下面的代码展示了获取对象原型的方法：
 
 {% highlight javascript %}
 var a = {}; 
@@ -95,7 +95,7 @@ a.__proto__; //[object Object]
 a.constructor.prototype; //[object Object]
 {% endhighlight %} 
 
-**因此，不难理解，`__proto__`就是指向对象的原型，而不支持`__proto__`访问器的，`constructor`的原型指向对象的原型**
+因此，不难理解，`__proto__` 就是指向对象的原型，而不支持`__proto__`访问器的，`constructor` 的原型指向对象的原型
 
 当试图用基本类型访问原型时，内部发生了强制转换：
 
@@ -105,7 +105,7 @@ a.constructor.prototype; //[object Object]
 string.__proto__ === String().__proto__; //true
 {% endhighlight %} 
 
-**因此，基本类型没有原型的说法是正确的**
+因此，基本类型没有原型的说法是正确的
 
 ### instanceof 的工作原理
 
@@ -164,8 +164,7 @@ for(item in person){
 
 如果仅仅只是因为一个实例而使用原型是没有多大意义的，这和直接添加属性到这个实例是一样的。
 
-原型真正魅力体现在多个实例共用一个通用原型的时候。
-原型对象(注:也就是某个对象的原型所引用的对象)的属性一旦定义，就可以被多个引用它的实例所继承(注:即这些实例对象的原型所指向的就是这个原型对象)，这种操作在性能和维护方面其意义是不言自明的。
+原型真正魅力体现在多个实例共用一个通用原型的时候。原型对象(注:也就是某个对象的原型所引用的对象)的属性一旦定义，就可以被多个引用它的实例所继承(注:即这些实例对象的原型所指向的就是这个原型对象)，这种操作在性能和维护方面其意义是不言自明的。
 
 #### 构造函数
 
@@ -203,17 +202,16 @@ var a = new A();
 console.log(a.prototype); // undefined
 {% endhighlight %} 
 
+函数A的原型属性(prototype property)是一个对象，当这个函数被用作构造函数来创建实例时，该函数的 **原型属性** 将被作为 **原型** 赋值给 **所有对象实例** (注:即所有实例的原型引用的是函数的原型属性)
 
-函数A的原型属性(prototype property)是一个对象，当这个函数被用作构造函数来创建实例时，该函数的**原型属性**将被作为**原型**赋值给**所有对象实例**(注:即所有实例的原型引用的是函数的原型属性)
-
-注意：一个函数的原型属性(function’s prototype property )其实和实际的原型(prototype)没有关系
+注意：一个函数的原型属性(function’s prototype property)其实和实际的原型(prototype)没有关系
 
 {% highlight javascript %}
 //(example fails in IE) 
  
 var A = function(name) { 
   this.name = name; 
-} 
+};
  
 A.prototype == A.__proto__; //false 
  
@@ -221,7 +219,7 @@ A.__proto__ == Function.prototype;
 //true - A's prototype is set to its constructor's prototype property
 {% endhighlight %} 
 
-如果我现在替换A的原型属性为一个新的对象，实例对象的原型a.__proto__却仍然引用着原来它被创建时A的原型属性
+如果我现在替换A的原型属性为一个新的对象，实例对象的原型`a.__proto__`却仍然引用着原来它被创建时A的原型属性
 
 {% highlight javascript %}
 var A = function(name) {
