@@ -4,7 +4,7 @@ title: 百度ife-javascript面向对象学习笔记
 categories: 
 - tech
 
-tags: 3
+tags: 
 - 笔记
 - ife
 - task0003

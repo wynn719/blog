@@ -4,7 +4,7 @@ title: 百度ife-javascript设计模式学习笔记
 categories: 
 - tech
 
-tags: 3
+tags: 
 - 笔记
 - ife
 - task0003
