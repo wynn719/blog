@@ -1,7 +1,7 @@
 {% include header.html %}
     
         <!-- content -->
-        <div class="content animated fadeInRight" role="main">
+        <div class="content animated" role="main">
             <section id="tech-posts">
                 <div class="section-header">
                     <h1 class="section-title">Tech Posts</h1>
@@ -71,5 +71,10 @@
             <footer class="footer" role="contentinfo">
                 <p class="copyright">Copyright © 2015 <a href="http://zhengbowei.github.io/about-me.html" title="关于我">Bowei Zheng.</a> Hosted by <a href="https://github.com/zhengbowei/blog" target="_blank" title="github" rel="nofollow">GitHub</a> and powered by <a href="http://github.com/mojombo/jekyll" title="Jekyll官网" rel="nofollow">Jekyll</a>.</p>
             </footer>
-      </div>
-      <!-- end content -->
+        </div>
+        <!-- end content -->
+        <script>
+        $(function() {
+            $('.content').addClass('fadeInRight');
+        });
+        </script>
