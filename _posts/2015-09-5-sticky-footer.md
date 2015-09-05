@@ -67,4 +67,4 @@ html, body {
 - `:after`用于当页面长度超过屏幕时占位把footer向下挤
 - footer必须位于最外层，这也DOM结构有所不规范
 
-实现的效果可看：[http://1.wynnezheng.sinaapp.com/sticky_footer/index.html](http://1.wynnezheng.sinaapp.com/sticky_footer/index.html "sticky footer")
+实现的效果可看: [http://1.wynnezheng.sinaapp.com/sticky_footer/index.html](http://1.wynnezheng.sinaapp.com/sticky_footer/index.html "sticky footer")

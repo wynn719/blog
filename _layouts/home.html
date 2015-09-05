@@ -1,7 +1,7 @@
 {% include header.html %}
     
-    <!-- content -->
-        <div id="content" role="main">
+        <!-- content -->
+        <div class="content" role="main">
             <section id="tech-posts">
                 <div class="section-header">
                     <h1 class="section-title">Tech Posts</h1>
@@ -9,7 +9,7 @@
                 <div class="tech-posts">
                   {% for post in site.categories.tech %}
                     <!-- article -->
-                    <article class="tech animated zoomIn">
+                    <article class="tech animated fadeInRight">
                         <header>
                             <h3 class="title"><a href="{{ site.url }}{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3> 
                             <div class="tags">
@@ -38,7 +38,7 @@
                 <div class="tech-posts">
                   {% for post in site.categories.life %}
                     <!-- article -->
-                    <article class="tech animated zoomIn">
+                    <article class="tech animated fadeInRight">
                         <header>
                             <h3 class="title"><a href="{{ site.url }}{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3> 
                             <div class="tags">
@@ -74,7 +74,7 @@
             </script>
             <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
-            <footer id="footer" role="contentinfo">
+            <footer class="footer" role="contentinfo">
                 <p class="copyright">Copyright © 2015 <a href="http://zhengbowei.github.io/about-me.html" title="关于我">Bowei Zheng.</a> Hosted by <a href="https://github.com/zhengbowei/blog" target="_blank" title="github" rel="nofollow">GitHub</a> and powered by <a href="http://github.com/mojombo/jekyll" title="Jekyll官网" rel="nofollow">Jekyll</a>.</p>
             </footer>
       </div>
