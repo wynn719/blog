@@ -169,6 +169,26 @@ li {
   -webkit-animation-name: fadeInRight;
           animation-name: fadeInRight;
 }
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+          animation-name: fadeIn;
+}
 /* global */
 body {
   background-color: #eceef1;
