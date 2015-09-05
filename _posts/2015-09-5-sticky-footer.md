@@ -17,16 +17,16 @@ excerpt: css实现页面底部模块固定和自适应
 
 {% highlight html %}
 <div class="page-wrap">
-	<div class="header">
-		header
-	</div>
-	<div class="content">
-		<button id="add">Add Content</button>
-	</div>
+    <div class="header">
+        header
+    </div>
+    <div class="content">
+        <button id="add">Add Content</button>
+    </div>
 </div>
 
 <div class="site-footer">
-	footer is!
+    footer is!
 </div>
 {% endhighlight %} 
 
@@ -34,30 +34,30 @@ excerpt: css实现页面底部模块固定和自适应
 
 {% highlight css %}
 * {
-	margin: 0;
-	padding: 0;
+    margin: 0;
+    padding: 0;
 }
 html, body {
-	height: 100%; /* 注意，这是必须的 */
+    height: 100%; /* 注意，这是必须的 */
 }
 .header {
-	height: 100px;
-	background-color: #ffff80;
+    height: 100px;
+    background-color: #ffff80;
 }
 .page-wrap {
-	min-height: 100%;
-	margin-bottom: -150px; /* 必须与footer高度相等 */
+    min-height: 100%;
+    margin-bottom: -150px; /* 必须与footer高度相等 */
 }
 .page-wrap:after {
-	content: "";
-	display: block;
-	height: 150px;
+    content: "";
+    display: block;
+    height: 150px;
 }
 .site-footer {
-	height: 150px;
+    height: 150px;
 }
 .site-footer {
-	background-color: #0080ff;
+    background-color: #0080ff;
 }
 {% endhighlight %}
 
