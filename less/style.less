@@ -1,0 +1,362 @@
+@charset "utf-8";
+
+/* var */
+@green: #63a67f;
+@yellow: #ffec92;
+@purper: #48456b;
+@orange: #db8160;
+@gray: #d6c4ab;
+@color: #555;
+@bg: #eceef1;
+@radius: 5px;
+@shadow: 0 1px 0 #e0e2e5;
+@font_sm: 0.75em;
+@font_m: 1em;
+@font_l: 1.25em;
+@font_xl: 1.75em;
+@font_h: 2.125em;
+@font_family: "微软雅黑", "宋体", "Microsoft Yahei", serif;
+
+/* reset */
+body, ol, ul {
+	padding: 0;
+	margin: 0;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-weight: normal;
+}
+img {
+	border: none;
+	vertical-align: top;
+}
+a {
+	text-decoration: none;
+}
+li {
+	list-style: none
+}
+
+/* end reset */
+
+/* css animation */
+.animated {
+	animation-duration: 1s;
+	animation-fill-mode: both;
+}
+@keyframes fadeInLeft {
+	from {
+		opacity: 0;
+		transform: translate3d(-100%, 0, 0);
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+.fadeInLeft {
+	animation-name: fadeInLeft;
+}
+@keyframes bounceIn {
+	from, 20%, 40%, 60%, 80%, to {
+		animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+	}
+	0% {
+		opacity: 0.5;
+		transform: scale3d(.3, .3, .3);
+	}
+	20% {
+		transform: scale3d(1.1, 1.1, 1.1);
+	}
+	40% {
+		transform: scale3d(.9, .9, .9);
+	}
+	60% {
+		opacity: 1;
+		transform: scale3d(1.03, 1.03, 1.03);
+	}
+	80% {
+		transform: scale3d(.97, .97, .97);
+	}
+	to {
+		opacity: 1;
+		transform: scale3d(1, 1, 1);
+	}
+}
+.bounceIn {
+	animation-name: bounceIn;
+}
+@keyframes fadeInRight {
+	from {
+		opacity: 0;
+		transform: translate3d(20%, 0, 0);
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+.fadeInRight {
+	animation-name: fadeInRight;
+}
+
+/* global */
+body {
+	background-color: @bg;
+	font-size: @font_m;
+	font-family: @font_family;
+	font-weight: normal;
+	color: @color;
+	transition: padding linear 0.1s;
+}
+a {
+	color: @purper;
+
+	&:hover {
+		color: darken(@purper, 10%);
+	}
+}
+code {
+	font-family: Consolas;
+    background: #f8f8f8;
+    padding: 0.1em 0.2em;
+    border: 1px dashed @orange;
+    border-radius: 0.3em;
+    word-wrap: break-word;
+    margin: 0 0.2em;
+}
+::selection {
+	background: @green;
+	color: #fff;
+}
+
+/* end global */
+
+/* sidebar */
+.sidebar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 200px;
+	background-color: lighten(@green, 5%);
+	font-weight: normal;
+	transition: background-color linear 0.8s;
+
+	a {
+		color: #fff;
+		display: block;
+		cursor: pointer;
+		font-size: @font_m;
+		padding-left: 35px;
+		line-height: 40px;
+
+		&:hover {
+			background-color: #fff;
+			color: @green;
+			transition: background-color linear 0.4s, color linear 0.4s;
+		}
+	}
+}
+.intro {
+	text-align: center;
+	padding: 30px 0;
+
+	.avatar {
+		border-radius: 50%;
+	}
+	.blog-title {
+		font-size: @font_l;
+
+		a {
+			padding-left: 0;
+		}
+	}
+}
+.nav {
+	margin-bottom: 30px;
+
+	.active {
+		background-color: #ffc05c;
+
+		a {
+			color: #fff;
+		}
+	}
+}
+.contact-me {
+	span {
+		vertical-align: middle;
+	}
+	.ele {
+		background-image: url(../imgs/social-link.png);
+		display: inline-block;
+		vertical-align: middle;
+		height: 40px;
+	}
+	.ele-github {
+		background-position: -160px -40px;
+	}
+	.ele-douban {
+		background-position: -40px -40px;
+	}
+	.ele-weibo {
+		background-position: -160px 0;
+	}
+	.ele-facebook {
+		background-position: -40px 0;
+	}
+}
+
+/* content */
+.content {
+	height: 100%;
+	overflow: auto;
+	box-shadow: @shadow;
+	transition: width linear 0.1s;
+	margin-left: 200px;
+	padding: 1.2em;
+	transition: background-color linear 0.2s;
+	background-color: @bg;
+}
+
+/* end content */
+
+/* section */
+section {
+	.section-header {
+		position: relative;
+		margin: 17px 0;
+		overflow: hidden;
+	}
+	.section-title {
+		font-size: 2.75em;
+		margin: 0;
+		text-shadow: 0px 1px #ffffff, 3px 3px 0px #dad7d7;
+	}
+}
+
+/* end section */
+
+/* articles */
+article {
+	margin: 1.2em 0;
+	position: relative;
+	border: 1px dashed #f8e2be;
+	background-color: #fff;
+	padding: 0 1em 0;
+	transition: box-shadow linear 0.2s;
+
+	&:hover {
+		box-shadow: @shadow;
+	}
+	header {
+		.tags {
+			margin: 1em 0;
+		}
+		span {
+			font-size: @font_sm;
+			font-family: Consolas;
+			color: #fff;
+			background-color: @green;
+			padding: 0.3em 0.8em;
+			border-radius: 0.3em;
+			display: inline-block;
+			*display: inline;
+			*zoom: 1;
+		}
+	}
+	.datetime {
+		position: absolute;
+		background-color: @orange;
+		color: white;
+		padding: 0 1em;
+		height: 2em;
+		line-height: 2.0;
+		text-align: center;
+		border-right: 5px solid darken(@orange, 20%);
+		right: -5px;
+		top: -1px;
+	}
+	blockquote {
+		margin: 0;
+		border: 1px dashed @orange;
+		border-left: 5px solid @orange;
+		padding: 0 0.8em;
+		line-height: 1.4;
+	}
+	em, strong {
+		font-weight: bold;
+		margin: 0 0.2em;
+	}
+	p, li {
+		line-height: 2em;
+	}
+}
+
+/* 单页文章 */
+.post-content {
+	padding: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+
+	article {
+		border: none;
+	}
+}
+
+.single-post {
+	margin: 0;
+	padding: 2em;
+	border-top: none;
+
+	h2:before {
+		content: '#';
+		padding-right: 0.3em;
+		color: #196eed;
+	}
+	h3:before {
+		content: '#';
+		padding-right: 0.3em;
+		color: #d64530;
+	}
+	h4:before {
+		content: '#';
+		padding-right: 0.3em;
+		color: #fdbb0f;
+	}
+
+	.title {
+		font-size: 2.75em;
+		margin-top: 0;
+		text-shadow: 0px 1px #ffffff, 3px 3px 0px #dad7d7;
+	}
+	ul, ol {
+		padding-left: 30px;
+	}
+	ul li {
+		list-style: square;
+	}
+	ol li {
+		list-style: decimal;
+	}
+	.highlight{ 
+		background-color: #f8f8f8;
+		margin: 1em 0;
+		padding: 0.3em 0.6em;
+		border-top: 5px dashed #FFFFFF;
+		overflow: auto;
+	}
+}
+
+/*article end*/
+
+/* footer */
+.footer {
+	padding: 0.5em 0;
+
+	.copyright {
+		text-align: center;
+	}
+}
+
+/* footer end */
