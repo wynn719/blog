@@ -2,8 +2,16 @@ name: "Blog of Bowei Zheng"
 description: "Blog of my Web and Life"
 
 url: /blog
+baseurl: /blog
 
 #markdown: rdiscount
 permalink: pretty
 pygment: true
 paginate: 5
+
+defaults:
+  -
+    scope:
+      path: "/blog/_posts"
+    values:
+      layout: post
