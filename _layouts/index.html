@@ -24,17 +24,16 @@
             {% endfor %}
 
             <div class="pagination">
-                {% if paginator.previous_page == 1 %}
-                    <span class="previous">上一页</span>
-                {% else %}
+                {% if paginator.previous_page %}
                     <a href="{{ site.url }}" class="previous">上一页</a>
+                {% else %}
+                    <span class="previous">上一页</span>
                 {% endif %}
                 <span class="page_number ">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
-                {% if paginator.next_page == paginator.total_pages %}
-                    <span class="next ">下一页</span>
-                {% else %}
+                {% if paginator.next_page %}
                     <a href="{{ site.url }}/page{{ paginator.next_page }}" class="next">下一页</a>
-                    {% paginator.next_page_path %}
+                {% else %}
+                    <span class="next ">下一页</span>
                 {% endif %}
 
                 共有{% paginator.total_posts %}篇文章
