@@ -350,10 +350,24 @@ article {
 /*article end*/
 
 .next, .previous {
-	background-color: @purper;
-    color: #fff;
+	color: @purper;
+	background-color: #fff;
     padding: 0.3em 0.8em;
 	border-radius: 0.3em;
+	transition: color 0.2s, background-color 0.2s;
+
+	&:hover {
+		background-color: @purper;
+    	color: #fff;
+	}
+}
+
+.next {
+	float: left;
+}
+
+.previous {
+	float: right;
 }
 
 /* footer */
