@@ -1,5 +1,6 @@
 ---
 title: sticky footer
+layout: post
 time: 2015-9-5 10:19:38 
 tag:
 - css
