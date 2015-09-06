@@ -28,7 +28,7 @@
                     {% if paginator.previous_page == 1 %}
                         <a href="{{ site.url }}" class="previous">Previous</a>
                     {% else %}
-                        <a href="{{ site.url }}/page{{ paginator.previous }}" class="previous">Previous</a>
+                        <a href="{{ site.url }}/page{{ paginator.previous_page }}" class="previous">Previous</a>
                     {% endif %}
                 {% endif %}
                 <span class="page_number ">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
