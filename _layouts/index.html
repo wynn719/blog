@@ -24,16 +24,16 @@
             {% endfor %}
 
             <div class="pagination">
-                {% if paginator.previous_page == 1 %}
-                    <span class="previous">上一页</span>
-                {% else if paginator.previous_page %}
-                    <a href="{{ site.url }}/page{{ paginator.previous_page }}" class="previous">上一页</a>
+                {% if paginator.previous_page %}
+                    <a href="{{ site.url }}/page{{ paginator.previous_page }}" class="previous">Previous</a>
+                {% else %}
+                    <span class="previous">Previous</span>
                 {% endif %}
                 <span class="page_number ">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
                 {% if paginator.next_page %}
-                    <a href="{{ site.url }}/page{{ paginator.next_page }}" class="next">下一页</a>
+                    <a href="{{ site.url }}/page{{ paginator.next_page }}" class="next">Next</a>
                 {% else %}
-                    <span class="next ">下一页</span>
+                    <span class="next ">Next</span>
                 {% endif %}
             </div>
         </div>
