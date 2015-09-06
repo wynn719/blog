@@ -24,7 +24,7 @@
             {% endfor %}
 
             <div class="pagination">
-                {% if paginator.previous_page == 1 %}
+                {% if paginator.page == 1 %}
                     <a href="{{ site.url }}" class="previous">Previous</a>
                 {% else if paginator.previous_page %}
                     <a href="{{ site.url }}/page{{ paginator.previous }}" class="previous">Previous</a>
