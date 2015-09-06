@@ -24,18 +24,16 @@
             {% endfor %}
 
             <div class="pagination">
-                {% if paginator.page == 1 %}
-                    <a href="{{ site.url }}" class="previous">Previous</a>
-                {% else if paginator.previous_page %}
-                    <a href="{{ site.url }}/page{{ paginator.previous }}" class="previous">Previous</a>
-                {% else %}
-                    <span class="previous">Previous</span>
+                {% if paginator.previous_page %}
+                    {% if paginator.page == 1 %}
+                        <a href="{{ site.url }}" class="previous">Previous</a>
+                    {% else %}
+                        <a href="{{ site.url }}/page{{ paginator.previous }}" class="previous">Previous</a>
+                    {% end if %}
                 {% endif %}
                 <span class="page_number ">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
                 {% if paginator.next_page %}
                     <a href="{{ site.url }}/page{{ paginator.next_page }}" class="next">Next</a>
-                {% else %}
-                    <span class="next ">Next</span>
                 {% endif %}
             </div>
         </div>
