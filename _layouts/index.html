@@ -24,10 +24,10 @@
             {% endfor %}
 
             <div class="pagination">
-                {% if paginator.previous_page %}
-                    <a href="{{ site.url }}" class="previous">上一页</a>
-                {% else %}
+                {% if paginator.previous_page == 1%}
                     <span class="previous">上一页</span>
+                {% else if paginator.previous_page %}
+                    <a href="{{ site.url }}" class="previous">上一页</a>
                 {% endif %}
                 <span class="page_number ">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
                 {% if paginator.next_page %}
