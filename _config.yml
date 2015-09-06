@@ -12,6 +12,6 @@ paginate: 5
 defaults:
   -
     scope:
-      path: "/blog/_posts"
+      path: "/blog"
     values:
       layout: post
