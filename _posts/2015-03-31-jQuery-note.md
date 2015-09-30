@@ -1,6 +1,7 @@
 ---
 layout: post
 title: jQuery-note
+published: false
 categories: 
 - tech
 
