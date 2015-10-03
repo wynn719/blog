@@ -7,6 +7,7 @@
         </div>
         <div class="tech-posts">
             {% for post in paginator.posts %}
+                {% if post.category == 'tech' %}
                 <article>
                     <header>
                         <h3 class="title"><a href="{{ site.url }}{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
@@ -21,6 +22,7 @@
                     </div>
                     <p class="excerpt">{{ post.excerpt }}</p>
                 </article>
+                {% endif %}
             {% endfor %}
 
             <div class="pagination">
