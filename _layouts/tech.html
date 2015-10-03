@@ -6,9 +6,7 @@
             <h1 class="section-title">Tech</h1>
         </div>
         <div class="tech-posts">
-            {% for post in paginator.posts %}
-                {% post.categories %}
-                {% if post.category == 'tech' %}
+            {% for post in site.categories.tech %}
                 <article>
                     <header>
                         <h3 class="title"><a href="{{ site.url }}{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
@@ -23,21 +21,7 @@
                     </div>
                     <p class="excerpt">{{ post.excerpt }}</p>
                 </article>
-                {% endif %}
             {% endfor %}
-
-            <div class="pagination">
-                {% if paginator.previous_page %}
-                    {% if paginator.previous_page == 1 %}
-                        <a href="{{ site.url }}" class="previous">Previous</a>
-                    {% else %}
-                        <a href="{{ site.url }}/page{{ paginator.previous_page }}" class="previous">Previous</a>
-                    {% endif %}
-                {% endif %}
-                {% if paginator.next_page %}
-                    <a href="{{ site.url }}/page{{ paginator.next_page }}" class="next">Next</a>
-                {% endif %}
-            </div>
         </div>
     </section>
     {% include ele_disqus.html %}
