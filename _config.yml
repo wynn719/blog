@@ -1,5 +1,5 @@
-name: "Blog of Bowei Zheng"
-description: "Blog of my Web and Life"
+name: "小柏的Blog"
+description: "记录技术上遇到的问题，生活中的所思所想"
 
 url: /blog
 baseurl: /blog
@@ -7,4 +7,4 @@ baseurl: /blog
 #markdown: rdiscount
 permalink: pretty
 pygment: true
-paginate: 10
+paginate: 7
