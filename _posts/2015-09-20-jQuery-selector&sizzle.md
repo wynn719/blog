@@ -1,4 +1,16 @@
-# jQuery选择器与Sizzle引擎（一）
+---
+title: jQuery选择器与Sizzle引擎（一）
+layout: post
+time: 2015-09-20 11:00
+tag:
+- jQuery
+- Sizzle
+
+categories:
+- tech
+
+excerpt: 团队的技术分享，我选择了分享 -- 分析Sizzle选择器引擎，故在此做一下笔记，记录Sizzle学习笔记，有了新的体会会再次更新。
+---
 
 ## 关于CSS选择器
 
