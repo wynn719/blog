@@ -3,10 +3,11 @@
 <div class="content animated fadeInRight" role="main">
     <section id="tech-posts">
         <div class="section-header">
-            <h1 class="section-title">Recent Post</h1>
+            <h1 class="section-title">Tech</h1>
         </div>
         <div class="tech-posts">
             {% for post in paginator.posts %}
+                {% post.categories %}
                 {% if post.category == 'tech' %}
                 <article>
                     <header>
