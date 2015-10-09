@@ -25,7 +25,7 @@ CSS1-CCS3提供了非常多的选择器，总体可以分为**4大类**和17种�
 
 **群组选择器用于分组合并多个处理的结构**
 
-```1
+```
 selector1, selector2, selectorN
 ```
 
@@ -35,7 +35,7 @@ selector1, selector2, selectorN
 
 IE7及以下该方法不区分 ID 和 name 属性，也就是说如果存在类似这样的结构
 
-```1
+```
 <label for="username">用户名</label><input type="password" id="username">
 ```
 
@@ -92,7 +92,7 @@ CSS3中新增了3个属性选择器：
 - 子元素筛选器： first-child nth-child only-child...
 - 表单： bottom checkbox foucs input text...
 
- ## CSS的解析原理
+## CSS的解析原理
 
 **排版引擎解析 CSS 选择器时一定要从右往左析**
 
