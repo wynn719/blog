@@ -1,0 +1,25 @@
+<head>
+    <!--[if lte IE 8]>
+    <script src="{{ "/js/respond.min.js" | prepend: site.baseurl }}"/></script>
+    <script src="{{ "/js/html5shiv-printshiv.js" | prepend: site.baseurl }}"></script>
+    <![endif]-->
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Blog by Bowei Zheng">
+    <meta name="author" content="zhengbowei,762671261@qq.com">
+    <meta name="generator" content="Sublime Text3">
+    <meta name="keywords" content="个人博客">
+
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
+
+    <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
+    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+
+    <link rel="stylesheet" href="{{ "/css/pygments.css" | prepend: site.baseurl }}">
+    <link rel="stylesheet" href="{{ "/css/style.css" | prepend: site.baseurl }}">
+</head>

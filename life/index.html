@@ -4,7 +4,7 @@ layout: default
 
 <div class="recent-posts">
     <div class="post-list">
-        {% for post in paginator.posts %}
+        {% for post in site.categories.life %}
         <article class="post">
             <header>
                 <h3 class="title"><a href="{{ site.baseurl }}{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>

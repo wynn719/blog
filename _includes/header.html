@@ -1,28 +1,12 @@
-<!DOCTYPE html>
-<html lang="zh-cmn-Hans">
-    <head>
-        <!--[if lte IE 8]>
-        <script src="{{ site.url }}/js/respond.min.js"/></script>
-        <script src="{{ site.url }}/js/html5shiv-printshiv.js"></script>
-        <![endif]-->
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="description" content="Blog by Bowei Zheng">
-        <meta name="author" content="zhengbowei,762671261@qq.com">
-        <meta name="generator" content="Sublime Text3">
-        <meta name="keywords" content="个人博客">
-
-        <meta name="renderer" content="webkit">
-        <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
-        <meta http-equiv="Cache-Control" content="no-siteapp" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>小柏的博客</title>
-        
-        <link rel="stylesheet" href="{{ site.url }}/css/style.css">
-        <link rel="stylesheet" href="{{ site.url }}/css/pygments.css">
-        <link rel="shortcut icon" type="image/ico" href="{{ site.url }}/imgs/author.jpg" />
-        <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
-        <script src="{{ site.url }}/js/jquery.lazyload.min.js"></script>
-    </head>
-    <body>
-        <div id="wrapper">
-            {% include ele_sidebar.html %}
+<header id="header">
+    <nav class="main-nav" role="navigation">
+        <ul>
+            <li>
+                <a href="{{ "/" prepend: site.baseurl }}" title="主页">Home</a>
+            </li>
+            <li><a href="{{ "/tech/" prepend: site.baseurl }}" title="技术博文">Tech</a></li>
+            <li><a href="{{ "/life/" prepend: site.baseurl }}" title="生活点滴">Life</a></li>
+            <li><a href="{{ "/about/" prepend: site.baseurl }}" title="关于我">About Me</a></li>
+        </ul>
+    </nav>
+</header>

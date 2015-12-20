@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+{% include head.html %}
+<body>
+    {% include header.html %}
+
+    <div class="page-content">
+        <div class="wrapper">
+            <div class="home">
+                <div class="container">
+                    <div class="banner">
+                        <h1 class="blog-title">{{ site.title }}</h1>
+                        <p class="blog-author">Wayne Zheng</p>
+                    </div>
+                    {{ content }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include footer.html %}
+    
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+    <script src="{{ "/js/jquery.lazyload.min.js" | prepend: site.baseurl }}"></script>
+</body>
+
+</html>
