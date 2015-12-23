@@ -8,8 +8,15 @@
             <script>
                 (function(){
                     var page_content = document.getElementById('page-content');
-                    var banner = Math.ceil(Math.random() * 10);
-                    page_content.style.backgroundImage = "url('" + baseurl + "/imgs/banner/banner (" + banner + ").jpg')";
+                    var background_statu = getCookie('background_statu');
+                    if ( background_statu == '' ) {
+                        var banner = Math.ceil(Math.random() * 10);
+                        var url = "url('" + baseurl + "/imgs/banner/banner (" + banner + ").jpg')";
+                        page_content.style.backgroundImage = url;
+                        setCookie('background_statu', url, 10);
+                    } else {
+                        page_content.style.backgroundImage = background_statu;
+                    }
                 })();
             </script>
             <div class="wrapper">
