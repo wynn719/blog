@@ -1,27 +1,72 @@
 <!DOCTYPE html>
 <html>
-{% include head.html %}
-<body>
-    {% include header.html %}
+    {% include head.html %}
+    <body>
+        {% include header.html %}
 
-    <div class="page-content">
-        <div class="wrapper">
-            <div class="home">
-                <div class="container">
-                    <div class="banner">
-                        <h1 class="blog-title">{{ site.title }}</h1>
-                        <p class="blog-author">Wayne Zheng</p>
+        <div id="page-content">
+            <script>
+                (function(){
+                    var page_content = document.getElementById('page-content');
+                    var banner = Math.ceil(Math.random() * 10);
+                    page_content.style.backgroundImage = "url('" + baseurl + "/imgs/banner/banner (" + banner + ").jpg')";
+                })();
+            </script>
+            <div class="wrapper">
+                <div class="home">
+                    <div class="container">
+                        <div class="banner">
+                            <h1 class="blog-title">{{ site.title }}</h1>
+                            <p class="blog-author">Wayne Zheng</p>
+                        </div>
+                        {{ content }}
+                        {% include footer.html %}
                     </div>
-                    {{ content }}
                 </div>
             </div>
         </div>
-    </div>
+        
+        <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+        <script src="{{ "/js/jquery.lazyload.min.js" | prepend: site.baseurl }}"></script>
+    </body>
+    <script>
+        var preloadImage = function(urlArray, callback) {
+            var success = function () { 
+                callback && callback.call(img);
+                img = null;
+            };
 
-    {% include footer.html %}
-    
-    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
-    <script src="{{ "/js/jquery.lazyload.min.js" | prepend: site.baseurl }}"></script>
-</body>
+            var error = function () { 
+                img = null;
+            };
 
+            for(var i = 0, len = urlArray.length; i < len; i++){
+                var img = new Image(); 
+                img.src = baseurl + urlArray[i];
+               
+                if (img.complete) { 
+                    callback && callback.call(img);
+                    img = null;
+                    return; 
+                }
+
+                img.onload = success;
+                img.onerror = error;
+            }
+        };
+
+        var imgUrlArr = [
+            '/imgs/banner/banner (10).jpg',
+            '/imgs/banner/banner (1).jpg',
+            '/imgs/banner/banner (2).jpg',
+            '/imgs/banner/banner (3).jpg',
+            '/imgs/banner/banner (4).jpg',
+            '/imgs/banner/banner (5).jpg',
+            '/imgs/banner/banner (6).jpg',
+            '/imgs/banner/banner (7).jpg',
+            '/imgs/banner/banner (8).jpg',
+            '/imgs/banner/banner (9).jpg'
+        ]
+        preloadImage(imgUrlArr);
+    </script>
 </html>

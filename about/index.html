@@ -1,0 +1,76 @@
+---
+layout: default
+---
+
+<div class="about">
+    <div class="user-info">
+        <div id="me-pic" alt="Wayne zheng"></div>
+        <script>
+            (function(){
+                var mePic = document.getElementById('me-pic');
+                var listener = function(e) {
+                    var ele = e.target,
+                        type = event.type;
+
+                    switch(type){
+                        case 'mouseout':
+                            ele.className = '';
+                            break;
+                        case 'animationend': 
+                            ele.className = 'hover';
+                            break;
+                    }
+                };
+
+                mePic.addEventListener('mouseout', listener, false);
+                mePic.addEventListener('animationend',listener, false);
+            })();
+        </script>
+        <div class="me-intro">
+            <p>90后，热爱互联网，web前端开发</p>
+            <p>相比编程，其实更喜欢音乐，耍吉他，然乐盲也，唱歌，然五音不全者也</p>
+            <p>好运动，热衷于跑步，然瘦人一枚</p>
+            <p>喜读书，然识之有限</p>
+            <p>...</p>
+        </div>
+    </div>  
+    <div class="internships">
+        <p class="title">经历</p>
+        <ul>
+            <li class="internship">
+                <p>
+                    <span class="place">腾讯</span>
+                    <span class="position">web前端开发</span>
+                    <span class="time">2015-07-04 - 2015-12-21</span>
+                </p>
+            </li>
+            <li>
+                <p>...</p>
+            </li>
+        </ul>
+    </div>
+    <div class="learning">
+        <p class="title">我正在做的事情</p>
+        <ul>
+            <li>持续健身</li>
+            <li>学习Javascript设计模式</li>
+            <li>学习Linux基础</li>
+            <li>学习Backbone相关知识</li>
+            <li>学习Laravel相关知识</li>
+            <li>练习吉他曲“River flows in you”</li>
+            <li>...</li>
+        </ul>
+    </div>
+    <div class="social-links">
+        <p class="title">你可以在这里找到我</p>
+        <ul>
+            <li class="link">
+                <a class="douban" target="_blank" href="http://www.douban.com/people/81245114/" title="豆瓣">豆</a>
+            </li>
+            <li class="link">
+                <a class="zhihu" target="_blank" href="https://www.zhihu.com/people/wayne_zheng" title="知乎">知</a>
+            </li>
+        </ul>
+    </div>
+</div>
+

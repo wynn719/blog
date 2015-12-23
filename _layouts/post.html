@@ -3,7 +3,7 @@ layout: default
 ---
 
 <div class="single">
-    <article class="single-post">
+    <article class="single-post {% if page.categories contains 'life' %}life-single-post{% endif %}">
         <header>
             <h1 class="title">{{ page.title }}</h1>
         </header>
@@ -17,7 +17,7 @@ layout: default
         </div>
         <div class="art-content">{{ content }}</div>
         <footer>
-           {% include ele_disqus.html %}
+            {% include discus.html %}
         </footer>
     </article>
 </div>
