@@ -279,6 +279,10 @@ li {
   color: #222;
   margin: 20px 0;
 }
+.home .container .single-post .art-content img {
+  display: block;
+  margin: 0 auto;
+}
 .home .container .single-post .art-content ul,
 .home .container .single-post .art-content ol {
   padding-left: 23px;
@@ -294,9 +298,6 @@ li {
 }
 .home .container .single-post .art-content ol li {
   list-style: decimal;
-}
-.home .container .single-post .art-content img {
-  text-align: center;
 }
 .home .container .single-post .art-content .highlight {
   background-color: #fff;
