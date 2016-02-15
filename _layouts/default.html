@@ -20,38 +20,8 @@
         </div>
         
         <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
-        <script src="{{ "/js/jquery.lazyload.min.js" | prepend: site.baseurl }}"></script>
+        <script src="{{ "/js/lib/jquery.lazyload.min.js" | prepend: site.baseurl }}"></script>
+        <script src="{{ "/js/global.js" | prepend: site.baseurl }}"></script>
+        <script src="{{ "/js/common.js" | prepend: site.baseurl }}"></script>
     </body>
-    <script>
-        var preloadImage = function(urlArray, callback) {
-            var success = function () { 
-                callback && callback.call(img);
-                img = null;
-            };
-
-            var error = function () { 
-                img = null;
-            };
-
-            for(var i = 0, len = urlArray.length; i < len; i++){
-                var img = new Image(); 
-                img.src = baseurl + urlArray[i];
-               
-                if (img.complete) { 
-                    callback && callback.call(img);
-                    img = null;
-                    return; 
-                }
-
-                img.onload = success;
-                img.onerror = error;
-            }
-        };
-        
-        var imgUrlArr = [
-            '/imgs/me.jpg',
-            '/imgs/wechat.jpg'
-        ]
-        preloadImage(imgUrlArr);
-    </script>
 </html>
