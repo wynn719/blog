@@ -2,6 +2,7 @@
 /* reset */
 body {
   overflow-x: hidden;
+  font-family: 'Microsoft Yahei';
 }
 body,
 ol,
@@ -186,7 +187,7 @@ li {
 .home .container .post header .title {
   font-size: 24px;
   line-height: 38px;
-  font-family: 'times new roman', 'Microsoft Yahei', serif;
+  font-family: 'Microsoft Yahei', serif;
   font-weight: lighter;
 }
 .home .container .post header .title a {
@@ -229,7 +230,7 @@ li {
 .home .container .single-post header .title {
   font-size: 24px;
   line-height: 38px;
-  font-family: 'times new roman', 'Microsoft Yahei', serif;
+  font-family: 'Microsoft Yahei', serif;
   font-weight: lighter;
 }
 .home .container .single-post header .title a {
