@@ -5,20 +5,6 @@
         {% include header.html %}
 
         <div id="page-content">
-            <script>
-                (function(){
-                    var page_content = document.getElementById('page-content');
-                    var background_statu = getCookie('background_statu');
-                    if ( background_statu == '' ) {
-                        var banner = Math.ceil(Math.random() * 10);
-                        var url = "url('" + baseurl + "/imgs/banner/banner (" + banner + ").jpg')";
-                        page_content.style.backgroundImage = url;
-                        setCookie('background_statu', url, 10);
-                    } else {
-                        page_content.style.backgroundImage = background_statu;
-                    }
-                })();
-            </script>
             <div class="wrapper">
                 <div class="home">
                     <div class="container">
@@ -61,19 +47,7 @@
                 img.onerror = error;
             }
         };
-
-        var imgUrlArr = [
-            '/imgs/banner/banner (10).jpg',
-            '/imgs/banner/banner (1).jpg',
-            '/imgs/banner/banner (2).jpg',
-            '/imgs/banner/banner (3).jpg',
-            '/imgs/banner/banner (4).jpg',
-            '/imgs/banner/banner (5).jpg',
-            '/imgs/banner/banner (6).jpg',
-            '/imgs/banner/banner (7).jpg',
-            '/imgs/banner/banner (8).jpg',
-            '/imgs/banner/banner (9).jpg'
-        ];
+        
         var imgUrlArr = [
             '/imgs/me.jpg',
             '/imgs/wechat.jpg'
