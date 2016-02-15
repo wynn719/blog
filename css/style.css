@@ -275,9 +275,9 @@ li {
 }
 .home .container .single-post .art-content p {
   font-size: 18px;
-  line-height: 30px;
+  line-height: 36px;
   color: #222;
-  margin: 14px 0;
+  margin: 20px 0;
 }
 .home .container .single-post .art-content ul,
 .home .container .single-post .art-content ol {
@@ -294,6 +294,9 @@ li {
 }
 .home .container .single-post .art-content ol li {
   list-style: decimal;
+}
+.home .container .single-post .art-content img {
+  text-align: center;
 }
 .home .container .single-post .art-content .highlight {
   background-color: #fff;
