@@ -6,10 +6,12 @@ var less = require('gulp-less'),
     uglify = require('gulp-uglify'),
     imagemin = require('gulp-imagemin'),
     cache = require('gulp-cache'),
-    rename = require('gulp-rename');
+    rename = require('gulp-rename'),
+    plumber = require('gulp-plumber');
 
 gulp.task('styles', function() {
     return gulp.src('src/less/*.less')
+        .pipe(plumber())
         .pipe(less())
         .pipe(autoprefixer('last 2 version'))
         .pipe(gulp.dest('src/css'))
@@ -24,6 +26,7 @@ gulp.task('scripts_task1', function() {
     return gulp.src('src/js/common/**/*.js')
         // .pipe(jshint('.jshintrc'))
         // .pipe(jshint.reporter('default'))
+        .pipe(plumber())
         .pipe(rename({
             suffix: '.min'
         }))
