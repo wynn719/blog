@@ -1,0 +1,23 @@
+---
+layout: default
+---
+
+<div class="tags-page">
+    <section class="tags">
+        <a href="javascript:void(0);" class="tag all" style="background-color: rgb(62, 103, 80)">All</a>
+        {% assign tags = site.tags | sort %}
+        {% for tag in tags %}
+        {% assign opacity = tag | last | size | plus: 2 %}
+        {% if opacity > 9 %}{% assign opacity = 9 %}{% endif %}
+        <a href="javascript:void(0);" class="tag" style="background-color: rgba(62, 103, 80, .{{ opacity }})">{{ tag[0] | replace:'-', ' ' }}</a>
+        {% endfor %}
+    </section>
+    
+    <!-- 相关tag文章块 -->
+    <section class="tag-posts">
+        <h2 class="tag-name"></h2>
+        <div class="loading hide">loading...</div>
+        <ul class="posts">
+        </ul>
+    </section>
+</div>

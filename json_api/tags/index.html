@@ -1,0 +1,11 @@
+---
+layout: null
+---
+
+{% assign tags = site.tags | sort %}
+[{% for tag in tags %}
+    {
+        "name":"{{ tag[0] | replace:'-', ' ' }}",
+        "size":"{{ tag | last | size }}"
+    }{% if forloop.last == false %}, {% endif %}
+{% endfor %}]

@@ -12,6 +12,11 @@ layout: default
             <div class="datetime">
                 {{ post.date | date_to_long_string }}
             </div>
+            <div class="tags">
+                {% for tag in post.tags %}
+                    <span>{{ tag }}</span>
+                {% endfor %}
+            </div>
             <p class="excerpt">{{ post.excerpt }}</p>
         </article>
         {% endfor %}

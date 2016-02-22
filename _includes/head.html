@@ -1,7 +1,7 @@
 <head>
     <!--[if lte IE 8]>
-    <script src="{{ "/js/respond.min.js" | prepend: site.baseurl }}"/></script>
-    <script src="{{ "/js/html5shiv-printshiv.js" | prepend: site.baseurl }}"></script>
+    <script src="{{ site.baseurl }}/public/js/lib/respond.min.js"/></script>
+    <script src="{{ site.baseurl }}/public/js/lib/html5shiv-printshiv.js></script>
     <![endif]-->
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -19,8 +19,8 @@
 
     <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
 
-    <link rel="stylesheet" href="{{ "/css/pygments.css" | prepend: site.baseurl }}">
-    <link rel="stylesheet" href="{{ "/css/style.css" | prepend: site.baseurl }}">
+    <link rel="stylesheet" href="{{ site.baseurl }}/public/css/pygments.min.css">
+    <link rel="stylesheet" href="{{ site.baseurl }}/public/css/style.min.css">
 
     <script>
     var baseurl = '{{ site.baseurl }}';

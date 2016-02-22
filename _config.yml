@@ -3,8 +3,13 @@ name: "小柏的Blog"
 description: "记录技术上遇到的问题，生活中的所思所想"
 
 url: /blog
-baseurl: /blog
 
-#markdown: rdiscount
+# markdown: rdiscount
 permalink: pretty
 pygment: true
+
+# server options
+port: 9527
+baseurl: /blog
+
+exclude: ["node_modules", "package.json", "gulpfile.js"]

@@ -2,11 +2,13 @@
     <nav class="main-nav" role="navigation">
         <ul>
             <li>
-                <a href="{{ "/blog/" prepend: site.baseurl }}" title="主页">Home</a>
+                <a href="{{ site.baseurl }}/" title="主页">Home</a>
             </li>
-            <li><a href="{{ "/blog/tech/" prepend: site.baseurl }}" title="技术博文">Tech</a></li>
-            <li><a href="{{ "/blog/life/" prepend: site.baseurl }}" title="生活点滴">Life</a></li>
-            <li><a href="{{ "/blog/about/" prepend: site.baseurl }}" title="关于我">About Me</a></li>
+            <li><a href="{{ site.baseurl }}/tech/" title="技术博文">Tech</a></li>
+            <li><a href="{{ site.baseurl }}/life/" title="生活点滴">Life</a></li>
+            <li><a href="{{ site.baseurl }}/tags/" title="标签分类">Tags</a></li>
+            <!-- <li><a href="{{ site.baseurl }}/works/" title="作品">Works</a></li> -->
+            <li><a href="{{ site.baseurl }}/about/" title="关于我">About Me</a></li>
         </ul>
     </nav>
 </header>
