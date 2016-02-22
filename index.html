@@ -24,7 +24,11 @@ layout: default
         <!-- 分页链接 -->
         <div class="pagination">
             {% if paginator.previous_page %}
+            {% if paginator.previous_page == 1 %}
+            <a class="pagi-link previous" href="{{ site.baseurl }}/">上一页</a>
+            {% else %}
             <a class="pagi-link previous" href="{{ site.baseurl }}/page{{ paginator.previous_page }}">上一页</a>
+            {% endif %}
             {% endif %}
             {% if paginator.next_page %}
             <a class="pagi-link next" href="{{ site.baseurl }}/page{{ paginator.next_page }}">下一页</a>
