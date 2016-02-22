@@ -15,4 +15,4 @@ baseurl: /blog
 exclude: ["node_modules", "package.json", "gulpfile.js"]
 
 paginate: 7
-paginate_path: "blog/page:num"
+paginate_path: "/blog/page:num"
