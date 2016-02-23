@@ -6,6 +6,7 @@ var less = require('gulp-less'),
     uglify = require('gulp-uglify'),
     imagemin = require('gulp-imagemin'),
     cache = require('gulp-cache'),
+    clean = require('gulp-clean'),
     rename = require('gulp-rename'),
     plumber = require('gulp-plumber');
 
@@ -53,7 +54,14 @@ gulp.task('images', function() {
         .pipe(gulp.dest('public/imgs'));
 });
 
-gulp.task('default', function() {
+gulp.task('clean', function() {
+    return gulp.src('_site', {
+            read: false
+        })
+        .pipe(clean());
+});
+
+gulp.task('default', ['clean'], function() {
     gulp.start('styles', 'scripts', 'images');
 });
 
