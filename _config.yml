@@ -14,6 +14,9 @@ pygment: true
 port: 9527
 baseurl: /blog
 
+# plugins
+gems: ["jekyll-paginate"]
+
 exclude: ["node_modules", "package.json", "gulpfile.js"]
 
 paginate: 7
