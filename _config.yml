@@ -4,15 +4,15 @@ description: "记录技术上遇到的问题，生活中的所思所想"
 
 # global
 url: /blog
-# post_img: /public/imgs/posts/
-post_img: /blog/public/imgs/posts/
+post_img: /public/imgs/posts/
+# post_img: /blog/public/imgs/posts/
 
 # markdown: rdiscount
 permalink: pretty
 pygment: true
 
 # server options
-port: 9527
+port: 8888
 baseurl: /blog
 
 # plugins
