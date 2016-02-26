@@ -8,7 +8,7 @@ url: http://zhengbowei.github.io/blog
 post_img: /blog/public/imgs/posts/
 
 # markdown: rdiscount
-permalink: /:year/:month/:day/:title
+permalink: pretty
 pygment: true
 
 # server options
