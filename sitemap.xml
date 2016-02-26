@@ -5,6 +5,12 @@ sitemap:
 ---
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>http://zhengbowei.github.io/blog/</loc>
+    <lastmod>2016-02-25T02:34:57+00:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.80</priority>
+  </url>
   {% for post in site.posts %}
     {% unless post.published == false %}
     <url>
