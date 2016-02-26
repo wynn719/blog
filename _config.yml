@@ -1,14 +1,14 @@
 title: LIVING CHAPLIN
 name: "小柏的Blog"
-description: "记录技术上遇到的问题，生活中的所思所想"
+description: "小柏的Blog，记录技术上遇到的问题，生活中的所思所想"
 
 # global
-url: /blog
+url: http://zhengbowei.github.io/blog
 post_img: /public/imgs/posts/
 # post_img: /blog/public/imgs/posts/
 
 # markdown: rdiscount
-permalink: pretty
+permalink: /:year/:month/:day/:title
 pygment: true
 
 # server options

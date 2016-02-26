@@ -5,7 +5,11 @@
     <![endif]-->
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="description" content="Blog by Bowei Zheng">
+    {% if page.description %}
+    <meta name="description" content="{{ page.description}}" />
+    {% else %}
+    <meta name="description" content="{{ site.description}}" />
+    {% endif %}
     <meta name="author" content="zhengbowei,762671261@qq.com">
     <meta name="generator" content="Sublime Text3">
     <meta name="keywords" content="个人博客">
