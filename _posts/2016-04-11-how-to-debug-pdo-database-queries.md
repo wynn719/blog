@@ -25,6 +25,8 @@ try {
     $username = 'wynnezheng';
     $email = '********@qq.com';
     $stmt->execute();
+    
+    $stmt->debugDumpParams();
 } catch (PDOException $e) {
     echo $e->getMessage();
 }
