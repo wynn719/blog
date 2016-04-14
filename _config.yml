@@ -14,7 +14,7 @@ pygment: true
 # server options
 port: 8888
 # baseurl: /blog
-baseurl: /
+baseurl: 
 
 # plugins
 gems: ["jekyll-paginate"]
