@@ -4,8 +4,8 @@ description: "小柏的Blog，记录技术上遇到的问题，生活中的所�
 
 # global
 url: http://zhengbowei.github.io/blog
-post_img: /public/imgs/posts/
-# post_img: /blog/public/imgs/posts/
+# post_img: /public/imgs/posts/
+post_img: /blog/public/imgs/posts/
 
 # markdown: rdiscount
 permalink: /:year/:month/:day/:title
@@ -13,8 +13,8 @@ pygment: true
 
 # server options
 port: 8888
-# baseurl: /blog
-baseurl: 
+baseurl: /blog
+# baseurl: 
 
 # plugins
 gems: ["jekyll-paginate"]
