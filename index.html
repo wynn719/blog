@@ -17,7 +17,9 @@ layout: default
                     <span>{{ tag }}</span>
                 {% endfor %}
             </div>
+            {% if post.excerpt %}
             <p class="excerpt">{{ post.excerpt }}</p>
+            {% endif %}
         </article>
         {% endfor %}
 
