@@ -19,7 +19,9 @@
                     <div class="datetime">
                         {{ post.date | date_to_string}}
                     </div>
+                    {% if post.excerpt %}
                     <p class="excerpt">{{ post.excerpt }}</p>
+                    {% endif %}
                 </article>
             {% endfor %}
 
