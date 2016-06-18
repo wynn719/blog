@@ -78,7 +78,7 @@ $('#save-btn').click(function() {
 
 而使用Backbone.js编写可以避免这个问题，大致实现过程如下：
 
-1. 各模块订阅noteModel的save-note事件，并写好callback
+各模块订阅noteModel的save-note事件，并写好callback
 
 {% highlight javascript %}
 dataView.listenTo(noteModel, 'save-note', dataView.changeCount);
@@ -88,7 +88,7 @@ server.listenTo(noteModel, 'save-note', server.syncNote);
 share.listenTo(noteModel, 'save-note', share.toMyTeam);
 {% endhighlight %}
 
-2. 在Note View中点击保存时，noteModel发布save-note事件
+在Note View中点击保存时，noteModel发布save-note事件
 
 {% highlight javascript %}
 $('#save-btn').click(function() 
