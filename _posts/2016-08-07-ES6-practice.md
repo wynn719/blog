@@ -24,12 +24,12 @@ excerpt: 学习过ES6有一段时间了，新语法很多，记不牢，故编�
 
 {% highlight javascript %}
 {
-	// code
+    // code
 }
 
 // 代替IIFE写法
 (function() {
-	// code
+    // code
 }());
 {% endhighlight %}
 
@@ -79,13 +79,13 @@ let x = 1, y = 2, z = 3;
 
 {% highlight javascript %}
 let fn = function({
-		foo = 1,
-		bar = 'foo',
-		hello = false
-	}) {
-	console.log(foo);
-	console.log(bar);
-	console.log(hello);
+        foo = 1,
+        bar = 'foo',
+        hello = false
+    }) {
+    console.log(foo);
+    console.log(bar);
+    console.log(hello);
 };
 fn({}); 
 // 1
@@ -97,7 +97,7 @@ fn({});
 
 {% highlight javascript %}
 for (let [key, value] of map) {
-	console.log(key + '=>' value);
+    console.log(key + '=>' value);
 }
 {% endhighlight %}
 
@@ -132,18 +132,18 @@ ES6添加很多对`String`的扩展（本质上是修补语法）
 let basket = {count: 1, onSale: 'iPhone'};
 // 模板字符串，空格和缩进都会被保留
 $('#result').append(`
-	There are <b>${basket.count}</b> items
-	in your basket, <em>${basket.onSale}</em>
-	are on sale!
-	<p>${basket.count + basket.add}</p>
+    There are <b>${basket.count}</b> items
+    in your basket, <em>${basket.onSale}</em>
+    are on sale!
+    <p>${basket.count + basket.add}</p>
 `);
 
 // 代替传统的html字符串
 $('#result').append(
-	'There are <b>' + basket.count + '</b> ' +
-	'items in your basket, ' +
-	'<em>' + basket.onSale +
-	'</em> are on sale!'
+    'There are <b>' + basket.count + '</b> ' +
+    'items in your basket, ' +
+    '<em>' + basket.onSale +
+    '</em> are on sale!'
 );
 {% endhighlight %}
 
@@ -180,7 +180,7 @@ ES6对数组做了很多实用的扩展，实用的例子如下：
 {% highlight javascript %}
 // 转换arguments
 let fn = function() {
-	var args = Array.from(arguments);
+    var args = Array.from(arguments);
 }
 // 转换NodeList
 let lis = document.querySelectorAll('li');
@@ -193,7 +193,7 @@ arrLis.forEach(function() {}); // 数组才能实用forEach
 {% highlight javascript %}
 // 转换arguments
 let fn = function() {
-	var args = [...arguments];
+    var args = [...arguments];
 }
 // 转换NodeList
 let arrLis = [...document.querySelectorAll('li')];
@@ -217,17 +217,17 @@ console.log(Array.of(x, y)); // ['wynne', 'zheng']
 let arr = [1, 2, 3, 4, 5];
 // ES6
 let item = arr.find(function(value, index, arr) {
-	if (value > 3) {
-		return true;
-	}
+    if (value > 3) {
+        return true;
+    }
 })
 // 传统查找
 let item;
 arr.forEach(function() {
-	if (value > 3) {
-		item = value;
-		return;
-	}
+    if (value > 3) {
+        item = value;
+        return;
+    }
 });
 {% endhighlight %}
 
