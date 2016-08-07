@@ -14,9 +14,9 @@ excerpt: 学习过ES6有一段时间了，新语法很多，记不牢，故编�
 > 具体的ES6语法，可以参考阮一峰老师写的<a href="http://es6.ruanyifeng.com/">ECMAScript 6入门》</a>。
 > 该文章只整理一些实战中很有用的例子。
 
-## `let`&`const`
+## let&const
 
-### `let`块级作用域变量声明
+### let块级作用域变量声明
 
 `let`基本修复了以往`var`声明的弊端——变量全局污染，变量声明只在块级作用域中有效，不可重复声明，ES6同时新增了新的块级作用域`{}`，一些实用的例子如下：
 
@@ -43,7 +43,7 @@ for (let i = 0; i < 6; i++) {}
 for (var i = 0; i < 6; i++) {}
 {% endhighlight %}
 
-### `const`常量声明
+### const常量声明
 
 `const`解决了没有常量定义的问题，定义后的常量不能在修改，不可重复声明，同样的，常量声明只在块级作用域中有效，实用例子很简单：
 
@@ -114,7 +114,7 @@ const { SourceMapConsumer, SourceNode } = require("source-map");
 
 ES6添加很多对`String`的扩展（本质上是修补语法）
 
-### `includes()`, `startsWith()`, `endsWith()`
+### includes(), startsWith(), endsWith()
 
 都支持搜索起始位置的设置，`startsWith()`查询参数字符是否在源字符串的头部，`endsWith()`查询参数字符是否在源字符串的尾部
 
@@ -151,7 +151,7 @@ $('#result').append(
 
 ES6添加很多对`Number`的扩展（本质上还是修补语法），对`Math`对象也添加了很多实用的函数
 
-### `Number.isFinite()`, `Number.isNaN()`, `Number.isInteger()`
+### Number.isFinite(), Number.isNaN(), Number.isInteger()
 
 ES6之前对`Infinity`, `NaN`, 整型的定义不明确，没有对应的检测方法，ES6添加了相应的检测方法，比较简单，不做示例
 
@@ -209,7 +209,7 @@ let x = 'wynne', y = 'zheng';
 console.log(Array.of(x, y)); // ['wynne', 'zheng']
 {% endhighlight %}
 
-### 更丰富的查找功能`find()`&`findIndex()`，`includes()`
+### 更丰富的查找功能find()&findIndex()，includes()
 
 **`find()`可以通过回调函数进行数组过滤，返回该成员，`findIndex()`返回索引**
 
