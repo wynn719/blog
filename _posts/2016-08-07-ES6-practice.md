@@ -11,7 +11,7 @@ categories:
 excerpt: 学习过ES6有一段时间了，新语法很多，记不牢，故编写该文章，主要整理下ES6中一些实战中比较有用的例子。
 ---
 
-> 具体的ES6语法，可以参考阮一峰老师写的<a href="http://es6.ruanyifeng.com/">ECMAScript 6入门》</a>。
+> 具体的ES6语法，可以参考阮一峰老师写的<a href="http://es6.ruanyifeng.com/">《ECMAScript 6入门》</a>。
 > 该文章只整理一些实战中很有用的例子。
 
 ## let&const
