@@ -1,14 +1,13 @@
 ---
-title: ES6实践
+title: ES6实践（一）
 layout: post
-time: 2015-11-16 21:53:17 
 tag:
 - JavaScript
 
 categories:
 - tech
 
-excerpt: 学习过ES6有一段时间了，新语法很多，记不牢，故编写该文章，主要整理下ES6中一些实战中比较有用的例子。
+excerpt: 学习过ES6有一段时间了，新语法很多，记不牢，故编写该文章，主要整理下ES6中一些实战中比较有用的例子。这是该系列的第一篇。
 ---
 
 > 具体的ES6语法，可以参考阮一峰老师写的<a href="http://es6.ruanyifeng.com/">《ECMAScript 6入门》</a>。
@@ -215,12 +214,12 @@ console.log(Array.of(x, y)); // ['wynne', 'zheng']
 
 {% highlight javascript %}
 let arr = [1, 2, 3, 4, 5];
-// ES6
+// ES6（需要注意该方法IE的支持性不怎么好）
 let item = arr.find(function(value, index, arr) {
     if (value > 3) {
         return true;
     }
-})
+});
 // 传统查找
 let item;
 arr.forEach(function() {
