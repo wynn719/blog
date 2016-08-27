@@ -19,7 +19,7 @@ excerpt: 学习过ES6有一段时间了，新语法很多，记不牢，故编�
 
 `let`基本修复了以往`var`声明的弊端——变量全局污染，变量声明只在块级作用域中有效，不可重复声明，ES6同时新增了新的块级作用域`{}`，一些实用的例子如下：
 
-**代替原有的闭包创建的块级作用域**
+**1.代替原有的闭包创建的块级作用域**
 
 {% highlight javascript %}
 {
@@ -32,7 +32,7 @@ excerpt: 学习过ES6有一段时间了，新语法很多，记不牢，故编�
 }());
 {% endhighlight %}
 
-**解决for循环索引变化问题**
+**2.解决for循环索引变化问题**
 
 {% highlight javascript %}
 // 循环结束i被垃圾回收
@@ -66,7 +66,7 @@ console.log(window.foo); // undefined
 
 解构可以理解为从指定的数组或者对象中提取数组元素或者对象属性的值，然后赋值到指定变量中，实用的例子：
 
-**变量快速交换**
+### 变量快速交换
 
 {% highlight javascript %}
 // 交换x和y的值
@@ -74,7 +74,7 @@ let x = 1, y = 2, z = 3;
 [x, y, z] = [z, x, y]; // 3 1 2
 {% endhighlight %}
 
-**函数的默认赋值**
+### 函数的默认赋值
 
 {% highlight javascript %}
 let fn = function({
@@ -92,7 +92,7 @@ fn({});
 // false
 {% endhighlight %}
 
-**遍历Map结构**
+### 遍历Map结构
 
 {% highlight javascript %}
 for (let [key, value] of map) {
@@ -100,7 +100,7 @@ for (let [key, value] of map) {
 }
 {% endhighlight %}
 
-**模块快速解析**
+### 模块快速解析
 
 {% highlight javascript %}
 // ES6的模块语法
@@ -154,7 +154,7 @@ ES6添加很多对`Number`的扩展（本质上还是修补语法），对`Math`
 
 ES6之前对`Infinity`, `NaN`, 整型的定义不明确，没有对应的检测方法，ES6添加了相应的检测方法，比较简单，不做示例
 
-**常用的Math方法**
+### 常用的Math方法
 
 {% highlight javascript %}
 // 去除小数部分，返回整数部分
@@ -174,7 +174,7 @@ ES6对数组做了很多实用的扩展，实用的例子如下：
 
 ### 将类似数组的对象转换为数组
 
-**`Array.from()`可以将具有隐性的数组属性的对象转换为真正的数组，例如jQuery返回的`Dom`对象，原生js的`NodeList`对象**
+**1.`Array.from()`可以将具有隐性的数组属性的对象转换为真正的数组，例如jQuery返回的`Dom`对象，原生js的`NodeList`对象**
 
 {% highlight javascript %}
 // 转换arguments
@@ -187,7 +187,7 @@ let arrLis = Array.from(lis);
 arrLis.forEach(function() {}); // 数组才能实用forEach
 {% endhighlight %}
 
-**使用拓展符也可以达到这种效果**
+**2.使用拓展符也可以达到这种效果**
 
 {% highlight javascript %}
 // 转换arguments
@@ -199,7 +199,7 @@ let arrLis = [...document.querySelectorAll('li')];
 arrLis.forEach(function() {}); // 数组才能实用forEach
 {% endhighlight %}
 
-**快速组合数组**
+**3.快速组合数组**
 
 `Array.of()`可以快速的将变量或者常量进行组合，返回新的数组
 
@@ -210,7 +210,7 @@ console.log(Array.of(x, y)); // ['wynne', 'zheng']
 
 ### 更丰富的查找功能find()&findIndex()，includes()
 
-**`find()`可以通过回调函数进行数组过滤，返回该成员，`findIndex()`返回索引**
+**1.`find()`可以通过回调函数进行数组过滤，返回该成员，`findIndex()`返回索引**
 
 {% highlight javascript %}
 let arr = [1, 2, 3, 4, 5];
@@ -230,7 +230,7 @@ arr.forEach(function() {
 });
 {% endhighlight %}
 
-**`includes()`代替语意差的`indexOf`**
+**2.`includes()`代替语意差的`indexOf`**
 
 {% highlight javascript %}
 let arr = [1, 2, 3, 4, 5];
