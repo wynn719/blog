@@ -6,6 +6,8 @@ tag:
 
 categories:
 - life
+
+excerpt: 
 ---
 
 工作职责：
