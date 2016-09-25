@@ -72,7 +72,7 @@ execute sql using @username, @email
 
 当然还是有解决的调试方法的，就是**通过 mysql 日志来查看所有的数据库查询**，以下是在windows平台，通过 mysql 控制台来设置（也可以通过 mysql my.ini 配置文件来设置）：
 
-{% highlight bash %}
+```bash
 # 查看日志情况
 # show variables like '%general%';
 
@@ -85,7 +85,7 @@ execute sql using @username, @email
 
 再执行一遍刚刚额查询，就可以在E:/my.log中看到以下的内容了：
 
-{% highlight bash %}
+```bash
 160411 13:26:27     4 Connect   root@localhost on mall
             4 Query SELECT * FROM `users` WHERE `username` = 'wynnezheng' AND `email` = '********@qq.com'
             4 Quit
