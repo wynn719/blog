@@ -19,7 +19,7 @@ excerpt: 团队的技术分享，我选择了分享 -- 分析Sizzle选择器引�
 
 jQuery是总入口，选择器支持9种方式的处理：
 
-{% highlight javascript %}
+```javascript
 1.$(document)   
 2.$('<div>')
 3.$('div')
@@ -34,7 +34,7 @@ jQuery是总入口，选择器支持9种方式的处理：
          click: function(){ $(this).toggleClass("test"); }
       }).appendTo("body");
 10.$($('.test'))
-{% endhighlight %}
+```
 
 ## Sizzle的设计思路
 
@@ -58,7 +58,7 @@ Sizzle 的整体结构：
 
 直截了当，`$()`绑定在了这个函数上：
 
-{% highlight javascript %}
+```javascript
 init = jQuery.fn.init = function(selector, context) { // @note : 选择器初始入口
     var match, elem;
 
@@ -125,7 +125,7 @@ init = jQuery.fn.init = function(selector, context) { // @note : 选择器初始
 
     return jQuery.makeArray(selector, this);
 };
-{% endhighlight %}
+```
 
 过程是这样子的：
 
@@ -139,7 +139,7 @@ init = jQuery.fn.init = function(selector, context) { // @note : 选择器初始
 
 **But**，并不是直接进入`jQuery.find`函数，而是先进入非常熟悉的`jQuery.extend.find()`方法中，也就是常用的`$().find()`方法
 
-{% highlight javascript %}
+```javascript
 jQuery.fn.extend({ // 写插件的会发现，插件都是写在这个extend接口下的
     find: function(selector) {
         var i,
@@ -162,12 +162,12 @@ jQuery.fn.extend({ // 写插件的会发现，插件都是写在这个extend接�
         }
 
 		...
-{% endhighlight %}
+```
 
 全局搜索下，可以在**2600多行**看到这么一行代码：
 
-{% highlight javascript %}
+```javascript
 jQuery.find = Sizzle;
-{% endhighlight %}
+```
 
 至此，**终于进入了大名鼎鼎的 Sizzle 中了**~

@@ -42,12 +42,12 @@ excerpt: 深入学习javascript的原型和原型链，同时记录在学习中�
 
 如下代码中：
 
-{% highlight javascript %}
+```javascript
 var foo={
     x: 10,
     y: 20
 }
-{% endhighlight %} 
+``` 
 
 当我们创建了一个foo对象，foo对象的`__proto__`属性就会指向foo的原型`Prototype`；同时foo的`Prototype`也是一个对象，它也有`__proto__`，指向`Object.prototype`；在同时，`Object.prototype`的`__proto__`指向`null`。因此，可以说是个对象就有`__proto__`属性！
 
@@ -55,7 +55,7 @@ var foo={
 
 ### constructor属性
 
-{% highlight javascript %}
+```javascript
 function Foo(y){ 
     this.y = y ; 
 } 
@@ -69,7 +69,7 @@ Foo.prototype.calculate = function(z){
 var b = new Foo(20); 
 
 alert(b.calculate(30)); 
-{% endhighlight %}  
+```  
 
 此时，Foo.prototype有一个`constructor`属性，指向Foo对象
 
@@ -81,7 +81,7 @@ alert(b.calculate(30));
 
 一个对象的真正原型是被对象内部的[[Prototype]]属性(property)所持有。ECMA引入了标准对象原型访问器Object.getPrototype(object)，到目前为止只有Firefox和chrome实现了此访问器。除了IE，其他的浏览器支持非标准的访问器`__proto__`，如果这两者都不起作用的，我们需要从对象的构造函数中找到的它原型属性。下面的代码展示了获取对象原型的方法：
 
-{% highlight javascript %}
+```javascript
 var a = {}; 
 
 //Firefox 3.6 and Chrome 5 
@@ -93,17 +93,17 @@ a.__proto__; //[object Object]
 
 //all browsers 
 a.constructor.prototype; //[object Object]
-{% endhighlight %} 
+``` 
 
 因此，不难理解，`__proto__` 就是指向对象的原型，而不支持`__proto__`访问器的，`constructor` 的原型指向对象的原型
 
 当试图用基本类型访问原型时，内部发生了强制转换：
 
-{% highlight javascript %}
+```javascript
 //(works in IE too, but only by accident) 
  
 string.__proto__ === String().__proto__; //true
-{% endhighlight %} 
+``` 
 
 因此，基本类型没有原型的说法是正确的
 
@@ -111,13 +111,13 @@ string.__proto__ === String().__proto__; //true
 
 如下代码中：
 
-{% highlight javascript %}
+```javascript
 function Foo(){ }
 var f1 = new Foo();
 
 console.log(f1 instanceof Foo); // true
 console.log(f1 instanceof Object); //true
-{% endhighlight %} 
+``` 
 
 在使用instanceof时，其内部的工作时这样的：
 
@@ -127,7 +127,7 @@ console.log(f1 instanceof Object); //true
 
 ### hasOwnProperty的由来
 
-{% highlight javascript %}
+```javascript
 var Person = function(){
     this.name = 'wynne';
 };
@@ -150,7 +150,7 @@ for(item in person){
         console.log(item);
     }
 }
-{% endhighlight %} 
+``` 
 
 如上所述的，`person`里本来是没有 `hasOwnProperty` 属性的，它其实是由 `Object.prototype` **继承**而来的!
 
@@ -172,7 +172,7 @@ for(item in person){
 
 javascript中构造函数(constructor)也是一个函数，因此也是一个对象，自然就有了原型属性(与原型区分开来)。
 
-{% highlight javascript %}
+```javascript
 //function will never be a constructor but it has a prototype property anyway 
  
 Math.max.prototype; //[object Object] 
@@ -186,11 +186,11 @@ A.prototype; //[object Object]
  
 //Math is not a function so no prototype property 
 Math.prototype; //null
-{% endhighlight %} 
+``` 
 
 原型属性只存在于函数上，而不存在与实例上：
 
-{% highlight javascript %}
+```javascript
 var A = function(){
     this.name = 'wynne';
 };
@@ -200,13 +200,13 @@ console.log(A.prototype); // A
 var a = new A();
 
 console.log(a.prototype); // undefined
-{% endhighlight %} 
+``` 
 
 函数A的原型属性(prototype property)是一个对象，当这个函数被用作构造函数来创建实例时，该函数的 **原型属性** 将被作为 **原型** 赋值给 **所有对象实例** (注:即所有实例的原型引用的是函数的原型属性)
 
 注意：一个函数的原型属性(function’s prototype property)其实和实际的原型(prototype)没有关系
 
-{% highlight javascript %}
+```javascript
 //(example fails in IE) 
  
 var A = function(name) { 
@@ -217,11 +217,11 @@ A.prototype == A.__proto__; //false
  
 A.__proto__ == Function.prototype; 
 //true - A's prototype is set to its constructor's prototype property
-{% endhighlight %} 
+``` 
 
 如果我现在替换A的原型属性为一个新的对象，实例对象的原型`a.__proto__`却仍然引用着原来它被创建时A的原型属性
 
-{% highlight javascript %}
+```javascript
 var A = function(name) {
     this.name = name;
 }  
@@ -229,7 +229,7 @@ var a = new A('alpha');
 a.name; //'alpha'   
 A.prototype = {x:23};
 a.x; //null
-{% endhighlight %} 
+``` 
 
 如果在实例被创建之后，改变了函数的原型属性所指向的对象，也就是改变了创建实例时实例原型所指向的对象
 
@@ -237,7 +237,7 @@ a.x; //null
 
 拓展已有对象的方式本身是不推荐的，如果真的需要对内置对象的原型进行拓展，检测该属性是否存在应该是代码第一件要做的事情！
 
-{% highlight javascript %}
+```javascript
 // 特性检测
 if( String.prototype.timers ){
     String.prototype.times = function(count) {
@@ -248,7 +248,7 @@ if( String.prototype.timers ){
 "hello!".times(3); // "hello!hello!hello!"; 
  
 "please...".times(6); // "please...please...please...please...please...please..."
-{% endhighlight %} 
+``` 
 
 #### 原型通过原型链来继承
 

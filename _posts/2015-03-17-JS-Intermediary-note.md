@@ -44,16 +44,16 @@ element.childNodes 只读属性 子节点列表集合
 
 兼容性问题
 
-{% highlight html %}
+```html
 <ul id="ul1">
     <li>1111</li>
     <li>1111</li>
     <li>1111</li>
     <li>1111</li>
 </ul>
-{% endhighlight %}
+```
 
-{% highlight javascript %}
+```javascript
 oUl = document.getElementById('ul1');
 alert(oUl.childNodes.length); //在标准浏览器下弹出9；在IE6、7弹出4。因为标准浏览器下，文本元素（在这里是换行符）也包含在childNodes里面了。
 
@@ -69,19 +69,19 @@ for (var i=0; i<oUl.childNodes.length; i++){
         oUl.childNodes[i].style.background = 'red';
     }
 }
-{% endhighlight %}
+```
 
 element.children 只读 属性 子节点列表集合
 
 * 标准下： 只包含元素类型的节点，并且包含非法嵌套的子节点
 * 非标准下：只包含元素类型的节点，IE7及以下不包含非法嵌套的子节点
 
-{% highlight javascript %}
+```javascript
 // 替换childNode的兼容性问题
 for (var i=0; i<oUl.children.length; i++){
     oUl.children[i].style.background = 'red';
 }
-{% endhighlight %}
+```
 
 element.nodeType 只读 属性 当前元素的节点类型，共有12种
 
@@ -91,16 +91,16 @@ element.nodeType 只读 属性 当前元素的节点类型，共有12种
 * 属性节点 ATTRIBUTE_NODE ：2
 * 文本节点 TEXT_NODE：3
 
-{% highlight html %}
+```html
 <ul id="ul1" style="color: green">
     <li>1111</li>
     <li>1111</li>
     <li>1111</li>
     <li>1111</li>
 </ul>
-{% endhighlight %}
+```
 
-{% highlight javascript %}
+```javascript
 oUl = document.getElementById('ul1');
 alert(oUl.nodeType); // 弹出1
 alert(oUl.childNodes[0].nodeType); //弹出3
@@ -108,7 +108,7 @@ alert(oUl.attributes[0].nodeType); //弹出2
 alert(oUl.attributes[0].name); //弹出'id'
 alert(oUl.attributes.length); //弹出2
 alert(oUl.attributes[0].value); //弹出'ul1'
-{% endhighlight %}
+```
 
 element.attributes 只读 属性 属性列表集合
 
@@ -124,7 +124,7 @@ element.firstElementChild 只读属性
 * 标准下获取第一个元素类型节点的子节点
 * 非标准浏览器不支持
 
-{% highlight javascript %}
+```javascript
 // 进行判断
 if (oUl.firstElementChild){
     oUl.firstElementChild.style.background = 'red';
@@ -135,16 +135,16 @@ if (oUl.firstElementChild){
 //更为简洁的写法：
 var oFirst = oUl.firstElementChild || oUl.firstChild;
 oFirst.style.background = 'red';
-{% endhighlight %}
+```
 
 兼容问题
 
-{% highlight html %}
+```html
 <ul id="ul1">
 </ul>
-{% endhighlight %}
+```
 
-{% highlight javascript %}
+```javascript
 var oUl = document.getElementById('ul1');
 var oFirst = oUl.firstElementChild || oUl.firstChild; 
 if(oFirst){
@@ -152,13 +152,13 @@ if(oFirst){
 } else {
     alert('没有子节点可以设置');
 }
-{% endhighlight %}
+```
 
 以上这段代码会报错。因为在oUl下面没有子元素节点，因此oUl.firstElementChild会返回为null，null不会传给变量oFirst，所以oFirst等于oUl.firstChild，而在标准浏览器下，oUl.firstChild是存在的，是一个文本节点，因此在下面的判断中，oFirst存在，因此走if语句的第一句，但是oFirst是文本节点，没有style可以设置，因此会报错。因此最好的做法是如下：
 
-{% highlight javascript %}
+```javascript
 oUl.children[0].style.background = 'red';
-{% endhighlight %}
+```
 
 最后一个子节点
 
@@ -174,27 +174,27 @@ oUl.children[0].style.background = 'red';
 
 element.parentNode 只读 属性 只有一个 当前节点的父级节点
 
-{% highlight html %}
+```html
 <ul id="ul1">
     <li>1111 <a href="javascript:;">隐藏</a></li>
     <li>2222 <a href="javascript:;">隐藏</a></li>
     <li>3333 <a href="javascript:;">隐藏</a></li>
     <li>4444 <a href="javascript:;">隐藏</a></li>
 </ul>
-{% endhighlight %}
+```
 
-{% highlight javascript %}
+```javascript
 var oA = document.getElementsByTag('a');
 for (var i=0; i<oA.length; i++){
     oA[i].onclick = function(){
         this.parentNode.style.display = 'none';
     }
 }
-{% endhighlight %}
+```
 
 element.offsetParent
 
-{% highlight html %}
+```html
 <head>
     <style>
         div {padding: 40px 50px;}
@@ -210,13 +210,13 @@ element.offsetParent
         </div>
     </div>
 </body>
-{% endhighlight %}
+```
 
-{% highlight javascript %}
+```javascript
 var oDiv3 = document.getElementById('div3');
 alert(oDiv3.parentNode.id); //弹出div2
 alert(oDiv3.offsetParent.id); //弹出body1
-{% endhighlight %}
+```
 
 上面的代码，如果给div1的style里面加上position: relative;那么div3的offsetParent就变成了div1
 
@@ -260,7 +260,7 @@ IE7及以下：
 
 ### 封装getPos()
 
-{% highlight html %}
+```html
 <head>
     <style>
         div {padding: 40px 50px;}
@@ -276,9 +276,9 @@ IE7及以下：
         </div>
     </div>
 </body>
-{% endhighlight %}
+```
 
-{% highlight javascript %}
+```javascript
 //通过以下方法可以获得一个元素到达页面的绝对距离，通过各级元素与其offsetParent之间的距离累加的方式得到。
 
 var iTop = 0;
@@ -288,14 +288,14 @@ while(obj){
     iTop += obj.offsetTop;
     obj = obj.offsetParent;
 }
-{% endhighlight %}
+```
 
 body的offsetTop是0；body的offsetParent是null。
 
 下面是获取一个元素到达页面的绝对距离的方式，getPos函数。注意，一般工作中，把body的margin值清掉，这样可以避免IE6、7与其他标准浏览器在getPos上的差异。
 
 // 封装getPos
-{% highlight javascript %}
+```javascript
 function getPos(obj){
     var pos = {left: 0, top: 0};
     while(obj){
@@ -305,7 +305,7 @@ function getPos(obj){
     }
     return pos;// 返回json数据
 }
-{% endhighlight %}
+```
 
 ### 操作元素属性的多种方式
 
@@ -340,12 +340,12 @@ insertBefore(新的元素,指定的被插入的元素)
 
 解决兼容性问题
 
-{% highlight html %}
+```html
 <input type="text" id="text1" /><input type="button" value="留言" id="btn" />
 <ul id="ul1"></ul>
-{% endhighlight %}
+```
 
-{% highlight javascript %}
+```javascript
 var oText = document.getElementById('text1');
 var oBtn = document.getElementById('btn');
 var oUl = document.getElementById('ul1');
@@ -371,7 +371,7 @@ oBtn.onclick = function() {
         oUl.removeChild( this.parentNode );
     }
 }
-{% endhighlight %}
+```
 
 removeChild(要删除的节点) 删除节点
 
@@ -383,7 +383,7 @@ replaceChild(新节点,被替换节点) 替换子节点
 
 ### getElementsByClassName
 
-{% highlight javascript %}
+```javascript
 function getElementsByClassName(parent, tagName, className){
     var aEls = parent.getElementsByTagName(tagName),
         arr = [];// 存储选中的对象
@@ -401,11 +401,11 @@ function getElementsByClassName(parent, tagName, className){
     
     return arr;
 }
-{% endhighlight %}
+```
 
 ### 封装addClass和removeClass
 
-{% highlight javascript %}
+```javascript
 function addClass (obj, className) {
     if (obj.className === '') {
         obj.className = className;
@@ -440,7 +440,7 @@ function indexOfArr (arr, v) {
     }
     return -1;
 }
-{% endhighlight %}
+```
 
 ### 表格操作
 
@@ -454,7 +454,7 @@ DOM提供了一些方便操作表格的属性：
 
 此时HTML应该为如下的形式：
 
-{% highlight html %}
+```html
 <table id="table" width="100%" border="1px">
     <thead>
         <tr>
@@ -483,17 +483,17 @@ DOM提供了一些方便操作表格的属性：
         </tr>
     </tfoot>
 </table>
-{% endhighlight %}
+```
 
-{% highlight javascript %}
+```javascript
 // 取得wayne的值
 var oTable = document.getElementById('table');
 alert( oTable.tBodies[0].rows[1].cell[1].innerHTML );
-{% endhighlight %}
+```
 
 表格的实际应用：
 
-{% highlight javascript %}
+```javascript
 var data = [
     {id: 1, username: 'leo', sex: '男'},
     {id: 2, username: '小美', sex: '女'},
@@ -550,11 +550,11 @@ for(var i=0; i<data.length; i++){
     
     oTbody.appendChild(oTr);
 }
-{% endhighlight %}
+```
 
 ### 表单操作
 
-{% highlight html %}
+```html
 <form id="form1">
     <!-- 如果没有name值，值不会被提交 -->
     <input type="text" name="text1" />
@@ -574,9 +574,9 @@ for(var i=0; i<data.length; i++){
     
     <input type="button" value="按钮" name="btn" />
 </form>
-{% endhighlight %}
+```
 
-{% highlight javascript %}
+```javascript
 // 获取input的值，无兼容性问题
 oForm = document.getElementById('form1');
 
@@ -618,22 +618,22 @@ oForm.btn.onclick = function(){
         }
     }
 }
-{% endhighlight %}
+```
 
 ### 表单事件
 
 onsubmit()
 
-{% highlight html %}
+```html
 <form id="form1" action="http://www.baidu.com">
     <input type="text" name="text1" />
     <input type="text" name="text2" value="111" />
     <input type="submit" name="dosubmit" value="提交" />
     <input type="reset" name="doreset" value="重置" />
 </form>
-{% endhighlight %}
+```
 
-{% highlight javascript %}
+```javascript
 oForm.onsubmit = function(){
     if(this.text1.value == ''){
         alert('请输入内容');
@@ -647,29 +647,29 @@ setTimeout(function(){
     oForm.submit();
 }, 1000) 
 */
-{% endhighlight %}
+```
 
 onreset()
 
-{% highlight javascript %}
+```javascript
 // reset为重置方法（回到初始HTML状态），不是清空
 oForm.reset = function(){
     return confirm('您确定要重置吗？'); // 也是通过bool返回值来确定方法是否重置
 }
-{% endhighlight %}
+```
 
 ### BOM (Browser Object Model 浏览器对象模型)
 
 * window.open()
 * window.close()
 
-{% highlight html %}
+```html
 <input type="button" value="打开新窗口" />
 <input type="button" value="关闭窗口" />
 <input type="button" value="关闭新窗口" />
-{% endhighlight %}
+```
 
-{% highlight javascript %}
+```javascript
 /*
 BOM : Browser Object Model 浏览器对象模型
 */
@@ -703,11 +703,11 @@ window.onload = function() {
         opener.close(); //可以通过关闭用window.open方法打开的窗口
     }
 }
-{% endhighlight %}
+```
 
 window.navigator.userAgent 浏览器信息
 
-{% highlight javascript %}
+```javascript
 //window.navigator.userAgent : 浏览器信息
 
 if ( window.navigator.userAgent.indexOf('MSIE') != -1 ) {
@@ -715,31 +715,31 @@ if ( window.navigator.userAgent.indexOf('MSIE') != -1 ) {
 } else {
     alert('我不是ie');
 }
-{% endhighlight %}
+```
 
 window.location 浏览器地址信息
 
-{% highlight javascript %}
+```javascript
 //window.location : 地址 （Object）
 /*
     window.location.href = 当前窗口url
     window.location.search = url?后面的内容
     window.location.hash = url#后面的内容(可用于做幻灯片的切换)
 */
-{% endhighlight %}
+```
 
 文档宽高及窗口事件clientWidth与clientHeight
 
-{% highlight javascript %}
+```javascript
 // 可视区尺寸(浏览器窗口)
 
 document.documentElement.clientWidth; 
 document.documentElement.clientHeight;
-{% endhighlight %}
+```
 
 滚动距离
 
-{% highlight javascript %}
+```javascript
 document.body.scrollTop/scrollLeft;// scrollTop是可视区顶部到整个页面顶部的距离（就是滚动条滚动距离）,scrollLeft是横向滚动距离
 document.documentElement.scrollTop/scrollLeft
 /* 兼容性问题
@@ -748,18 +748,18 @@ document.documentElement.scrollTop/scrollLeft
  * 解决方法如下
  */
 var scrollTop = document.documentElement.scrollTop || document.body.scrollTop
-{% endhighlight %}
+```
 
 内容高度
 
-{% highlight javascript %}
+```javascript
 document.body.scrollHeight
 element.scrollHeight // element.scrollWidth
-{% endhighlight %}
+```
 
 文档高度
 
-{% highlight javascript %}
+```javascript
 document.body.scrollHeight
 element.scrollHeight // element.scrollWidth
 /* 存在兼容性问题
@@ -767,12 +767,12 @@ element.scrollHeight // element.scrollWidth
  * other，文档的高并不是可视区的高
  */
 // 在页面中取文档的高，请先在CSS中将body的margin去掉，然后用document.body.offsetHeight来取文档元素的高，不同浏览器body默认有不同的margin或者padding值
-{% endhighlight %}
+```
 
 * onscroll 当滚动条滚动时触发
 * onresize 当窗口改变时触发
 
-{% highlight javascript %}
+```javascript
 // 这两个函数的触发次数都是按时间间隔来算的，而不是根据拉动的次数来计算
 window.onscroll = function(){
     i++;
@@ -781,7 +781,7 @@ window.onscroll = function(){
 window.onresize = function(){
     i++;
 }
-{% endhighlight %}
+```
 
 ## 第03课：Event-事件详解1
 
@@ -804,12 +804,12 @@ window.onresize = function(){
 
 提升input输入的用户体验：
 
-{% highlight html %}
+```html
 <input type="text" id="text1" value="请输入内容" />
 <input type="button" value="全选" id="btn"/>
-{% endhighlight %}
+```
 
-{% highlight javascript %}
+```javascript
 var oText = document.getElementById('text1');
 var oBtn = document.getElementById('btn');
 
@@ -832,7 +832,7 @@ oText.focus();
 oBtn.onclick = function(){
     oText.select();
 }
-{% endhighlight %}
+```
 
 ### event-事件对象和clientX,clientY
 
@@ -842,22 +842,22 @@ event 事件对象，当一个事件触发的时候，event对象会记录这个
 
 事件函数：事件调用的函数，一个函数是不是事件函数，不在定义的决定，而是取决于这个调用的时候
 
-{% highlight javascript %}
+```javascript
 alert(event); // 直接调用时，标准下： undefined ie中：null
 
 document.onclick = function(){
     alert(event); // 显示event对象
 }
-{% endhighlight %}
+```
 
-{% highlight javascript %}
+```javascript
 function fn1(){
     alert(event);
 }
 
 fn1(); //不是事件调用的函数，因此这时候event没有内容，显示undefined
 document.onclick = fn1; // fn1是事件调用的函数，所以event有内容 这种写法在firefox无效
-{% endhighlight %}
+```
 
 兼容性问题
 
@@ -866,16 +866,16 @@ document.onclick = fn1; // fn1是事件调用的函数，所以event有内容 �
 
 如果一个函数是被事件调用的那么，这个函数定义的第一个参数就是事件对象
 
-{% highlight javascript %}
+```javascript
 function fn1(ev){
     alert(ev);
 }
 document.onclick = fn1; //在火狐、标准ie下、chrome下都可以弹出事件对象（非标准ie会弹出undefined）
-{% endhighlight %}
+```
 
 解决兼容性的问题
 
-{% highlight javascript %}
+```javascript
 function fn1(ev) {
     var ev = ev || event;// 标准函数中调用第一个，非标准调用第二个
     alert(ev);
@@ -885,20 +885,20 @@ function fn1(ev) {
     }*/
 }
 document.onclick = fn1;
-{% endhighlight %}
+```
 
 clientX \ clientY 当一个事件发生的时候，鼠标到页面可视区的距离
 
-{% highlight html %}
+```html
 <style>
 #div1 {width: 100px; height:100px; background: red; position: absolute;}
 </style>
 <body style="height: 2000px;">
     <div id="div1"></div>
 </body>
-{% endhighlight %}
+```
 
-{% highlight javascript %}
+```javascript
 //onmousemove；当鼠标在一个元素上移动的时候触发
 //触发频率不是以像素记，而是间隔时间。在一个指定时间内（很短），如果鼠标的位置和上一次的位置发生了变化，那么就会触发一次
 var oDiv = document.getElementById('div1');
@@ -908,21 +908,21 @@ document.onmousemove = function(){
     oDiv.style.left = ev.clientX + 'px';
     oDiv.style.top = scrollTop + ev.clientY + 'px';
 }
-{% endhighlight %}
+```
 
 ### 事件流-事件冒泡机制-
 
 事件冒泡：当一个元素接收到事件的时候，会把它接收到的事件传播给它的父级，一直到顶层window，这也被称为js中的事件冒泡机制。
 
-{% highlight javascript %}
+```javascript
 // 给oDiv1加事件，给元素加事件处理函数，即使不给oDiv1加上事件，
 // 点击oDiv1时依旧会触发事件，只不过事件没有被处理，onmouseover等也是同理
 //oDiv1.onclick = fn1;  
-{% endhighlight %}
+```
 
 冒泡示例
 
-{% highlight html %}
+```html
 <body>
     <div id="div1">
         <div id="div2">
@@ -944,13 +944,13 @@ function fn1() {
 oDiv1.onclick = fn1;
 oDiv3.onclick = fn1;
 </script>
-{% endhighlight %}
+```
 
 阻止冒泡
 
 在当前要阻止冒泡的事件函数中调用：事件对象.cancelBubble = true;
 
-{% highlight html %}
+```html
 <body>
     <input type="button" value="按钮" id="btn" />
     <div id="div1" style="width: 100px; height: 200px; border: 1px solid red; display: none"></div>
@@ -975,11 +975,11 @@ document.onclick = function(){
     oDiv.style.display = 'none';
 }
 </script>
-{% endhighlight %}
+```
 
 事件冒泡的实际应用
 
-{% highlight html %}
+```html
 <!-- 侧边栏分享到……应用 -->
 <body>
     <div id="div1">
@@ -1000,18 +1000,18 @@ oDiv.onmouseout = function(){
     this.style.left = '-100px';
 }
 </script>
-{% endhighlight %}
+```
 
 ### 事件冒泡第二种形式
 
 注意：上面提到的是事件冒泡的第一种形式，不能同时处理两个事件
 
-{% highlight javascript %}
+```javascript
 function fn1(){alert(1);}
 function fn2(){alert(2);}
 document.onclick = fn1;
 document.onclick = fn2; //会覆盖前面绑定的fn1
-{% endhighlight %}
+```
 
 给对象绑定事件处理函数的第二种形式
 
@@ -1033,7 +1033,7 @@ ie：obj.attachEvent(事件名称, 事件函数);
 
 call() 函数下的一个方法，call方法的第一个参数可以改变函数执行过程中的内部this的指向；call方法从第二个参数开始就是原来函数的参数列表；如果call方法传入的第一个参数是null，那么就是不改变函数内部的this指向的。
 
-{% highlight javascript %}
+```javascript
 function fn1(){
     alert(this);
 }
@@ -1041,20 +1041,20 @@ function fn1(){
 //fn1(); //window
 fn1.call(); //调用函数 也就是说：fn1() 可视为等同于 fn1.call() 弹出window
 fn1.call(1) //弹出1，因为在fn1里面的this变成了1。
-{% endhighlight %}
+```
 
-{% highlight javascript %}
+```javascript
 function fn1(a + b){
     alert(this);
     alert(a + b);
 }
 fn1.call(1, 20, 30); //先弹出1，然后弹出50
 fn1.call(null, 10, 20); //先弹出window对象，然后弹出30
-{% endhighlight %}
+```
 
 函数绑定封装函数(解决兼容性问题)
 
-{% highlight javascript %}
+```javascript
 function bind(obj, evname, fn){
     if(obj.addEventListener){
         obj.addEventListener(evname, fn, false);
@@ -1064,9 +1064,9 @@ function bind(obj, evname, fn){
         })
     }
 }
-{% endhighlight %}
+```
 
-{% highlight html %}
+```html
 <body>
     <div id="div1">
         <div id="div2">
@@ -1088,11 +1088,11 @@ oDiv1.addEventListener('click', fn1, true); //上面这一句告诉oDiv1：如�
 oDiv2.addEventListener('click', fn1, true);
 oDiv3.addEventListener('click', fn1, true);    
 </script>
-{% endhighlight %}
+```
 
 事件捕捉：从父级向子级穿透，与事件冒泡正好相反，即事件冒泡和事件捕捉不能同时发生
 
-{% highlight javascript %}
+```javascript
 oDiv1.addEventListener('click', function(){
     alert(1);
 }, false)
@@ -1103,19 +1103,19 @@ oDiv1.addEventListener('click', function(){
     alert(2);
 }, false)
 //弹出顺序是：3 -> 2 -> 1
-{% endhighlight %} 
+``` 
 
 ### 事件绑定的取消
 
 取消第一种事件绑定函数（普通绑定）
 
-{% highlight javascript %}
+```javascript
 function fn1(){alert(1);}
 function fn2(){alert(2);}
 
 document.onclick = fn1;
 document.onclick = null; //通过赋值的形式取消了原来的事件绑定函数fn1
-{% endhighlight %} 
+``` 
 
 取消第二种形式的事件绑定函数
 
@@ -1134,7 +1134,7 @@ ctrlKey, shiftKey, altKey 布尔值，存储相应按键的状态
 
 当onkeydown长按时，会连续触发，触发原理为第一次为单次触发，之后会重复触发
 
-{% highlight javascript %}
+```javascript
 document.onkeydown = function(ev){
     var ev = ev || event;
     alert(ev.keyCode);
@@ -1144,13 +1144,13 @@ document.onclick = function(ev){
     var ev = ev || event;
     alert(ev.ctrlKey); //当按下ctrl点击的时候，弹出true；没有按ctrl点击的时候，返回false
 }
-{% endhighlight %} 
+``` 
 
 **onkeyup** 当键盘按键抬起的时候触发，同理如上
 
 仿qq留言本
 
-{% highlight html %}
+```html
 <body>
     <input type="text" id="text1" />
     <ul id="ul1"></ul>  
@@ -1187,7 +1187,7 @@ oText.onkeyup = function(ev){
     }
 }    
 </script>
-{% endhighlight %} 
+``` 
 
 ### 事件默认行为  （浏览器本身的默认行为等）
 
@@ -1195,7 +1195,7 @@ oncontextmenu 右键菜单事件，当右键菜单（环境菜单、上下文菜
 
 
 
-{% highlight html %}
+```html
 <body style="height: 2000px"></body>
 <script>
 // 通过对当前有默认行为的元素以return false来禁用行为
@@ -1207,11 +1207,11 @@ document.oncontextmenu = function(){
     return false; //阻止了点击右键，弹出右键菜单的默认行为
 }
 </script>
-{% endhighlight %} 
+``` 
 
 自定义右键菜单原理
 
-{% highlight html %}
+```html
 <body>
     <div id="div1"></div>
 </body>
@@ -1238,7 +1238,7 @@ document.onclick = function(){
     oDiv.style.display = 'none';
 }
 </script>
-{% endhighlight %} 
+``` 
 
 ## 事件深入应用
 
@@ -1250,7 +1250,7 @@ document.onclick = function(){
 * onmousemove 移动元素
 * onmouseup 释放元素
 
-{% highlight html %}
+```html
 <body>
     <div id="div"></div>
 </body>
@@ -1286,7 +1286,7 @@ oDiv.onmousedown = function(){
 } 
 // 依旧有bug，看下面分解= =
 </script>
-{% endhighlight %}
+```
 
 ### 拖拽的问题和解决方法
 
@@ -1302,7 +1302,7 @@ oDiv.onmousedown = function(){
 * 标准：阻止浏览器的默认行为
 * ie：全局捕获 setCapture()
 
-{% highlight javascript %}
+```javascript
 // 拖拽基础，具体情况有所不同
 oDiv.onmousedown = function(ev) {
     var ev = ev || event;
@@ -1333,13 +1333,13 @@ oDiv.onmousedown = function(ev) {
     return false; // 标准下：阻止浏览器默认拖拽选中文字的行为
     
 }
-{% endhighlight %} 
+``` 
 
 ### 拖拽的封装-限制范围、磁性吸附
 
 封装函数
 
-{% highlight javascript %}
+```javascript
 function drag(obj){
     obj.onmousedown = function(ev){
         var ev = ev || event;
@@ -1369,11 +1369,11 @@ function drag(obj){
         return false;
     }   
 }
-{% endhighlight %} 
+``` 
 
 限制范围的拖拽
 
-{% highlight javascript %}
+```javascript
 function drag(obj){
     obj.onmousedown = function(ev){
         var ev = ev || event;
@@ -1417,11 +1417,11 @@ function drag(obj){
         return false;
     }   
 }
-{% endhighlight %} 
+``` 
 
 磁性吸附
 
-{% highlight javascript %}
+```javascript
 function drag(obj){
     obj.onmousedown = function(ev){
         var ev = ev || event;
@@ -1465,11 +1465,11 @@ function drag(obj){
         return false;
     }   
 }
-{% endhighlight %} 
+``` 
 
 ### 碰撞检测
 
-{% highlight html %}
+```html
 <body>
     <div id="div1"></div>
     <img id="img1" url="1.jpg" />   
@@ -1529,11 +1529,11 @@ function drag(obj){
     }   
 } 
 </script>
-{% endhighlight %} 
+``` 
 
 ### 拖拽改变层大小
 
-{% highlight html %}
+```html
 <body>
     <div id="div1"></div>
 </body>
@@ -1575,11 +1575,11 @@ oDiv.onmousedown = function(ev){
     return false;
 }
 </script>
-{% endhighlight %} 
+``` 
 
 ### 滚动条的模拟和扩展运用
 
-{% highlight html %}
+```html
 <body>
     <div id="div1">
         <div id="div2></div>
@@ -1622,11 +1622,11 @@ oDiv2.onmousedown = function(ev){
     return false;
 }    
 </script>
-{% endhighlight %}
+```
 
 控制内容的滚动
 
-{% highlight html %}
+```html
 <body>
     <div id="div1">
         <div id="div2"></div>
@@ -1673,7 +1673,7 @@ oDiv2.onmousedown = function(ev){
     return false;
 }
 </script>
-{% endhighlight %}
+```
 
 ## 鼠标滚轮和cookie
 
@@ -1692,7 +1692,7 @@ oDiv2.onmousedown = function(ev){
 
 兼容性做法：
 
-{% highlight html %}
+```html
 <body>
     <div id="div1"></div>
 </body>
@@ -1732,7 +1732,7 @@ function fn(ev){
     return false;
 }    
 </script>
-{% endhighlight %}
+```
 
 ### cookie
 
@@ -1746,7 +1746,7 @@ function fn(ev){
 
 设置一个过期的时间(这个时间必须是字符串格式)延长cookie的销毁时间。cookie默认是临时存储的，当浏览器关闭进程的时候，自动销毁。
 
-{% highlight javascript %}
+```javascript
 //document.cookie = '名字=值;expires=' + 字符串格式的时间;
 var oDate = new Date();
 oDate.setDate( oDate.getDate() + 5 ); //5天以后
@@ -1785,17 +1785,17 @@ function removeCookie(key){
 }
 
 removeCookie('username');
-{% endhighlight %}
+```
 
 cookie实例应用 记住登录名
-{% highlight html %}
+```html
 <input type="text" id="username" />
 <input type="button" value="登陆" id="login" />
 <input type="button" value="删除" id="del" />
-{% endhighlight %}
+```
 
 
-{% highlight javascript %}
+```javascript
 var oUsername = document.getElementById('username');
 var oLogin = document.getElementById('login');
 var oDel = document.getElementById('del');
@@ -1833,6 +1833,6 @@ function setCookie(key, value, t){
 function removeCookie(key){
     setCookie(key, '', -1);
 }
-{% endhighlight %}
+```
 
 

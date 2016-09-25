@@ -13,7 +13,7 @@ excerpt: 记录PHP PDO参数绑定时遇到的调试问题
 
 PDO提供了一个`PDOStatement::debugDumpParams` — 打印一条 SQL 预处理命令的调试方法，但是打印出来的结果有点鸡肋，比如说：
 
-{% highlight php %}
+```php
 <?php
 try {
     $pdo = new PDO();
@@ -45,13 +45,13 @@ try {
 // is_param=1
 // param_type=2
 ?>
-{% endhighlight %}
+```
 
 要是 SQL 语句一复杂这根本就阅读不了嘛！
 
 **PDO 的执行方式的不同，导致SQL 语句并不是在参数绑定上去后再传入数据库服务器的**，上面的这段代码它在内部的执行方式是这样的：
 
-{% highlight php %}
+```php
 <?php
 // $stmt = $pdo->prepare($sql); 
 prepare sql from 'SELECT * FROM `users` WHERE `username` = ? AND `email` = ?' 
@@ -66,7 +66,7 @@ set @email = '********@qq.com'
 // $stmt->execute();
 execute sql using @username, @email
 ?>
-{% endhighlight %}
+```
 
 可以看到，PDO 的执行在 mysql 中其实是分步进行的，**因此 PDO 并没有办法去获取到绑定参数后完整的 SQL 语句**
 
@@ -81,7 +81,7 @@ execute sql using @username, @email
 
 # 指定日志文件
 # SET GLOBAL general_log_file = 'E:/my.log';
-{% endhighlight %}
+```
 
 再执行一遍刚刚额查询，就可以在E:/my.log中看到以下的内容了：
 
@@ -89,4 +89,4 @@ execute sql using @username, @email
 160411 13:26:27     4 Connect   root@localhost on mall
             4 Query SELECT * FROM `users` WHERE `username` = 'wynnezheng' AND `email` = '********@qq.com'
             4 Quit
-{% endhighlight %}
+```

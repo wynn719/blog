@@ -15,7 +15,7 @@ excerpt: css实现页面底部模块固定和自适应
 
 1.页面结构：
 
-{% highlight html %}
+```html
 <div class="page-wrap">
     <div class="header">
         header
@@ -28,11 +28,11 @@ excerpt: css实现页面底部模块固定和自适应
 <div class="site-footer">
     footer is!
 </div>
-{% endhighlight %} 
+``` 
 
 2.css：**因为此处使用到了after伪元素，所以也就意味着IE7以下是无法使用该方法的**
 
-{% highlight css %}
+```css
 * {
     margin: 0;
     padding: 0;
@@ -59,7 +59,7 @@ html, body {
 .site-footer {
     background-color: #0080ff;
 }
-{% endhighlight %}
+```
 
 3.原理：
 

@@ -32,7 +32,7 @@ excerpt: 深入学习javascript的闭包原理，同时记录在学习中遇到�
 
 例如：
 
-{% highlight javascript %}
+```javascript
 var x = 10; 
 
 function fn(){
@@ -42,11 +42,11 @@ function fn(){
     // 因此x叫做自由变量
     console.log(b + x); 
 }
-{% endhighlight %} 
+``` 
 
 一个经常容易犯错的例子：
 
-{% highlight javascript %}
+```javascript
 var x = 10;
 
 function fn() {
@@ -59,7 +59,7 @@ function show(f) {
 }
 
 show(); // 10
-{% endhighlight %} 
+``` 
 
 这个例子中，输出的不是20，而是10，因为在函数定义的时候就已经决定了函数的上下文执行环境，故，fn的作用域链上，只能找到window执行环境下的变量x
 
@@ -67,7 +67,7 @@ show(); // 10
 
 另一个例子：
 
-{% highlight javascript %}
+```javascript
 var x = 10;
 function fn(){
     console.log(x);
@@ -81,7 +81,7 @@ function show(f){
 }
 
 show(fn); // 10
-{% endhighlight %} 
+``` 
 
 很抱歉，还是10，原理同上~
 
@@ -93,7 +93,7 @@ show(fn); // 10
 
 #### 函数作为返回值
 
-{% highlight javascript %}
+```javascript
 function fn(){
     var max = 10;
 
@@ -106,7 +106,7 @@ function fn(){
 
 var f1 = fn();
 f1(15);
-{% endhighlight %} 
+``` 
 
 bar函数作为返回值，赋值给f1变量，执行f1(15)时，用到了fn作用域下的max变量的值（此时fn在执行后作用域应该是销毁了，但是由于闭包的作用，变量max依旧存在）
 
@@ -114,7 +114,7 @@ bar函数作为返回值，赋值给f1变量，执行f1(15)时，用到了fn作�
 
 注意：内部函数定义在引用的变量之前，内部函数依旧可以访问闭包中的变量
 
-{% highlight javascript %}
+```javascript
 function sayAlice() {
     var sayAlert = function() { alert(alice); }
     // Local variable that ends up within closure
@@ -123,11 +123,11 @@ function sayAlice() {
 }
 var helloAlice=sayAlice();
 helloAlice(); // Hello Alice
-{% endhighlight %} 
+``` 
 
 #### 函数作为参数被传递
 
-{% highlight javascript %}
+```javascript
 var max = 10,
     fn = function(x) {
         if (x > max) {
@@ -141,7 +141,7 @@ var max = 10,
     var max = 100;
     f(15);
 })(fn);
-{% endhighlight %} 
+``` 
 
 fn函数作为一个参数被传递到另一个函数，赋值给f参数，执行f(15)，f的作用域中，max = 10，而不是100；
 
@@ -161,7 +161,7 @@ fn函数作为一个参数被传递到另一个函数，赋值给f参数，执�
 
 错误的代码：
 
-{% highlight javascript %}
+```javascript
 function showHelp(help) {
   document.getElementById('help').innerHTML = help;
 }
@@ -182,7 +182,7 @@ function setupHelp() {
 }
 
 setupHelp();
-{% endhighlight %} 
+``` 
 
 我们希望的理想结果是指定哪个显示哪个，可是事实不是这样的，该问题的原因在于赋给 onfocus 是闭包（showHelp）中的匿名函数而不是闭包对象；在闭包（showHelp）中一共创建了三个匿名函数，但是它们都共享同一个环境（item）。在 onfocus 的回调被执行时，循环早已经完成，且此时 item 变量（由所有三个闭包所共享）已经指向了 helpText 列表中的最后一项。
 
@@ -190,12 +190,12 @@ setupHelp();
 
 正确的做法是使onfocus指向一个新的闭包对象：
 
-{% highlight javascript %}
+```javascript
 Your age (you must be over 16)
-{% endhighlight %} 
+``` 
 
 
-{% highlight javascript %}
+```javascript
 function showHelp(help) {
   document.getElementById('help').innerHTML = help;
 }
@@ -220,13 +220,13 @@ function setupHelp() {
 }
 
 setupHelp();
-{% endhighlight %} 
+``` 
 
 ### 设计模式中的单例模式
 
 单例模式singleton就是闭包的典型应用
 
-{% highlight javascript %}
+```javascript
 var singleton = function () {
     var privateVariable;
     function privateFunction(x) {
@@ -242,6 +242,6 @@ var singleton = function () {
         }
     };
 }();
-{% endhighlight %} 
+``` 
 
 此时， privateVariable和privateVariable都是私有变量，通过闭包完成了私有的成员和方法的封装。只返回了两个接口~

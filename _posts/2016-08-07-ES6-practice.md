@@ -21,7 +21,7 @@ excerpt: 学习过ES6有一段时间了，新语法很多，记不牢，故编�
 
 **1.代替原有的闭包创建的块级作用域**
 
-{% highlight javascript %}
+```javascript
 {
     // code
 }
@@ -30,37 +30,37 @@ excerpt: 学习过ES6有一段时间了，新语法很多，记不牢，故编�
 (function() {
     // code
 }());
-{% endhighlight %}
+```
 
 **2.解决for循环索引变化问题**
 
-{% highlight javascript %}
+```javascript
 // 循环结束i被垃圾回收
 for (let i = 0; i < 6; i++) {}
 
 // 循环结束i的值为5
 for (var i = 0; i < 6; i++) {}
-{% endhighlight %}
+```
 
 ### const常量声明
 
 `const`解决了没有常量定义的问题，定义后的常量不能在修改，不可重复声明，同样的，常量声明只在块级作用域中有效，实用例子很简单：
 
-{% highlight javascript %}
+```javascript
 const URL = 'http://www.google.com';
 
 // 代替一直写js文件最开头的变量模仿常量
 window.URL = 'http://www.google.com';
-{% endhighlight %}
+```
 
 ### 需要注意的问题
 
 `let`声明的变量不属于`window`的属性
 
-{% highlight javascript %}
+```javascript
 let foo = 123;
 console.log(window.foo); // undefined
-{% endhighlight %}
+```
 
 ## 变量解构赋值
 
@@ -68,15 +68,15 @@ console.log(window.foo); // undefined
 
 ### 变量快速交换
 
-{% highlight javascript %}
+```javascript
 // 交换x和y的值
 let x = 1, y = 2, z = 3;
 [x, y, z] = [z, x, y]; // 3 1 2
-{% endhighlight %}
+```
 
 ### 函数的默认赋值
 
-{% highlight javascript %}
+```javascript
 let fn = function({
         foo = 1,
         bar = 'foo',
@@ -90,24 +90,24 @@ fn({});
 // 1
 // foo
 // false
-{% endhighlight %}
+```
 
 ### 遍历Map结构
 
-{% highlight javascript %}
+```javascript
 for (let [key, value] of map) {
     console.log(key + '=>' value);
 }
-{% endhighlight %}
+```
 
 ### 模块快速解析
 
-{% highlight javascript %}
+```javascript
 // ES6的模块语法
 import {selector, spinner} from 'Bootstrap.js'
 // require.js
 const { SourceMapConsumer, SourceNode } = require("source-map");
-{% endhighlight %}
+```
 
 ## 字符串的扩展
 
@@ -117,17 +117,17 @@ ES6添加很多对`String`的扩展（本质上是修补语法）
 
 都支持搜索起始位置的设置，`startsWith()`查询参数字符是否在源字符串的头部，`endsWith()`查询参数字符是否在源字符串的尾部
 
-{% highlight javascript %}
+```javascript
 'hello world'.includes('wor'); // true
 // 代替语意不明确的indexOf
 'hello world'.indexOf('wor') !== -1;
-{% endhighlight %}
+```
 
 ### 模板字符串
 
 新的模板字符串功能可以使html片段的引入更加美观与规范，嵌入的变量名的形式为`${var}`，大括号中支持js的语法，实用的例子：
 
-{% highlight javascript %}
+```javascript
 let basket = {count: 1, onSale: 'iPhone'};
 // 模板字符串，空格和缩进都会被保留
 $('#result').append(`
@@ -144,7 +144,7 @@ $('#result').append(
     '<em>' + basket.onSale +
     '</em> are on sale!'
 );
-{% endhighlight %}
+```
 
 ## 数值的扩展
 
@@ -156,7 +156,7 @@ ES6之前对`Infinity`, `NaN`, 整型的定义不明确，没有对应的检测�
 
 ### 常用的Math方法
 
-{% highlight javascript %}
+```javascript
 // 去除小数部分，返回整数部分
 Math.trunc(5.333); // 5
 // 判断是否为正数，负数，0
@@ -166,7 +166,7 @@ Math.trunc(5.333); // 5
 // 参数为-0，返回-0;
 // 其他值，返回NaN。
 Math.sign(-5) // -1
-{% endhighlight %}
+```
 
 ## 数组的扩展
 
@@ -176,7 +176,7 @@ ES6对数组做了很多实用的扩展，实用的例子如下：
 
 **1.`Array.from()`可以将具有隐性的数组属性的对象转换为真正的数组，例如jQuery返回的`Dom`对象，原生js的`NodeList`对象**
 
-{% highlight javascript %}
+```javascript
 // 转换arguments
 let fn = function() {
     var args = Array.from(arguments);
@@ -185,11 +185,11 @@ let fn = function() {
 let lis = document.querySelectorAll('li');
 let arrLis = Array.from(lis);
 arrLis.forEach(function() {}); // 数组才能实用forEach
-{% endhighlight %}
+```
 
 **2.使用拓展符也可以达到这种效果**
 
-{% highlight javascript %}
+```javascript
 // 转换arguments
 let fn = function() {
     var args = [...arguments];
@@ -197,22 +197,22 @@ let fn = function() {
 // 转换NodeList
 let arrLis = [...document.querySelectorAll('li')];
 arrLis.forEach(function() {}); // 数组才能实用forEach
-{% endhighlight %}
+```
 
 **3.快速组合数组**
 
 `Array.of()`可以快速的将变量或者常量进行组合，返回新的数组
 
-{% highlight javascript %}
+```javascript
 let x = 'wynne', y = 'zheng';
 console.log(Array.of(x, y)); // ['wynne', 'zheng']
-{% endhighlight %}
+```
 
 ### 更丰富的查找功能find()&findIndex()，includes()
 
 **1.`find()`可以通过回调函数进行数组过滤，返回该成员，`findIndex()`返回索引**
 
-{% highlight javascript %}
+```javascript
 let arr = [1, 2, 3, 4, 5];
 // ES6（需要注意该方法IE的支持性不怎么好）
 let item = arr.find(function(value, index, arr) {
@@ -228,14 +228,14 @@ arr.forEach(function() {
         return;
     }
 });
-{% endhighlight %}
+```
 
 **2.`includes()`代替语意差的`indexOf`**
 
-{% highlight javascript %}
+```javascript
 let arr = [1, 2, 3, 4, 5];
 arr.includes(3); // true
 arr.indexOf(3) !== -1; // true
-{% endhighlight %}
+```
 
 *未完待续*

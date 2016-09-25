@@ -18,7 +18,7 @@ excerpt: （对之前旧笔记关于布局的加深理解）主要记录常用�
 1. 容器高度随着左右两边的增高而变化
 2. 通过`padding-bottom: 10000px;`和`margin-bottom: -10000px;`互相挤压，外容器隐藏溢出，形成自适应高度
 
-{% highlight html %}
+```html
 <div class="wrap">
     <div class="left">
         &nbsp;页面内容<br/>
@@ -38,9 +38,9 @@ excerpt: （对之前旧笔记关于布局的加深理解）主要记录常用�
         &nbsp;页面内容<br/>
     </div>
 </div>
-{% endhighlight %} 
+``` 
 
-{% highlight css %}
+```css
 .wrap {
     width:100%;
     margin:0 auto;
@@ -72,7 +72,7 @@ excerpt: （对之前旧笔记关于布局的加深理解）主要记录常用�
     padding-bottom:10000px;
     margin-bottom:-10000px;
 }
-{% endhighlight %} 
+``` 
 
 效果如下：
 
@@ -128,17 +128,17 @@ excerpt: （对之前旧笔记关于布局的加深理解）主要记录常用�
 
 html样式：
 
-{% highlight html %}
+```html
 <div class="container">
     <div class="main">main</div>
     <div class="left">left</div>
     <div class="right">right</div>
 </div>
-{% endhighlight %} 
+``` 
 
 基本css：呈现三列布局
 
-{% highlight css %}
+```css
 .container {
     overflow: hidden;
 }
@@ -162,11 +162,11 @@ html样式：
     margin-left: -150px;
     height: 200px;
 }
-{% endhighlight %} 
+``` 
 
 处理中间块：解决中间块被掩盖的问题
 
-{% highlight html %}
+```html
 <div class="container">
     <!-- 添加额外标签来解决 -->
     <div class="main">
@@ -176,14 +176,14 @@ html样式：
     <div class="left">left</div>
     <div class="right">right</div>
 </div>
-{% endhighlight %} 
+``` 
 
-{% highlight css %}
+```css
 /*加入一条新的属性*/
 .main-content {  
     margin: 0 230px 0 190px;
 }
-{% endhighlight %} 
+``` 
 
 效果如下：
 
@@ -202,15 +202,15 @@ html样式：
 
 ### 另一种实现方案  （absolute）(比较简单)
 
-{% highlight html %}
+```html
 <div class="container">
     <div class="main">main</div>
     <div class="left">left</div>
     <div class="right">right</div>
 </div>
-{% endhighlight %} 
+``` 
 
-{% highlight css %}
+```css
 .container{
     position: relative;
 }
@@ -235,7 +235,7 @@ html样式：
     right:0;
     top:0;
 }
-{% endhighlight %}
+```
 
 > 也可以加入等高布局的特性！ 
 

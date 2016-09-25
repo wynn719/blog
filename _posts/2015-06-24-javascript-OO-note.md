@@ -37,7 +37,7 @@ javascript本身不具有类的特征，那如何模拟类的特征呢？
 
 代码如下：
 
-{% highlight javascript %}
+```javascript
 function Person(){}
 
 // 定义要共享的方法
@@ -54,11 +54,11 @@ Person.prototype = {
         console.log(this.name);
     }
 }
-{% endhighlight %} 
+``` 
 
 但是原型模式也存在着一些问题：
 
-{% highlight javascript %}
+```javascript
 function Person(){}
 
 // 定义要共享的方法
@@ -85,11 +85,11 @@ console.log(p1.sayName === p2.sayName); // true
 p1.job = 'student';
 console.log(p1.job); // student
 console.log(p2.job); // undefined
-{% endhighlight %} 
+``` 
 
 这段代码是没有什么问题的，p1和p2已经分离开了，而且也共享着属性和方法，但是，如果Person的属性为对象或者数组呢？
 
-{% highlight javascript %}
+```javascript
 function Person(){}
 
 // 定义要共享的方法
@@ -106,14 +106,14 @@ console.log(p2.hobby); // ['basketball', 'running', 'code']
 p1.hobby.push('girl');
 console.log(p1.hobby); // ["basketball", "running", "code", "girl"]
 console.log(p2.hobby); // ["basketball", "running", "code", "girl"]
-{% endhighlight %} 
+``` 
 
 咦，p2.hobby并没有'girl'这个爱好啊，可是p1的爱好居然影响了它，这就是原型模式的问题了，原因很简单，p1和p2的`__proto__`都指向了Person的原型，导致在实例上的修改都改变Person的原型的方法
 
-{% highlight javascript %}
+```javascript
 console.log(p1.__proto__ === Person.prototype); // true
 console.log(p2.__proto__ === Person.prototype); // true
-{% endhighlight %} 
+``` 
 
 还有另一个问题，类的构造函数不是可以传递参数吗，定义在prototype上还怎么传参数呢？
 
@@ -123,7 +123,7 @@ console.log(p2.__proto__ === Person.prototype); // true
 
 为了解决上面的问题，将构造函数模式和原型模式做个组合就解决了问题：
 
-{% highlight javascript %}
+```javascript
 function Person(name) {
     this.name = name;
     this.hobby = ['basketball', 'running', 'code'];
@@ -140,7 +140,7 @@ var p1 = new Person('wynne');
 var p2 = new Person('king');
 
 console.log(p1.hobby === p2.hobby); // false
-{% endhighlight %} 
+``` 
 
 构造函数模式用来定义实例属性，原型模式用来定义定义共享的属性和方法，这下解决了这个问题！
 
@@ -169,11 +169,11 @@ class Person{
         this.age = age;
     }
 }
-{% endhighlight %} 
+``` 
 
 可以看到构造函数和方法都是在Person类中定义的，而javascript的构造函数和原型则分离开了，而动态原型模式就是解决这一问题的：
 
-{% highlight javascript %}
+```javascript
 function Person(name, age){
     this.name = name;
     this.age = age;
@@ -184,7 +184,7 @@ function Person(name, age){
         };
     }
 }
-{% endhighlight %} 
+``` 
 
 通过检测sayName函数是否存在，在去定义原型上的函数，使得函数得一统一
 
@@ -196,7 +196,7 @@ function Person(name, age){
 
 基本思想：创建一个函数Fn，Fn的作用仅仅是封装创建对象的代码，然后再返回新创建的对象
 
-{% highlight javascript %}
+```javascript
 function Person(name, age, job) {
     var o = new Object();
     o.name = name;
@@ -210,13 +210,13 @@ function Person(name, age, job) {
 
 var p = new Person('wynne',22,'student');
 p.sayName(); // 'wynne'
-{% endhighlight %} 
+``` 
 
 `return o`其实重写了使用`new`操作符隐式返回的`this`，因此重写了调用构造函数时返回的值
 
 一个很好的例子，拓展一个Array的自定义方法，产生一个特殊Array，而不会修改到原生Array
 
-{% highlight javascript %}
+```javascript
 function SpecialArray() {
     var arr = new Array();
     arr.push.apply(arr, arguments);
@@ -227,23 +227,23 @@ function SpecialArray() {
 }
 var arr = new SpecialArray('first', 'second', 'third');
 console.log(arr.toInterestString()); // first^_^second^_^third
-{% endhighlight %} 
+``` 
 
 可是存在着构造函数的问题：无法识别对象类型
 
-{% highlight javascript %}
+```javascript
 console.log(arr instanceof Array); // true
 console.log(arr.constructor); // Array
-{% endhighlight %} 
+``` 
 
 试图手动修改constructor的值也是徒劳的...
 
-{% highlight javascript %}
+```javascript
 SpecialArray.prototype.constructor = SpecialArray;
 var arr = new SpecialArray('first', 'second', 'third');
 console.log(arr instanceof Array); // true
 console.log(arr.constructor); // Array
-{% endhighlight %} 
+``` 
 
 ---
 
@@ -255,7 +255,7 @@ console.log(arr.constructor); // Array
 
 先明白什么是浅复制：
 
-{% highlight javascript %}
+```javascript
 function extend(p) {
     var o = {};
     for(var i in p) {
@@ -263,24 +263,24 @@ function extend(p) {
     }
     return o;
 }
-{% endhighlight %} 
+``` 
 
 这样虽然实现了简单的拷贝，但是，这样的拷贝只对基本类型有用，如果`p`中存在一个属性是数组或者对象，它可能是这样的：
 
-{% highlight javascript %}
+```javascript
 p.obj = {
     name : {
         firstName : 'Zheng',
         secondName : 'wynne'
     }
 }
-{% endhighlight %} 
+``` 
 
 此时`o`只是引用了`p.obj`的地址，而没有复制到里面的`firstName`的什么鬼……，所以此时要使用的就是深复制啦，而深复制也就是把数组与对象做一个递归复制而已~
 
 如下：
 
-{% highlight javascript %}
+```javascript
 function deepExtend(p, o) {
     var o = o || {};
     for (var i in p) {
@@ -293,7 +293,7 @@ function deepExtend(p, o) {
     }
     return o;
 }
-{% endhighlight %} 
+``` 
 
 而jquery中用的就是这种方法来实现继承的。
 
@@ -307,7 +307,7 @@ function deepExtend(p, o) {
 
 通过让子类的原型指向父类的创建的实例，实现子类共享父类的属性和方法
 
-{% highlight javascript %}
+```javascript
 function SuperType() {
     this.property = true;
 }
@@ -329,7 +329,7 @@ SubType.prototype.getSubValue = function() {
 
 var instance = new SubType();
 console.log(instance.getSuperValue()); // true
-{% endhighlight %} 
+``` 
 
 这样就实现了简单的继承了，但是这样的继承却存在着很大的问题：
 
@@ -338,7 +338,7 @@ console.log(instance.getSuperValue()); // true
 * 创建子类的实例时，不能向超类型的构造函数传递参数
 * 如果属性中包含一个引用类型，那么子类实例对数组的操作会影响到另一个子类实例，看下面例子：
 
-{% highlight javascript %}
+```javascript
 function SuperType() {
     this.colors = ['red', 'blue', 'green'];
 }
@@ -354,13 +354,13 @@ instance1.colors.push('black');
 var instance2 = new SubType();
 // 另一个子类被影响到了
 console.log(instance2.colors); // ['red', 'blue', 'green', 'black']
-{% endhighlight %} 
+``` 
 
 为什么会影响到父类呢？因为子类的原型指向了父类的原型的引用，因此子类原型实际上是父类的实例，引用类型实际上只是把地址给了实例，实例之间就会共享所有的引用类型
 
 #### 借用构造函数
 
-{% highlight javascript %}
+```javascript
 function SuperType(name) {
     this.name = name;
     this.colors = ['red', 'blue', 'green'];
@@ -378,7 +378,7 @@ console.log(sub1.colors); // ['red', 'blue', 'green', 'black']
 
 var sub2 = new SubType();
 console.log(sub2.colors); // ['red', 'blue', 'green']
-{% endhighlight %} 
+``` 
 
 借用构造函数虽然解决了原型链继承的实例共享和参数传递的问题，但是却出现了新的问题：
 
@@ -389,7 +389,7 @@ console.log(sub2.colors); // ['red', 'blue', 'green']
 
 那么把原型继承和借用构造函数组合一下各取所长，就有了新的继承方式啦：
 
-{% highlight javascript %}
+```javascript
 function SuperType(name){
     this.name = name;
     this.colors = ["red", "blue", "green"];
@@ -421,13 +421,13 @@ var instance2 = new SubType("Greg", 27);
 alert(instance2.colors);  //"red,blue,green"
 instance2.sayName();      //"Greg";
 instance2.sayAge();       //27
-{% endhighlight %} 
+``` 
 
 可是又特么有问题啦！
 
-{% highlight javascript %}
+```javascript
 console.log(instance1.constructor); // SuperType
-{% endhighlight %} 
+``` 
 
 `instance1`的`constructor`属性应该是指向创建它的构造函数的，但这里却指向了`SuperType`
 
@@ -435,7 +435,7 @@ console.log(instance1.constructor); // SuperType
 
 道格拉斯.克罗克福德实现的继承方法，不适用构造函数，而是借助原型可以基于已有的对象创建对象，同时还不必因此创建自定义类型。
 
-{% highlight javascript %}
+```javascript
 function object(o) {
     function F(){}; // 创建临时构造函数
     F.prototype = o; // 将传入的对象作为临时函数的原型
@@ -455,7 +455,7 @@ yetAnotherPerson.name = "Linda";
 yetAnotherPerson.friends.push("Barbie");
 
 alert(person.friends);   //"Shelby,Court,Van,Rob,Barbie"
-{% endhighlight %} 
+``` 
 
 本质上是执行了一次浅复制，因此`anotherPerson`和`yetAnotherPerson`都共享了`person`的方法（其实我不知道这种继承的意义是啥……）
 
@@ -465,7 +465,7 @@ ECMAScript中实现了该方法Object.create()，<a href="https://developer.mozi
 
 与原型式继承类似，增强对象，返回新的对象：
 
-{% highlight javascript %}
+```javascript
 function createAnother(original) {
     var clone = object(original);
     clone.sayHi = function(){
@@ -479,7 +479,7 @@ var person = {
 };
 var anotherPerson = createAnother(person);
 anotherPerson.sayHi(); // hi
-{% endhighlight %} 
+``` 
 
 与构造函数模式相似，使用寄生式继承不能做到函数复用
 
@@ -490,7 +490,7 @@ anotherPerson.sayHi(); // hi
 
 寄生式组合继承就解决了这两个问题，并结合其他继承的特性：
 
-{% highlight javascript %}
+```javascript
 function object(o){
     function F(){};
     F.prototype = o;
@@ -524,7 +524,7 @@ inheritPrototype(SubType, SuperType);
 SubType.prototype.sayName = function() {
     console.log(this.age);
 }
-{% endhighlight %} 
+``` 
 
 一切问题都解决了，这就是最理想的继承了，当然，为了避免把变量暴露在全局环境下，最好对寄生式组合继承做一个封装！
 

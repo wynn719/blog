@@ -26,9 +26,9 @@ CSS1-CCS3提供了非常多的选择器，总体可以分为**4大类**和17种�
 
 **群组选择器用于分组合并多个处理的结构**
 
-{% highlight html %}
+```html
 selector1, selector2, selectorN
-{% endhighlight %}
+```
 
 **简单选择器：基本都有内置的原生API支持，但是存在兼容问题**
 
@@ -36,9 +36,9 @@ selector1, selector2, selectorN
 
 IE7及以下该方法不区分 ID 和 name 属性，也就是说如果存在类似这样的结构
 
-{% highlight html %}
+```html
 <label for="username">用户名</label><input type="password" id="username">
-{% endhighlight %}
+```
 
 该方法会返回 label 元素，而不是 input 元素，因此选择器引擎会处理该兼容性，通过判断元素的id属性是否与选择器相同来查找元素
 

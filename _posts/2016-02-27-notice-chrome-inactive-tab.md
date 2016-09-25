@@ -21,7 +21,7 @@ excerpt: 做原生js轮播时，chrome浏览器切换页面或者缩小后，轮
 
 说了这么多，解决方法很简单，只要监听这个事件 `visibilitychange` ：
 
-{% highlight javascript %}
+```javascript
 // fix chrome下的bug，定时器切换选项卡时被挂起
 document.addEventListener('visibilitychange', function() {
     if (document.visibilityState == 'visible') {
@@ -30,7 +30,7 @@ document.addEventListener('visibilitychange', function() {
         clearInterval(timer); // 挂起时清除定时器
     }
 });
-{% endhighlight %}
+```
 
 问题就解决了~
 

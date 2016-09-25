@@ -23,31 +23,31 @@ excerpt: jQuery学习笔记
 
 ### 选择元素
 
-{% highlight html %}
+```html
 <div id="div1"></div>
 <div class="div1"></div>
 <div></div>
-{% endhighlight %}
+```
 
-{% highlight javascript %}
+```javascript
 $('#div1').css('background', 'red');// 选择id为div1的标签
 $('.div1').css('background', 'red');// 选择所有class为div1的标签
 $('div').css('background', 'red');// 选择所有div标签
-{% endhighlight %}
+```
 
 ### 独有表达式选择方式
 
-{% highlight javascript %}
+```javascript
 $('li:even').css('background', 'red');// 选择单数行
 $('li:odd').css('background', 'red');// 选择偶数行
 $('li:first').css('background', 'red');// 选择第一个元素
 $('li').filter('.box').css('background', 'red');// 筛选class为box的元素
 $('li').filter('[title=box]').css('background', 'red');// 筛选标签title属性为box的元素
-{% endhighlight %}
+```
 
 ## JQ设计思想之写法 （方法函数化）
  
-{% highlight javascript %}
+```javascript
 // 原生
 window.onload = function(){};
 onclick = function(){};
@@ -56,7 +56,7 @@ onclick = function(){};
 $(function(){});
 click(function(){});
 $('div1').children().css('background','red');
-{% endhighlight %}
+```
 
 ## JQ设计思想之原生关系和链式操作
 
@@ -64,7 +64,7 @@ $('div1').children().css('background','red');
 
 jQuery可以和原生javascript混合写，但不能混用
 
-{% highlight javascript %}
+```javascript
 $(function(){
     $('#div1').click(function(){
         alert( $(this).html() ); // jq
@@ -75,13 +75,13 @@ $(function(){
         // alert( this.html() );
     })
 })
-{% endhighlight %}
+```
 
 ### 链式操作
 
 #### 混合写法：
 
-{% highlight javascript %}
+```javascript
 $(function(){
     var oDiv = $('#div1');
     oDiv.html('hello');
@@ -90,38 +90,38 @@ $(function(){
         alert( 123 );
     })
 })
-{% endhighlight %}
+```
 
 #### 链式操作的写法：
 
-{% highlight javascript %}
+```javascript
 $('#div1').html('hello').css('background', 'red').click(function(){
     alert(123); 
 });
-{% endhighlight %}
+```
 
 ## JQ设计思想之取值，赋值
 
 jq中函数的参数经常决定了函数的方式是取值，还是赋值
 
-{% highlight javascript %}
+```javascript
 $('li').html('hello'); // 赋值（可以同时赋值全部）
 alert($('li').html('hello')); // 取值（只能取第一个值）
-{% endhighlight %} 
+``` 
 
 ### attr() 取得标签属性和设置标签属性
 
-{% highlight javascript %}
+```javascript
 $('#oDiv').attr('title','hello'); // 赋值（可以同时赋值全部）
 alert($('#oDiv').attr('title')); // 取值（只能取第一个值）
-{% endhighlight %} 
+``` 
 
 ### not()和filter()
 
 * filter()过滤器
 * not()与filter的反义词
 
-{% highlight html %}
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -142,29 +142,29 @@ alert($('#oDiv').attr('title')); // 取值（只能取第一个值）
     </script>
 </body>
 </html>
-{% endhighlight %} 
+``` 
 
 ### has()包含的元素
 
-{% highlight javascript %}
+```javascript
 $(function() {
     // 选中div中的span
     $('div').has('span').css('background','red');
 });
-{% endhighlight %}
+```
 
 ### prev()和next() 上下兄弟节点
 
-{% highlight javascript %}
+```javascript
 $(function() {
     // 选中.box的下一兄弟节点div
     $('.box').next('div').css('background','red');
 });
-{% endhighlight %}
+```
 
 ### find() 查找方法
 
-{% highlight html %}
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -188,40 +188,40 @@ $(function() {
     </script>
 </body>
 </html>
-{% endhighlight %}
+```
 
 ### eq() 下标
 
-{% highlight javascript %}
+```javascript
 $(function() {
     // 选中第3个h3
     $('h3:eq(2)').css('background','red');
 })
-{% endhighlight %}
+```
 
 ### index() 返回索引
 
-{% highlight javascript %}
+```javascript
 $(function() {
     // 选中第3个h3
     $('h3:eq(2)').index();
 })
-{% endhighlight %}
+```
 
 ## JQ $().常用方法
 
 ### addClass()，removeClass()
 
-{% highlight javascript %}
+```javascript
 $(function() {
     $('oDiv').addClass('box1 box2');// 用空格做区分,重复的不会添加
     $('oDiv').removeClass('box1');
 })
-{% endhighlight %}
+```
 
 ### width(),innerWidth(),outerWidth()
 
-{% highlight html %}
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -246,11 +246,11 @@ $(function() {
     </script>
 </body>
 </html>
-{% endhighlight %}
+```
 
 ### DOM操作
 
-{% highlight html %}
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -280,7 +280,7 @@ $(function() {
     </script>
 </body>
 </html>
-{% endhighlight %}
+```
 
 注：insertBefore与before的区别，操作的元素不同，其他方法同理
 
@@ -288,7 +288,7 @@ $(function() {
 
 #### on(), off()
 
-{% highlight javascript %}
+```javascript
 // 普通事件写法
 $('div').click(function(){
     alert(123);
@@ -324,28 +324,28 @@ $('div').on('click mouseover',function(){
     alert(123);
     $('div').off('mouseover');
 });
-{% endhighlight %}
+```
 
 #### scrollTop() 滚动距离
 
-{% highlight javascript %}
+```javascript
 $(function(){
     $(document).click(function(){
         alert($(window).scrollTop());// 滚动距离
     });
 })
-{% endhighlight %}
+```
 
 #### 创建元素
 
 $('<div>') 用<>创建元素
 
-{% highlight javascript %}
+```javascript
 $(function(){
     var oDiv = $('<div>');
     $('body').append( oDiv );
 })
-{% endhighlight %}
+```
 
 ### 事件细节
 
@@ -361,7 +361,7 @@ $(function(){
 
 #### offset（相对于原生的offsetLeft等）
 
-{% highlight html %}
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -385,7 +385,7 @@ $(function(){
     </script>
 </body>
 </html>
-{% endhighlight %}
+```
 
 #### parent() 和 offsetParent()
 
@@ -401,7 +401,7 @@ $(function(){
 
 * each() 相当于循环
 
-{% highlight javascript %}
+```javascript
 $(function(){
     // @i 下标
     // @elem 每个元素
@@ -409,11 +409,11 @@ $(function(){
         $(elem).html(i);
     })
 })
-{% endhighlight %}
+```
 
 ### hover和简单动画
 
-{% highlight html %}
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -452,7 +452,7 @@ $(function(){
     </script>
 </body>
 </html>
-{% endhighlight %}
+```
 
 ## jQuery高级
 
@@ -460,7 +460,7 @@ $(function(){
 
 #### get() 把jQuery转成原生JS
 
-{% highlight html %}
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -495,7 +495,7 @@ $(function(){
     </script>
 </body>
 </html>
-{% endhighlight %}
+```
 
 #### outerWidth()拓展
 
@@ -510,7 +510,7 @@ $(function(){
 
 #### remove() : detach()
 
-{% highlight javascript %}
+```javascript
 $(function(){
     $('div').click(function(){
         alert(123);
@@ -519,9 +519,9 @@ $(function(){
     var oDiv = $('div').remove();
     $('body').append(oDiv);// 元素还在，但事件全部取消了
 });
-{% endhighlight %}
+```
 
-{% highlight javascript %}
+```javascript
 $(function(){
     $('div').click(function(){
         alert(123);
@@ -530,11 +530,11 @@ $(function(){
     var oDiv = $('div').detach();
     $('body').append(oDiv);// 元素还在，事件也在
 });
-{% endhighlight %}
+```
 
 #### 关于$符号
 
-{% highlight javascript %}
+```javascript
 // 简写，等DOM加载完，性能更好
 $(function(){
     // ...
@@ -547,7 +547,7 @@ $(document).ready(function(){
 // 等window加载完
 window.onload = function(){};
 // 对应的： DOMContentLoaded
-{% endhighlight %}
+```
 
 ### DOM操作拓展
 
@@ -571,7 +571,7 @@ window.onload = function(){};
 
 #### add()
 
-{% highlight html %}
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -593,11 +593,11 @@ window.onload = function(){};
     </script>
 </body>
 </html>
-{% endhighlight %}
+```
 
 #### serialize()和serializeArray()
 
-{% highlight html %}
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -624,7 +624,7 @@ window.onload = function(){};
     </script>
 </body>
 </html>
-{% endhighlight %}
+```
 
 ### jQuery中的运动
 
@@ -638,7 +638,7 @@ $(selector).animate({params},speed,style,callback);
 * 可选的 style 参数规定动画形式。它可以取以下值："linear"、"swing" 
 * 可选的 callback 参数是动画完成后所执行的函数名称。
 
-{% highlight html %}
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -673,7 +673,7 @@ $(selector).animate({params},speed,style,callback);
     </script>
 </body>
 </html>
-{% endhighlight %}
+```
 
 #### stop(),finish()
 
@@ -682,7 +682,7 @@ $(selector).stop(stopAll,goToEnd);
 * 可选的 stopAll 参数规定是否应该清除动画队列。默认是 false，即仅停止活动的动画，允许任何排入队列的动画向后执行。
 * 可选的 goToEnd 参数规定是否立即完成当前动画。默认是 false。
 
-{% highlight javascript %}
+```javascript
 $(function(){
         $('#div1').click(function(){
             $('#div1').animate({width : '500px',height : '500px'}, 1000, 'linear', function(){
@@ -694,7 +694,7 @@ $(function(){
             $('div1').stop();
         });
     })
-{% endhighlight %}
+```
 
 $(selector).finish() 立即结束所有动画
 
@@ -702,13 +702,13 @@ $(selector).finish() 立即结束所有动画
 
 delay(1000) 延迟一秒
 
-{% highlight javascript %}
+```javascript
 $(function(){
     $('#div1').click(function(){
         $('#div1').animate({width : '500px'}, 1000).delay(1000).animate({height : '500px'}, 1000);
     });
 });
-{% endhighlight %}
+```
 
 ### jQuery事件委托
 
@@ -717,7 +717,7 @@ $(function(){
 * delegate() 绑定事件委托
 * undelegate() 解除事件委托
 
-{% highlight html %}
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -744,11 +744,11 @@ $(function(){
     </script>
 </body>
 </html>
-{% endhighlight %}
+```
 
 #### 主动触发
 
-{% highlight html %}
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -777,11 +777,11 @@ $(function(){
 </html>
 </body>
 </html>
-{% endhighlight %}
+```
 
 #### 事件细节
 
-{% highlight javascript %}
+```javascript
 $(function(){
     $('#div1').on('click', {name: 'hello'}, function(ev){
         // alert(ev.data.name); // 找出json数据
@@ -789,7 +789,7 @@ $(function(){
         // alert(ev.type); // 找出事件类型
     });
 });
-{% endhighlight %}
+```
 
 ### jQuery工具方法： $下的方法（不是$(()）
 
@@ -806,7 +806,7 @@ $ === jQuery
 * $.makeArray 转换为数组
 * $.isPlainObject( object ) 测试对象是否是纯粹的对象（通过 "{}" 或者 "new Object" 创建的）
 
-{% highlight html %}
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -833,11 +833,11 @@ $ === jQuery
     </script>
 </body>
 </html>
-{% endhighlight %}
+```
 
 #### $.proxy
 
-{% highlight html %}
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -868,11 +868,11 @@ $ === jQuery
     </script>
 </body>
 </html>
-{% endhighlight %}
+```
 
 #### $.noConflict
 
-{% highlight javascript %}
+```javascript
 var hehe = $.noConflict();
 
 hehe(function(){
@@ -880,16 +880,16 @@ hehe(function(){
         alert(123);
     });
 });
-{% endhighlight %}
+```
 
 #### $.makeArray
 
-{% highlight javascript %}
+```javascript
 window.onload = function(){
     var aDiv = document.getElementsByTagName('div'); // 类数组
     $.makeArray(aDiv).push();
 }
-{% endhighlight %}
+```
 
 ### jQuery Ajax使用
 
@@ -904,7 +904,7 @@ window.onload = function(){
 
 简单的拓展工具：
 
-{% highlight html %}
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -926,13 +926,13 @@ window.onload = function(){
     </script>
 </body>
 </html>
-{% endhighlight %}
+```
 
 #### 拓展对象插件  $.fn.extend
 
 简单的拓展对象插件：
 
-{% highlight html %}
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -980,7 +980,7 @@ window.onload = function(){
     </script>
 </body>
 </html>
-{% endhighlight %}
+```
 
 ### jQuery插件深入
 
@@ -990,15 +990,15 @@ window.onload = function(){
 
 本质上，jQuery插件是定义在jQuery构造函数的prototype对象上面的一个方法，这样做就能使得所有jQuery对象的实例都能共享这个方法。**因为jQuery构造函数的prototype对象被简写成jQuery.fn对象**，所以插件采用下面的方法定义。
 
-{% highlight javascript %}
+```javascript
 jQuery.fn.myPlugin = function() {
     // Do your awesome plugin stuff here
 };
-{% endhighlight %} 
+``` 
 
 为了使用美元符号$，改写成这样：
 
-{% highlight javascript %}
+```javascript
 /*分号是为了防止多个脚本文件合并时，
 其他脚本的结尾语句没有添加分好，
 造成的运行时错误*/
@@ -1007,21 +1007,21 @@ jQuery.fn.myPlugin = function() {
         // Do your awesome plugin stuff here
     };
 })(jQuery);
-{% endhighlight %} 
+``` 
 
 还可以把顶层对象（window）作为参数输入，这样可以加快代码的执行速度和执行更有效的最小化操作:
 
-{% highlight javascript %}
+```javascript
 ;(function ($, window) {
     $.fn.myPlugin = function() {
         // Do your awesome plugin stuff here
     };
 }(jQuery, window));
-{% endhighlight %} 
+``` 
 
 **注意**：在插件内部，this关键字指的是jQuery对象的实例。而在一般的jQuery回调函数之中，this关键字指的是DOM对象
 
-{% highlight html %}
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1063,11 +1063,11 @@ jQuery.fn.myPlugin = function() {
     <div class="box3"></div>
 </body>
 </html>
-{% endhighlight %} 
+``` 
 
 大多数情况下，插件**应该返回jQuery对象**，这样可以**保持链式操作**。
 
-{% highlight javascript %}
+```javascript
 (function ($){
     $.fn.greenify = function (){
         this.css("color", "green");
@@ -1077,23 +1077,23 @@ jQuery.fn.myPlugin = function() {
 
 // 进行链式操作
 $("a").greenify().addClass("greenified");
-{% endhighlight %} 
+``` 
 
 对于包含多个jQuery对象的结果集，可以采用each方法，进行处理：
 
-{% highlight javascript %}
+```javascript
 $.fn.myNewPlugin = function() {
     return this.each(function() {
         // 处理每个对象
     });
 };
-{% endhighlight %} 
+``` 
 
 插件可以接受一个属性对象参数：
 
 <a href="http://jquery.bootcss.com/jQuery.extend/" rel="nofollow">jQuery.extend()的官方解释</a>
 
-{% highlight javascript %}
+```javascript
 (function ($){
     // option 为用户定义的参数
     $.fn.tooltip = function (options){
@@ -1109,25 +1109,25 @@ $.fn.myNewPlugin = function() {
         });
     };
 })(jQuery);
-{% endhighlight %} 
+``` 
 
 #### 侦测环境（不是很明白=  =）
 
 jQuery逐渐从浏览器环境，变为也可以用于服务器环境。所以，定义插件的时候，最好首先侦测一下运行环境。
 
-{% highlight javascript %}
+```javascript
 if (typeof module === "object" && typeof module.exports === "object") {
   // CommonJS版本
 } else {
   // 浏览器版本
 }
-{% endhighlight %} 
+``` 
 
 #### 实例
 
 将a元素的href属性添加到网页的插件：
 
-{% highlight javascript %}
+```javascript
 (function($){
     $.fn.showLinkLocation = function() {
         return this.filter('a').append(function(){
@@ -1138,13 +1138,13 @@ if (typeof module === "object" && typeof module.exports === "object") {
 
 // 用法
 $('a').showLinkLocation();
-{% endhighlight %} 
+``` 
 
 #### 插件的发布
 
 首先，编写一个插件的信息文件yourPluginName.jquery.json。文件名中的yourPluginName表示你的插件名。
 
-{% highlight javascript %}
+```javascript
 {
   "name": "plugin_name",
   "title": "plugin_long_title",
@@ -1175,15 +1175,15 @@ $('a').showLinkLocation();
     "jquery": ">=1.4"
   }
 }
-{% endhighlight %} 
+``` 
 
 然后，将代码文件发布到Github，在设置页面点击“Service Hooks/WebHook URLs”选项，填入网址http://plugins.jquery.com/postreceive-hook，再点击“Update Settings”进行保存。
 
 最后，为代码加上版本，push到github，你的插件就会加入jQuery官方插件库。
 
-{% highlight javascript %}
+```javascript
 git tag 0.1.0
 git push origin --tags
-{% endhighlight %} 
+``` 
 
 以后，你要发布新版本，就做一个新的tag。
