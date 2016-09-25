@@ -152,7 +152,7 @@ console.log(p1.hobby === p2.hobby); // false
 
 组合使用构造函数和原型，使得与其他语言存在不同的地方，构造函数和原型独立了。如果是java代码，它定义是这样的：
 
-{% highlight java %}
+```java
 class Person{
     private String name;
     private int age;
