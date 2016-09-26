@@ -9,7 +9,9 @@ post_img: /blog/public/imgs/posts/
 
 # markdown: rdiscount
 permalink: /:year/:month/:day/:title
-pygment: true
+markdown: kramdown
+kramdown:
+  input: GFM                            # use Github Flavored Markdown !important
 
 # server options
 port: 8888

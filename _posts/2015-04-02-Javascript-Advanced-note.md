@@ -18,7 +18,7 @@ excerpt: 学习妙味课堂js高级课程的一些笔记
 
 ### 匀速运动封装
 
-{% highlight html %}
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -101,7 +101,7 @@ excerpt: 学习妙味课堂js高级课程的一些笔记
     <div id="div"></div>
 </body>
 </html>
-{% endhighlight %}
+```
 
 ### 摩擦运动封装
 
@@ -109,7 +109,7 @@ excerpt: 学习妙味课堂js高级课程的一些笔记
 
 bug：因为速度不一定，所以减少时难以控制目标值
 
-{% highlight javascript %}
+```javascript
 obj.iTimer = setInterval(function(){
     var bBtn = true;// 控制运动状态是否完结
 
@@ -123,13 +123,13 @@ obj.iTimer = setInterval(function(){
         // ... 同匀速运动
     }
 }, 30);
-{% endhighlight %}
+```
 
 ### 缓冲运动封装
 
 原理：在匀速运动的原理上，使每次运动的速度为 (iTarget - iCur)/num 的值，即速度逐渐减少，最后归零
 
-{% highlight html %}
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -216,7 +216,7 @@ obj.iTimer = setInterval(function(){
     <div id="div"></div>
 </body>
 </html>
-{% endhighlight %}
+```
 
 ### 图片预加载原理
 
@@ -227,7 +227,7 @@ obj.iTimer = setInterval(function(){
 * 预判加载——自动加载下一张图片
 * 延迟加载——加载可视区图片，其他图片等进入可视区再加载
 
-{% highlight html %}
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -264,11 +264,11 @@ obj.iTimer = setInterval(function(){
     </script>
 </body>
 </html>
-{% endhighlight %}
+```
 
 实例应用：
 
-{% highlight html %}
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -313,11 +313,11 @@ obj.iTimer = setInterval(function(){
     </script>
 </body>
 </html>
-{% endhighlight %}
+```
 
 图片按需加载：
 
-{% highlight html %}
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -415,7 +415,7 @@ obj.iTimer = setInterval(function(){
     </script>
 </body>
 </html>
-{% endhighlight %}
+```
 
 ### 弹性运动原理
 
@@ -424,7 +424,7 @@ obj.iTimer = setInterval(function(){
 
 #### 普通弹性运动
 
-{% highlight html %}
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -473,12 +473,12 @@ obj.iTimer = setInterval(function(){
     </script>
 </body>
 </html>
-{% endhighlight %}
+```
 
 
 #### 弹性运动带摩擦
 
-{% highlight html %}
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -539,11 +539,11 @@ obj.iTimer = setInterval(function(){
     </script>
 </body>
 </html>
-{% endhighlight %}
+```
 
 ### 弹性过界
 
-{% highlight html %}
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -597,11 +597,11 @@ obj.iTimer = setInterval(function(){
     </script>
 </body>
 </html>
-{% endhighlight %}
+```
 
 #### 完整弹性框架
 
-{% highlight javascript %}
+```javascript
 function css(obj, attr){
     return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj, false)[attr];
 }
@@ -674,7 +674,7 @@ function startMove (obj, json, fn) {
         }
     }, 30); 
 }
-{% endhighlight %}
+```
 
 
 
@@ -685,7 +685,7 @@ function startMove (obj, json, fn) {
 
 ### 工厂模式（存在缺点）
 
-{% highlight javascript %}
+```javascript
 function createPerson(name, sex, job) {
     // 1.原料
     var obj = new Object();
@@ -724,7 +724,7 @@ window.onload = function() {
     // 则有多个相同的方法占据空间，过于浪费空间
     alert(p1.sayName() == p2.sayName());// false
 }
-{% endhighlight %} 
+``` 
 
 缺点：
 
@@ -734,7 +734,7 @@ window.onload = function() {
 
 ### 构造函数模式（也有缺点）
 
-{% highlight javascript %}
+```javascript
 function Person(name, sex, job) {
     this.name = name;
     this.sex = sex;
@@ -771,7 +771,7 @@ window.onload = function() {
     // 依旧没有解决方法不在同一个对象下面的问题
     alert(p1.sayName == p2.sayName);// false
 }
-{% endhighlight %} 
+``` 
 
 缺点：
 
@@ -782,7 +782,7 @@ window.onload = function() {
 
 原型：prototype 每个函数都有一个原型属性，这个属性是一个指针，指向一个对象，而这个对象的用途是包含可以由特定类型的所有实例共享的属性和方法
 
-{% highlight javascript %}
+```javascript
 function Person(name, sex, job) {
     this.name = name;
     this.sex = sex;
@@ -814,13 +814,13 @@ window.onload = function() {
     // 方法为同一个对象下的资源
     alert(p1.sayName == p2.sayName); // true
 }
-{% endhighlight %} 
+``` 
 
 ### 实例：面向对象的选项卡
 
 面向过程的选项卡：
 
-{% highlight html %}
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -863,11 +863,11 @@ window.onload = function() {
     </div>
 </body>
 </html>
-{% endhighlight %} 
+``` 
 
 面向对象的选项卡：**注意 this 的指向问题**
 
-{% highlight javascript %}
+```javascript
 /*改写：
     1.前提：所有东西都在onload里
     2.改写：不能有函数嵌套，但可以有全局变量
@@ -913,11 +913,11 @@ TabSwitch.prototype.tab = function(oBtn) {
     oBtn.className = 'active';
     this.aDiv[oBtn.index].style.display = 'block';
 };
-{% endhighlight %} 
+``` 
 
 ### json中的面向对象
 
-{% highlight javascript %}
+```javascript
 // json 本身也是一个对象，因此也可以自由定义方法
 var wayne = {};
 
@@ -953,13 +953,13 @@ miaov.fx = {
 }
 
 // 在公司中把相同的东西包在同一个包中
-{% endhighlight %}  
+```  
 
 ### 实例：面向对象的拖拽动画的实现
 
 面向过程的拖拽：
 
-{% highlight html %}
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -999,11 +999,11 @@ miaov.fx = {
     </script>
 </body>
 </html>
-{% endhighlight %} 
+``` 
 
 面向对象的拖拽：
 
-{% highlight javascript %}
+```javascript
 function Drag(id) {
     var _this = this;
     console.log(this);// this指向 Drag 
@@ -1053,11 +1053,11 @@ Drag.prototype.fnUp = function(ev) {
 window.onload = function(){
     var oDiv = new Drag('div');
 }
-{% endhighlight %}
+```
 
 ### 继承
 
-{% highlight javascript %}
+```javascript
 // Person类
 function Person (name, sex) {
     this.name = name;
@@ -1101,13 +1101,13 @@ oW1.showJob();
 
 var oP1 = new Person('leo','男'); 
 alert(oP1.showJob);// undefined
-{% endhighlight %} 
+``` 
 
 ### 实例：拖拽对象的继承应用
 
 父类：Drag.js
 
-{% highlight javascript %}
+```javascript
 function Drag(id) {
     var _this = this;
     console.log(this); // this指向 Drag 
@@ -1153,11 +1153,11 @@ Drag.prototype.fnUp = function(ev) {
     document.onmousemove = null;
     document.onmoseup = null;
 }
-{% endhighlight %} 
+``` 
 
 子类：LimitDrag.js
 
-{% highlight javascript %}
+```javascript
 function LimitDrag(id) {
     Drag.call(this, id);
 }
@@ -1186,11 +1186,11 @@ LimitDrag.prototype.fnMove = function(ev) {
     this.oDiv.style.left = l + 'px';
     this.oDiv.style.top = t + 'px';
 }
-{% endhighlight %} 
+``` 
 
 应用：
 
-{% highlight html %}
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1214,7 +1214,7 @@ LimitDrag.prototype.fnMove = function(ev) {
     </script>
 </body>
 </html>
-{% endhighlight %} 
+``` 
 
 ### 系统对象
 

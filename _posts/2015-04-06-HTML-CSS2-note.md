@@ -93,7 +93,7 @@ excerpt: 主要记录网站开发中，html和css里一些比较容易忽视的�
 
 方案一：使用vertical-align属性（多了没用的标签，个人不太推荐使用）
 
-{% highlight html %}
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -111,11 +111,11 @@ img{ vertical-align:middle;}
     </div>
 </body>
 </html>
-{% endhighlight %}
+```
 
 方案二：使用表格布局默认居中的特性
 
-{% highlight html %}
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -133,5 +133,5 @@ img{ *position:relative; vertical-align:top;left:-50%;top:-50%;}
 </div>
 </body>
 </html>
-{% endhighlight %} 
+``` 
 

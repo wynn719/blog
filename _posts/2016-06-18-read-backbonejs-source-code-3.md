@@ -16,7 +16,7 @@ excerpt: ""
 
 Backbone.js最吸引人的基本上就是事件对订阅-发布模式（pub/sub）的使用了，一个典型的Backbone例子如下：
 
-{% highlight javascript %}
+```javascript
 // 新建一个model
 var Person = Backbone.Model.extend({
     ...
@@ -31,7 +31,7 @@ person.trigger('callme'); // 此时会弹出'wayne'的信息
 // 解除事件绑定（取消订阅）
 person.off('callme');
 person.trigger('callme'); // 什么都不执行
-{% endhighlight %}
+```
 
 有了这个模式，我们就可以做到一些比较节省工作的事情，一个典型的应用场景——在线笔记：
 
@@ -40,7 +40,7 @@ person.trigger('callme'); // 什么都不执行
 
 使用jQuery的大致实现过程如下：
 
-{% highlight javascript %}
+```javascript
 $('#save-btn').click(function() {
     // 保存笔记
     $.ajax(function() {
@@ -49,7 +49,7 @@ $('#save-btn').click(function() {
         }
     }); 
 };);
-{% endhighlight %}
+```
 
 看着似乎没什么问题，但是**如果需求改变了**，比如变成这样：
 
@@ -58,7 +58,7 @@ $('#save-btn').click(function() {
 
 这个时候代码会变成这样：
 
-{% highlight javascript %}
+```javascript
 $('#save-btn').click(function() {
     // 保存笔记
     $.ajax(function() {
@@ -72,7 +72,7 @@ $('#save-btn').click(function() {
         }
     }); 
 };);
-{% endhighlight %}
+```
 
 此时，各模块的代码严重耦合在了一起，写这段代码的人同时需要了解其他模块有什么函数，其他模块的编写者也不能随意更改自己的模块接口。
 
@@ -80,17 +80,17 @@ $('#save-btn').click(function() {
 
 各模块订阅noteModel的save-note事件，并写好callback
 
-{% highlight javascript %}
+```javascript
 dataView.listenTo(noteModel, 'save-note', dataView.changeCount);
 noteView.listenTo(noteModel, 'save-note', noteView.refresh);
 local.listenTo(noteModel, 'save-note', local.syncNote);
 server.listenTo(noteModel, 'save-note', server.syncNote);
 share.listenTo(noteModel, 'save-note', share.toMyTeam);
-{% endhighlight %}
+```
 
 在Note View中点击保存时，noteModel发布save-note事件
 
-{% highlight javascript %}
+```javascript
 $('#save-btn').click(function() 
     // 保存笔记
     $.ajax(function() {
@@ -99,7 +99,7 @@ $('#save-btn').click(function()
         }
     })
 })
-{% endhighlight %}
+```
 
 如上所示，编写保存模块的人不需要再去了解其他模块的内容，只需要在保存成功后发布通知，其他模块的人也不需要担心模块变更影响到别人的问题，只需要专注于自己的模块编写。这样减少了代码的耦合性。
 
@@ -114,7 +114,7 @@ $('#save-btn').click(function()
 
 代码如下：
 
-{% highlight javascript %}
+```javascript
 Backbone.Events = {
     // 绑定事件到ev上，通过callback进行回调
     // ev等于'all'时，所有事件触发都会激活callback回调
@@ -187,7 +187,7 @@ Backbone.Events = {
 };
 
 _.extend(Backbone.Model.prototype, Backbone.Events, {});
-{% endhighlight %}
+```
 
 到Backbone.js 0.9.0之前做的都是一些小的语意重构或者bug修正，并没有什么太大的变化，Backbone.js 0.9.0对Event做了优化
 
@@ -196,7 +196,7 @@ _.extend(Backbone.Model.prototype, Backbone.Events, {});
 
 代码如下：
 
-{% highlight javascript %}
+```javascript
 Backbone.Events = {
     // 语意重构，将bind改为on，unbind改为off
     on: function(events, callback, context) {
@@ -306,4 +306,4 @@ Backbone.Events = {
         return this;
     }
 };
-{% endhighlight %}
+```

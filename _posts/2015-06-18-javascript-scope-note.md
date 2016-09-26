@@ -45,13 +45,13 @@ javascript中作用域的实现方式与C/C++不同，不是使用“堆栈”�
 
 解析这个例子：
 
-{% highlight javascript %}
+```javascript
 var func = function(lps, rps){
   var name = 'laruence';
   ........
 }
 func();
-{% endhighlight %} 
+``` 
 
 它的解析过程是这样的：
 
@@ -70,7 +70,7 @@ func();
 
 下一个例子：
 
-{% highlight javascript %}
+```javascript
 var name = 'laruence';
 function echo() {
   alert(name);
@@ -82,13 +82,13 @@ function env() {
 }
  
 env();
-{% endhighlight %} 
+``` 
 
 运行结果：
 
-{% highlight javascript %}
+```javascript
 laruence
-{% endhighlight %} 
+``` 
 
 解析过程是这样的：
 
@@ -114,7 +114,7 @@ laruence
 
 第三个例子：
 
-{% highlight javascript %}
+```javascript
 function factory() {
   var name = 'laruence';
   var intro = function(){
@@ -130,19 +130,19 @@ function app(para){
 }
  
 app('eve');
-{% endhighlight %} 
+``` 
 
 结果为：
 
-{% highlight javascript %}
+```javascript
 I am laruence
-{% endhighlight %} 
+``` 
 
 在刚进入app函数体时, app的活动对象有一个arguments属性, 俩个值为undefined的属性: name和func. 和一个值为'eve'的属性para;
 
 此时的scope chain如下:
 
-{% highlight javascript %}
+```javascript
 [[scope chain]] = [
 {
      para : 'eve',
@@ -153,11 +153,11 @@ I am laruence
      window call object
 }
 ]
-{% endhighlight %}  
+```  
 
 当调用进入factory的函数体的时候, 此时的factory的scope chain为:
 
-{% highlight javascript %}
+```javascript
 [[scope chain]] = [
 {
      name : undefined,
@@ -166,13 +166,13 @@ I am laruence
      window call object
 }
 ]
-{% endhighlight %}  
+```  
 
 注意到, 此时的作用域链中, 并不包含app的活动对象.
 
 在定义intro函数的时候, intro函数的[[scope]]为:
 
-{% highlight javascript %}
+```javascript
 [[scope chain]] = [
 {
      name : 'laruence',
@@ -181,11 +181,11 @@ I am laruence
      window call object
 }
 ]
-{% endhighlight %} 
+``` 
 
 从factory函数返回以后,在app体内调用intro的时候, 发生了标识符解析, 而此时的scope chain是:
 
-{% highlight javascript %}
+```javascript
 [[scope chain]] = [
 {
      intro call object
@@ -196,7 +196,7 @@ I am laruence
      window call object
 }
 ]
-{% endhighlight %}
+```
 
 因为scope chain中,并不包含factory活动对象. 所以, name标识符解析的结果应该是factory活动对象中的name属性, 也就是'laruence'.
 
@@ -206,12 +206,12 @@ I am laruence
 
 例子：
 
-{% highlight javascript %}
+```javascript
 alert(typeof eve); //function
 function eve() {
   alert('I am Laruence');
 };
-{% endhighlight %} 
+``` 
 
 由于在js中存在着预编译的过程（JS在执行每一段JS代码之前，都会首先处理var关键字和function关键字）。
 
@@ -223,7 +223,7 @@ function eve() {
 
 函数表达式（var声明的function在预编译中跟变量做一样的处理），如下例子，对于函数定义式，会将函数定义提前而函数表达式，会在执行过程中才计算.
 
-{% highlight javascript %}
+```javascript
 alert(typeof eve); //结果:function
 alert(typeof walle); //结果:undefined
 function eve() { //函数定义式
@@ -232,20 +232,20 @@ function eve() { //函数定义式
 var walle = function() { //函数表达式
 };
 alert(typeof walle); //结果:function
-{% endhighlight %} 
+``` 
 
 而对于**反编译模式**创建的变量，如：
 
-{% highlight javascript %}
+```javascript
 var name = 'laruence';
 age = 26;
-{% endhighlight %} 
+``` 
 
 变量`age`会被定义在顶级作用域中。
 
 当然，JS是对每一段的JS代码进行预编译的
 
-{% highlight html %}
+```html
 <script>
     alert(typeof eve); //结果:undefined
 </script>
@@ -254,7 +254,7 @@ age = 26;
         alert('I am Laruence');
     }
 </script>
-{% endhighlight %} 
+``` 
 
 ---
 
@@ -264,28 +264,28 @@ age = 26;
 
 减少查找的例子如下：
 
-{% highlight javascript %}
+```javascript
 function showTips(){
     document.getElementById('btn').onclick = function(){
         document.getElementById('tip').style.display = 'block';
     }
 }
-{% endhighlight %} 
+``` 
 
 将两次全局查找，优化成：
 
-{% highlight javascript %}
+```javascript
 function showTips(){
     var doc = document;
     doc.getElementById('btn').onclick = function(){
         doc.getElementById('tip').style.display = 'block';
     }
 }
-{% endhighlight %} 
+``` 
 
 在jquery的源码中，开头就把会频繁使用的变量存储起来了：
 
-{% highlight javascript %}
+```javascript
 (function( window, undefined ) {
   var
     // A central reference to the root jQuery(document)
@@ -304,7 +304,7 @@ function showTips(){
     document = window.document,
     docElem = document.documentElement,
     ......
-{% endhighlight %} 
+``` 
 
 ---
 
@@ -323,22 +323,22 @@ function showTips(){
 
 当try代码块中发生错误时，执行过程会跳转到catch语句，然后把异常对象推入一个可变对象并置于作用域的头部。在catch代码块内部，函数的所有局部变量将会被放在第二个作用域链对象中。
 
-{% highlight javascript %}
+```javascript
 try{
     doSomething();
 }catch(ex){
     alert(ex.message); //作用域链在此处改变
 }
-{% endhighlight %} 
+``` 
 
 一旦catch语句执行完毕，作用域链机会返回到之前的状态。try-catch语句在代码调试和异常处理中非常有用，因此不建议完全避免。你可以通过优化代码来减少catch语句对性能的影响。**一个很好的模式是将错误委托给一个函数处理，**例如：
 
-{% highlight javascript %}
+```javascript
 try{
     doSomething();
 }catch(ex){
     handleError(ex); //委托给处理器方法
 }
-{% endhighlight %} 
+``` 
 
 优化后的代码，handleError方法是catch子句中唯一执行的代码。该函数接收异常对象作为参数，这样你可以更加灵活和统一的处理错误。**由于只执行一条语句，且没有局部变量的访问，作用域链的临时改变就不会影响代码性能了。**

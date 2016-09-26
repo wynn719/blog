@@ -22,7 +22,7 @@ excerpt: 众所周知，前端工程师的大坑之一就是低版本的IE浏览
 
 1\. 在IE6元素浮动，如果宽度需要将内容撑开，就给里边的块元素都加浮动
 
-{% highlight html %}
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -46,11 +46,11 @@ h3{margin:0;height:30px; float:left;}/*如果不加浮动，ie6下元素不会�
 </div>
 </body>
 </html>
-{% endhighlight %} 
+``` 
 
 2\. 在IE6，7下元素要通过浮动并在同一行，就给这行元素都加浮动
 
-{% highlight html %}
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -69,11 +69,11 @@ h3{margin:0;height:30px; float:left;}/*如果不加浮动，ie6下元素不会�
     </div>
 </body>
 </html>
-{% endhighlight %}  
+```  
 
 3\. 注意标签的嵌套规范
 
-{% highlight html %}
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -90,13 +90,13 @@ p{width:100px;height:100px;background:Red;}
     </p>
 </body>
 </html>
-{% endhighlight %} 
+``` 
 
 ## 应该注意的兼容性问题
 
 1\. IE6下最小高度问题，在IE6下元素的高度的小于19px的时候，会被当做19px来处理，解决办法，给元素加上`overflow:hidden;`
 
-{% highlight html %}
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -111,11 +111,11 @@ p{width:100px;height:100px;background:Red;}
     <div class="box"></div>
 </body>
 </html>
-{% endhighlight %}  
+```  
 
 2\. border的属性dotted在ie6中不被支持，会被解析成dashed解决方法：使用背景图片平铺
 
-{% highlight html %}
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -130,11 +130,11 @@ p{width:100px;height:100px;background:Red;}
     <div class="box"></div>
 </body>
 </html>
-{% endhighlight %}  
+```  
 
 3\. 在IE6下解决margin传递要触发haslayout，在IE6下父级有边框的时候，子元素的margin值消失，解决办法:触发父级的haslayout（使用`zoom: 1;`）
 
-{% highlight html %}
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -153,11 +153,11 @@ body{margin:0;}
     </div>
 </body>
 </html>
-{% endhighlight %} 
+``` 
 
 4\. IE6下双边距BUG，在IE6，块元素有浮动和和横向的margin值 ，横向的margin值会被放大成两倍，解决办法: `display:inline;`
 
-{% highlight html %}
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -173,9 +173,9 @@ body{margin:0;}
     <div class="box"></div>
 </body>
 </html>
-{% endhighlight %} 
+``` 
 
-{% highlight html %}
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -199,14 +199,14 @@ body{margin:0;}
 </div>
 </body>
 </html>
-{% endhighlight %} 
+``` 
 
 5\. 在IE6，7下，li本身没浮动，但是li的内容有浮动，li下边就会产生一个间隙，解决办法:
 
 * 给li加浮动（当IE6下最小高度问题，和li的间隙问题共存的时候需用这种方法解决）
 * 给li加`vertical-align`
 
-{% highlight html %}
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -237,11 +237,11 @@ span{width:100px;float:right;height:30px;background:blue;}
     </ul>
 </body>
 </html>
-{% endhighlight %} 
+``` 
 
 6\. 在IE6下的文字溢出BUG，子元素的宽度和父级的宽度相差小于3px的时候,两个浮动元素中间有注释或者内嵌元素，解决办法:用div把注释或者内嵌元素用div包起来  
 
-{% highlight html %}
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -266,11 +266,11 @@ span{width:100px;float:right;height:30px;background:blue;}
     </div>
 </body>
 </html>
-{% endhighlight %} 
+``` 
 
 7\. 当一行子元素占有的宽度之和和父级的宽度相差超过3px,或者有不满行状态的时候,最后一行子元素的下margin在IE6下就会失效，解决方法：尽量用padding来代替
 
-{% highlight html %}
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -298,11 +298,11 @@ span{width:100px;float:right;height:30px;background:blue;}
     </div>
 </body>
 </html>
-{% endhighlight %} 
+``` 
 
 8\. IE6，7下，子元素有相对定位的话，父级的overflow包不住子元素，解决办法: 给父级也加相对定位
 
-{% highlight html %}
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -320,11 +320,11 @@ span{width:100px;float:right;height:30px;background:blue;}
     </div>
 </body>
 </html>
-{% endhighlight %} 
+``` 
 
 9\. 在IE6下绝对定位元素的父级宽高是奇数的时候，元素的right值和bottom值会有1px的偏差（注意：top和left不会出现该问题）
 
-{% highlight html %}
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -342,13 +342,13 @@ span{width:100px;float:right;height:30px;background:blue;}
     </div>
 </body>
 </html>
-{% endhighlight %} 
+``` 
 
 10\. `position: fixed;`在ie6下不能使用
 
 11\. 在IE6，7下输入类型的表单控件上下各有1px的间隙，解决办法:给input加浮动
 
-{% highlight html %}
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -366,11 +366,11 @@ input{width:100px;height:30px;border:1px solid #000;margin:0;padding:0; /*float:
     </div>
 </body>
 </html>
-{% endhighlight %} 
+``` 
 
 12\. 在IE6，7下输入类型的表单控件输入文字的时候，背景图片会跟着一块移动，解决办法: 把背景加给父级
 
-{% highlight html %}
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -387,11 +387,11 @@ input{width:100px;height:30px;border:none;margin:0;padding:0; float:left; backgr
     </div>
 </body>
 </html>
-{% endhighlight %} 
+``` 
 
 13\. 想要去掉input的border属性，在IE6，7下输入类型的表单控件加`border:none;`的同时重置input的背景
 
-{% highlight html %}
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -409,11 +409,11 @@ input{width:100px;height:30px;border:none;margin:0;padding:0; float:left; /*back
 </div>
 </body>
 </html>
-{% endhighlight %} 
+``` 
 
 14\. IE 6不支持png格式的图片透明，解决方案：开源插件 <a href="http://www.dillerdesign.com/experiment/DD_belatedPNG/">DD_belatedPNG.js</a> 解决图片透明问题
 
-{% highlight html %}
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -436,11 +436,11 @@ DD_belatedPNG.fix('.box');
     <div class="box"></div>
 </body>
 </html>
-{% endhighlight %} 
+``` 
 
 15\. 在IE6下，在important，后边在家一条同样的样式，会破坏掉important的作用，会按照默认的优先级顺序来走
 
-{% highlight html %}
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -455,11 +455,11 @@ DD_belatedPNG.fix('.box');
     <div class="box" style="background:#000;"></div>
 </body>
 </html>
-{% endhighlight %} 
+``` 
 
 16\. CSS hack（危险，尽量不要使用！）
 
-{% highlight html %}
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -481,13 +481,13 @@ css hack：
     <div class="box"></div>
 </body>
 </html>
-{% endhighlight %} 
+``` 
 
 17\. ie6不支持fixed，可模拟如下（存在一些小问题，比较少使用）:
 
 第一种方法：
 
-{% highlight html %}
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -507,11 +507,11 @@ body{margin:0; height:100%;overflow:auto;}
     </div>
 </body>
 </html>
-{% endhighlight %} 
+``` 
 
 第二种方法：
 
-{% highlight html %}
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -531,7 +531,7 @@ body{margin:0; height:100%;overflow:auto;}
     </div>
 </body>
 </html>
-{% endhighlight %} 
+``` 
 
 ## 番外篇--布局……
 
@@ -539,7 +539,7 @@ body{margin:0; height:100%;overflow:auto;}
 
 左右两侧固定，中间自由伸缩，中间先加载
 
-{% highlight html %}
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -558,13 +558,13 @@ body{margin:0;}
     <div class="right"></div>
 </body>
 </html>
-{% endhighlight %}
+```
 
 ### 等高布局
 
 容器高度随着左右两边的增高而变化
 
-{% highlight html %}
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -601,7 +601,7 @@ body{margin:0;}
     </div>
 </body>
 </html>
-{% endhighlight %} 
+``` 
 
 > 可能还有别的知识，未完待补充！！
 > 
