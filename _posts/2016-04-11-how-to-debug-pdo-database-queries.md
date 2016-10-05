@@ -72,7 +72,7 @@ execute sql using @username, @email
 
 当然还是有解决的调试方法的，就是**通过 mysql 日志来查看所有的数据库查询**，以下是在windows平台，通过 mysql 控制台来设置（也可以通过 mysql my.ini 配置文件来设置）：
 
-```bash
+```bash\
 # 查看日志情况
 # show variables like '%general%';
 
