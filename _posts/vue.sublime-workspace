@@ -1,0 +1,304 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 105.0,
+		"last_filter": "Package Control: instal",
+		"selected_items":
+		[
+			[
+				"Package Control: instal",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: pac",
+				"Package Control: List Packages"
+			],
+			[
+				"gitpull",
+				"Git: Pull"
+			],
+			[
+				"git push",
+				"Git: Push Current Branch"
+			],
+			[
+				"gitpush",
+				"Git: Push Current Branch"
+			],
+			[
+				"git qui",
+				"Git: Quick Commit (current file)"
+			],
+			[
+				"gitadd",
+				"Git: Add Current File"
+			],
+			[
+				"gitstat",
+				"Git: Status"
+			],
+			[
+				"gitcommi",
+				"Git: Quick Commit (current file)"
+			],
+			[
+				"gitgui",
+				"Git: Gui"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"packagelist",
+				"Package Control: List Packages"
+			],
+			[
+				"Package Control: install",
+				"Package Control: Install Package"
+			],
+			[
+				"gitstatus",
+				"Git: Status"
+			],
+			[
+				"gui",
+				"Git: Gui"
+			],
+			[
+				"gitfe",
+				"Git: Fetch"
+			],
+			[
+				"INSTALL",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 416.0
+	},
+	"console":
+	{
+		"height": 181.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/E/github/vue/examples/todomvc/js",
+		"/E/github/vue/examples/todomvc/node_modules",
+		"/E/github/vue/examples/todomvc/node_modules/todomvc-app-css",
+		"/E/github/vue/src/compiler"
+	],
+	"file_history":
+	[
+		"/E/github/vue/examples/todomvc/index.html",
+		"/E/github/vue/examples/todomvc/js/app.js",
+		"/E/github/vue/examples/todomvc/perf.js",
+		"/E/github/vue/examples/todomvc/js/store.js",
+		"/E/github/vue/examples/todomvc/node_modules/director/build/director.js",
+		"/E/github/vue/examples/todomvc/js/routes.js",
+		"/E/github/vue/examples/todomvc/node_modules/todomvc-app-css/index.css",
+		"/E/github/vue/examples/tree/tree.js",
+		"/E/github/vue/examples/tree/index.html",
+		"/E/github/vue/examples/select2/index.html",
+		"/E/github/vue/examples/elastic-header/index.html",
+		"/E/github/vue/examples/modal/index.html",
+		"/E/github/vue/examples/svg/svg.js",
+		"/E/github/vue/examples/svg/index.html",
+		"/E/github/vue/examples/svg/style.css",
+		"/E/github/vue/examples/grid/index.html",
+		"/E/github/vue/examples/grid/grid.js",
+		"/E/github/vue/examples/commits/index.html",
+		"/E/github/vue/examples/firebase/app.js",
+		"/E/github/vue/examples/commits/app.js",
+		"/E/github/vue/examples/markdown/index.html",
+		"/E/github/vue/examples/markdown/marked.min.js",
+		"/E/github/vue/package.json",
+		"/E/github/blog/_posts/2016-09-24-Probation-summary-in-Tencent.md",
+		"/E/github/blog/_posts/2015-04-21-Yahoo-Best-Practices-for-Speeding-Up-Web-Site-.md",
+		"/E/github/blog/_posts/2016-08-15-ES6-2-practice.md",
+		"/E/github/blog/_posts/2016-08-07-ES6-practice.md",
+		"/E/github/blog/_posts/2016-08-07-ES6-2-practice.md",
+		"/E/github/douban_stat/package.json",
+		"/E/github/blog/gulpfile.js",
+		"/E/github/blog/_posts/2016-08-07-ES6-practice-1.md",
+		"/E/github/blog/_posts/2016-08-08-ES6-practice-2.md",
+		"/C/Users/wynnezheng/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/Users/wynnezheng/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/C/Users/wynnezheng/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"JavaScript",
+			"true",
+			"code",
+			"proxy",
+			"http_proxy"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		},
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 36.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.git":
+	{
+		"height": 617.0
+	},
+	"pinned_build_system": "",
+	"project": "vue.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"director/build/director.js",
+				"examples\\todomvc\\node_modules\\director\\build\\director.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"C:\\Users\\wynnezheng\\Desktop\\workspace\\code-draft.sublime-workspace"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 192.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
